@@ -19,9 +19,8 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? "bg-black/80 backdrop-blur-md border-b border-brand-blue/30" : "bg-transparent"
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? "bg-black/80 backdrop-blur-md border-b border-brand-blue/30" : "bg-transparent"
+        }`}
     >
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
@@ -42,32 +41,36 @@ export default function Navbar() {
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
             <div className="flex gap-6">
-              <Link href="#features" className="text-gray-300 hover:text-white transition-colors relative group">
+              <Link href="/#features" className="text-gray-300 hover:text-white transition-colors relative group">
                 Features
                 <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-brand-blue group-hover:w-full transition-all duration-300"></span>
               </Link>
-              <Link href="#platforms" className="text-gray-300 hover:text-white transition-colors relative group">
+              <Link href="/#platforms" className="text-gray-300 hover:text-white transition-colors relative group">
                 OTT Platforms
                 <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-brand-blue group-hover:w-full transition-all duration-300"></span>
               </Link>
-              <Link href="#pricing" className="text-gray-300 hover:text-white transition-colors relative group">
+              <Link href="/#pricing" className="text-gray-300 hover:text-white transition-colors relative group">
                 Pricing
                 <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-brand-blue group-hover:w-full transition-all duration-300"></span>
               </Link>
-              <Link href="#testimonials" className="text-gray-300 hover:text-white transition-colors relative group">
+              <Link href="/#testimonials" className="text-gray-300 hover:text-white transition-colors relative group">
                 Testimonials
                 <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-brand-blue group-hover:w-full transition-all duration-300"></span>
               </Link>
             </div>
             <div className="flex items-center gap-4">
-              <Button variant="ghost" className="text-gray-300 hover:text-white relative overflow-hidden group">
-                <span className="relative z-10">Sign In</span>
-                <span className="absolute inset-0 w-0 bg-brand-blue/20 group-hover:w-full transition-all duration-300"></span>
-              </Button>
-              <Button className="bg-brand-blue hover:bg-brand-blue/90 text-white relative overflow-hidden group">
-                <span className="relative z-10">Get Started</span>
-                <span className="absolute top-0 -inset-full h-full w-1/2 z-5 block transform -skew-x-12 bg-gradient-to-r from-transparent to-white opacity-20 group-hover:animate-shine"></span>
-              </Button>
+              <Link href="/login">
+                <Button variant="ghost" className="text-gray-300 hover:text-white relative overflow-hidden group">
+                  <span className="relative z-10">Sign In</span>
+                  <span className="absolute inset-0 w-0 bg-brand-blue/20 group-hover:w-full transition-all duration-300"></span>
+                </Button>
+              </Link>
+              <Link href="/signup">
+                <Button className="bg-brand-blue hover:bg-brand-blue/90 text-white relative overflow-hidden group">
+                  <span className="relative z-10">Get Started</span>
+                  <span className="absolute top-0 -inset-full h-full w-1/2 z-5 block transform -skew-x-12 bg-gradient-to-r from-transparent to-white opacity-20 group-hover:animate-shine"></span>
+                </Button>
+              </Link>
             </div>
           </div>
 
@@ -84,37 +87,39 @@ export default function Navbar() {
           <div className="container mx-auto px-4 py-4">
             <div className="flex flex-col gap-4">
               <Link
-                href="#features"
+                href="/#features"
                 className="text-gray-300 hover:text-white transition-colors py-2"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Features
               </Link>
               <Link
-                href="#platforms"
+                href="/#platforms"
                 className="text-gray-300 hover:text-white transition-colors py-2"
                 onClick={() => setIsMenuOpen(false)}
               >
                 OTT Platforms
               </Link>
               <Link
-                href="#pricing"
+                href="/#pricing"
                 className="text-gray-300 hover:text-white transition-colors py-2"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Pricing
               </Link>
               <Link
-                href="#testimonials"
+                href="/#testimonials"
                 className="text-gray-300 hover:text-white transition-colors py-2"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Testimonials
               </Link>
               <div className="flex flex-col gap-2 pt-4 border-t border-gray-800">
+                <Link href="/login">
                 <Button variant="ghost" className="justify-start text-gray-300 hover:text-white">
                   Sign In
                 </Button>
+                </Link>
                 <Button className="bg-brand-blue hover:bg-brand-blue/90 text-white">Get Started</Button>
               </div>
             </div>
