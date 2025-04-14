@@ -1,18 +1,18 @@
-let userConfig = undefined
+let userConfig = undefined;
 try {
-  // try to import ESM first
-  userConfig = await import('./v0-user-next.config.mjs')
+  userConfig = await import('./v0-user-next.config.mjs');
 } catch (e) {
   try {
-    // fallback to CJS import
     userConfig = await import("./v0-user-next.config");
   } catch (innerError) {
-    // ignore error
+    console.error("Failed to load user configuration:", innerError);
   }
 }
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: 'export', // Enable static export
+  basePath: '/Subversepay-web', // Set this to your GitHub repository name
   eslint: {
     ignoreDuringBuilds: true,
   },
@@ -27,11 +27,10 @@ const nextConfig = {
     parallelServerBuildTraces: true,
     parallelServerCompiles: true,
   },
-}
+};
 
 if (userConfig) {
-  // ESM imports will have a "default" property
-  const config = userConfig.default || userConfig
+  const config = userConfig.default || userConfig;
 
   for (const key in config) {
     if (
@@ -41,11 +40,11 @@ if (userConfig) {
       nextConfig[key] = {
         ...nextConfig[key],
         ...config[key],
-      }
+      };
     } else {
-      nextConfig[key] = config[key]
+      nextConfig[key] = config[key];
     }
   }
 }
 
-export default nextConfig
+export default nextConfig;
