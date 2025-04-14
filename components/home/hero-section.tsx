@@ -122,7 +122,7 @@ export default function HeroSection() {
             <div className="absolute bottom-0 right-0 w-20 h-20 border-b-2 border-r-2 border-brand-blue rounded-br-xl"></div>
 
             <Image
-              src="/placeholder.svg?height=600&width=1200"
+              src="/placeholder.jpg?height=600&width=1200"
               alt="SubversePay Dashboard"
               width={1200}
               height={600}
