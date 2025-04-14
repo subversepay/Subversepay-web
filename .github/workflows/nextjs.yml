@@ -21,15 +21,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: "20"
-          cache: pnpm
-
-      # Ensure pnpm is installed before detecting the package manager
       - name: Install pnpm globally
-        run: npm install -g pnpm
+        run: |
+          npm install -g pnpm
+          pnpm --version
 
       - name: Detect package manager
         id: detect-package-manager
@@ -53,6 +48,29 @@ jobs:
             echo "Unable to determine package manager"
             exit 1
           fi
+
+      - name: Debug package manager detection
+        run: |
+          echo "Manager: ${{ steps.detect-package-manager.outputs.manager }}"
+          echo "Command: ${{ steps.detect-package-manager.outputs.command }}"
+          echo "Runner: ${{ steps.detect-package-manager.outputs.runner }}"
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: ${{ steps.detect-package-manager.outputs.manager }}
+
+      - name: Install pnpm
+        if: steps.detect-package-manager.outputs.manager == 'pnpm'
+        run: |
+          npm install -g pnpm
+          pnpm --version
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+        with:
+          static_site_generator: next
 
       - name: Restore cache
         uses: actions/cache@v4
