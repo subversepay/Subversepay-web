@@ -9,7 +9,7 @@ import OttPlatformsSection from "@/components/home/ott-platforms-section"
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen bg-gradient-to-r from-brand-blue/0 via-brand-blue/30 to-brand-blue/0 text-white">
       <div className="fixed inset-0 bg-[url('/grid.svg')] bg-center [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)] pointer-events-none"></div>
       <Navbar />
       <main>
