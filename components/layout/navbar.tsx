@@ -59,18 +59,18 @@ export default function Navbar() {
               </Link>
             </div>
             <div className="flex items-center gap-4">
-              <Link href="/login">
+              {/* <Link href="/login">
                 <Button variant="ghost" className="text-gray-300 hover:text-white relative overflow-hidden group">
                   <span className="relative z-10">Sign In</span>
                   <span className="absolute inset-0 w-0 bg-brand-blue/20 group-hover:w-full transition-all duration-300"></span>
                 </Button>
-              </Link>
-              <Link href="/signup">
+              </Link> */}
+              {/* <Link href="/signup"> */}
                 <Button className="bg-brand-blue hover:bg-brand-blue/90 text-white relative overflow-hidden group">
-                  <span className="relative z-10">Get Started</span>
+                  <span className="relative z-10">Connect Wallet</span>
                   <span className="absolute top-0 -inset-full h-full w-1/2 z-5 block transform -skew-x-12 bg-gradient-to-r from-transparent to-white opacity-20 group-hover:animate-shine"></span>
                 </Button>
-              </Link>
+              {/* </Link> */}
             </div>
           </div>
 

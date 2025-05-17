@@ -4,14 +4,17 @@ import { useState, useEffect } from "react"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { ArrowRight, CheckCircle2 } from "lucide-react"
+import { contractContext } from '../../context/contractContext'
 
 export default function HeroSection() {
   const [isVisible, setIsVisible] = useState(false)
+  const { ConnectWallet, currentAccount } =  useContext(contractContext)
 
   useEffect(() => {
     setIsVisible(true)
   }, [])
 
+  console.log("contexts :", currentAccount, ConnectWallet);
   return (
     <section className="pt-32 pb-20 relative overflow-hidden">
       {/* Background elements */}
