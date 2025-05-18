@@ -1,4 +1,18 @@
+import Governance from './abis/Governance.sol/Governance.json'
+import PaymentProcessor from './abis/PaymentProcessor.sol/PaymentProcessor.json'
+import PremiumFeatures from './abis/PremiumFeatures.sol/PremiumFeatures.json'
+import Staking from './abis/Staking.sol/Staking.json'
+import SUBVToken from './abis/SUBVToken.sol/SUBVToken.json'
+import Treasury from './abis/Treasury.sol/Treasury.json'
 
+
+// Contract ABI 
+export const GovernanceAbi = Governance.abi;
+export const PaymentProcessorAbi = PaymentProcessor.abi;
+export const PremiumFeaturesAbi = PremiumFeatures.abi;
+export const StakingAbi = Staking.abi;
+export const SUBVTokenAbi = SUBVToken.abi;
+export const TreasuryAbi = Treasury.abi;
 
 
 // Contract addresses (from the readMe)
