@@ -1,7 +1,8 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useContext } from "react"
 import Link from "next/link"
+import Image from 'next/image'
 import { Button } from "@/components/ui/button"
 import { Menu, X } from "lucide-react"
 import { ContractContext } from '../../context/contractContext'
@@ -10,9 +11,9 @@ import { ContractContext } from '../../context/contractContext'
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
-  const { ConnectWallet, currentAccount } =  useContext(ContractContext)
+  const { ConnectWallet, DisConnectWallet, currentAccount } =  useContext(ContractContext)
 
-  console.log("contexts :", currentAccount, ConnectWallet);
+  console.log("current account :", currentAccount );
 
   useEffect(() => {
     const handleScroll = () => {
@@ -33,7 +34,8 @@ export default function Navbar() {
             <div className="relative h-10 w-10 transition-transform duration-500 group-hover:rotate-180">
               <div className="absolute inset-0 bg-brand-blue rounded-full opacity-80 group-hover:opacity-100 transition-opacity"></div>
               <div className="absolute inset-[3px] bg-black rounded-full flex items-center justify-center">
-                <span className="text-white font-bold text-xs">SP</span>
+                {/* <span className="text-white font-bold text-xs">SP</span> */}
+                <Image src="/Subversepay-logo-black.jpeg" alt="subversepay logo" />
               </div>
               <div className="absolute inset-0 border-2 border-brand-blue/50 rounded-full animate-pulse"></div>
             </div>
@@ -71,8 +73,11 @@ export default function Navbar() {
                 </Button>
               </Link> */}
               {/* <Link href="/signup"> */}
-                <Button className="bg-brand-blue hover:bg-brand-blue/90 text-white relative overflow-hidden group">
-                  <span className="relative z-10">Connect Wallet</span>
+               <Button 
+                onClick={()=>{ !currentAccount ? ConnectWallet() : DisConnectWallet() }}
+                className="bg-brand-blue hover:bg-brand-blue/90 text-white relative overflow-hidden group"
+                >
+                  <span className="relative z-10">{!currentAccount ? "Connect Wallet" : "Disconnect"}</span>
                   <span className="absolute top-0 -inset-full h-full w-1/2 z-5 block transform -skew-x-12 bg-gradient-to-r from-transparent to-white opacity-20 group-hover:animate-shine"></span>
                 </Button>
               {/* </Link> */}

@@ -1,26 +1,31 @@
 "use client";
+
 import React, { useState, useEffect, ReactNode } from "react";
 import { ethers } from "ethers";
-import { SUBVTokenAddress } from '../utils/constants'
+import {
+   SUBVTokenAddress, SUBVTokenAbi,
+   PaymentProcessorAddress, PaymentProcessorAbi,
+} from '../utils/constants'
+import { useRouter } from 'next/navigation'
 
-// Import your ABI types if you have them
-// import SUBVTokenABI from './abis/SUBVToken.json';
-// import PaymentProcessorABI from './abis/PaymentProcessor.json';
 
 
 // Create the context with a default value
 export const ContractContext = React.createContext();
+const router = useRouter()
 
-const { ethereum } = window;
+if (typeof window !== 'undefined') {
+  const { ethereum } = window;
+}
 
-// Contract addresses (from deployment)
-// const SUBVTokenAddress = '0x99297194ED913fdA3966640858D5419DdDEAfF04';
-// const PaymentProcessorAddress = '0x820642D6f5b53C08A545EC4931798C637B0170F6';
+
+// Set up provider and signer
+const provider = new ethers.providers.Web3Provider(ethereum);
+const signer = provider.getSigner();
 
 // Instantiate contracts
-// Uncomment and ensure you have the correct ABI types
-// const subvToken = new ethers.Contract(SUBVTokenAddress, SUBVTokenABI.abi, signer);
-// const paymentProcessor = new ethers.Contract(PaymentProcessorAddress, PaymentProcessorABI.abi, signer);
+const subvToken = new ethers.Contract(SUBVTokenAddress, SUBVTokenAbi, signer);
+const paymentProcessor = new ethers.Contract(PaymentProcessorAddress, PaymentProcessorABI.abi, signer);
 
 export const ContractProvider = ({ children }) => {
   const [currentAccount, setCurrentAccount] = useState("");
@@ -34,6 +39,22 @@ export const ContractProvider = ({ children }) => {
 
       setCurrentAccount(accounts[0]);
       window.location.reload();
+      router.push('/dashboard');
+    } catch (error) {
+      console.log(error);
+      throw new Error("No ethereum object");
+    }
+  };
+  // Func to Disconnect wallet
+  const DisConnectWallet = async () => {
+    try {
+      if (!ethereum) return alert("Please install MetaMask.");
+
+      const accounts = await ethereum.request({ method: "eth_requestAccounts" });
+
+      setCurrentAccount(accounts[0]);
+      window.location.reload();
+      router.push("/");
     } catch (error) {
       console.log(error);
       throw new Error("No ethereum object");
@@ -49,21 +70,35 @@ export const ContractProvider = ({ children }) => {
 
       if (accounts.length) {
         setCurrentAccount(accounts[0]);
-        // getAllTransactions();
+        router.push('/dashboard');
       } else {
         console.log("No accounts found");
       }
     } catch (error) {
       console.log(error);
     }
+
   };
+
+// Get SUBV token balance
+async function getSubvBalance(address) {
+  const balance = await subvToken.balanceOf(address);
+  return ethers.utils.formatEther(balance);
+}
+
+// Approve payment processor to spend tokens
+async function approvePaymentProcessor(amount) {
+  const amountWei = ethers.utils.parseEther(amount.toString());
+  const tx = await subvToken.approve(PaymentProcessorAddress, amountWei);
+  return await tx.wait();
+}
 
   useEffect(() => {
     checkIfWalletIsConnect();
   }, []);
 
   return (
-    <ContractContext.Provider value={{ ConnectWallet, currentAccount }}>
+    <ContractContext.Provider value={{ ConnectWallet, DisConnectWallet, currentAccount }}>
       {children}
     </ContractContext.Provider>
   );
