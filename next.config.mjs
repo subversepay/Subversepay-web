@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // output: 'export', // Enable static export
+  output: 'export', // Enable static export
   basePath: '/Subversepay-web', // Set this to your GitHub repository name
   eslint: {
     ignoreDuringBuilds: true,
