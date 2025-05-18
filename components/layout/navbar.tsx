@@ -4,10 +4,15 @@ import { useState, useEffect } from "react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Menu, X } from "lucide-react"
+import { ContractContext } from '../../context/contractContext'
+
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const { ConnectWallet, currentAccount } =  useContext(ContractContext)
+
+  console.log("contexts :", currentAccount, ConnectWallet);
 
   useEffect(() => {
     const handleScroll = () => {

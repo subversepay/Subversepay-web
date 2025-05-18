@@ -4,11 +4,11 @@ import { useState, useEffect } from "react"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { ArrowRight, CheckCircle2 } from "lucide-react"
-import { contractContext } from '../../context/contractContext'
+import { ContractContext } from '../../context/contractContext'
 
 export default function HeroSection() {
   const [isVisible, setIsVisible] = useState(false)
-  const { ConnectWallet, currentAccount } =  useContext(contractContext)
+  const { ConnectWallet, currentAccount } =  useContext(ContractContext)
 
   useEffect(() => {
     setIsVisible(true)
