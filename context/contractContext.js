@@ -26,7 +26,7 @@ const signer = provider.getSigner();
 
 // Instantiate contracts
 export const subvToken = new ethers.Contract(SUBVTokenAddress, SUBVTokenAbi, signer);
-export const paymentProcessor = new ethers.Contract(PaymentProcessorAddress, PaymentProcessorABI.abi, signer);
+export const paymentProcessor = new ethers.Contract(PaymentProcessorAddress, PaymentProcessorAbi, signer);
 export const staking = new ethers.Contract(StakingAddress, StakingAbi, signer);
 
 
@@ -84,17 +84,17 @@ export const ContractProvider = ({ children }) => {
   };
 
 // Get SUBV token balance
-async function getSubvBalance(address) {
-  const balance = await subvToken.balanceOf(address);
-  return ethers.utils.formatEther(balance);
-}
+// async function getSubvBalance(address) {
+//   const balance = await subvToken.balanceOf(address);
+//   return ethers.utils.formatEther(balance);
+// }
 
-// Approve payment processor to spend tokens
-async function approvePaymentProcessor(amount) {
-  const amountWei = ethers.utils.parseEther(amount.toString());
-  const tx = await subvToken.approve(PaymentProcessorAddress, amountWei);
-  return await tx.wait();
-}
+// // Approve payment processor to spend tokens
+// async function approvePaymentProcessor(amount) {
+//   const amountWei = ethers.utils.parseEther(amount.toString());
+//   const tx = await subvToken.approve(PaymentProcessorAddress, amountWei);
+//   return await tx.wait();
+// }
 
   useEffect(() => {
     checkIfWalletIsConnect();
