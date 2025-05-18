@@ -5,6 +5,7 @@ import { ethers } from "ethers";
 import {
    SUBVTokenAddress, SUBVTokenAbi,
    PaymentProcessorAddress, PaymentProcessorAbi,
+   StakingAddress, StakingAbi,
 } from '../utils/constants'
 import { useRouter } from 'next/navigation'
 
@@ -24,8 +25,10 @@ const provider = new ethers.providers.Web3Provider(ethereum);
 const signer = provider.getSigner();
 
 // Instantiate contracts
-const subvToken = new ethers.Contract(SUBVTokenAddress, SUBVTokenAbi, signer);
-const paymentProcessor = new ethers.Contract(PaymentProcessorAddress, PaymentProcessorABI.abi, signer);
+export const subvToken = new ethers.Contract(SUBVTokenAddress, SUBVTokenAbi, signer);
+export const paymentProcessor = new ethers.Contract(PaymentProcessorAddress, PaymentProcessorABI.abi, signer);
+export const staking = new ethers.Contract(StakingAddress, StakingAbi, signer);
+
 
 export const ContractProvider = ({ children }) => {
   const [currentAccount, setCurrentAccount] = useState("");
