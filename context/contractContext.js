@@ -13,7 +13,7 @@ import { useRouter } from 'next/navigation'
 
 // Create the context with a default value
 export const ContractContext = React.createContext();
-const router = useRouter()
+
 
 if (typeof window !== 'undefined') {
   const { ethereum } = window;
@@ -32,7 +32,8 @@ export const staking = new ethers.Contract(StakingAddress, StakingAbi, signer);
 
 export const ContractProvider = ({ children }) => {
   const [currentAccount, setCurrentAccount] = useState("");
-
+  const router = useRouter();
+   
   // Func to Connect wallet
   const ConnectWallet = async () => {
     try {
