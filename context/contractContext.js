@@ -15,25 +15,39 @@ import { useRouter } from 'next/navigation'
 export const ContractContext = React.createContext();
 
 
-if (typeof window !== 'undefined') {
-  const { ethereum } = window;
-}
+//if (typeof window !== 'undefined') {
+//  const { ethereum } = window;
+// }
 
 
 // Set up provider and signer
-const provider = new ethers.providers.Web3Provider(ethereum);
-const signer = provider.getSigner();
+//const provider = new ethers.providers.Web3Provider(ethereum);
+//const signer = provider.getSigner();
 
 // Instantiate contracts
-export const subvToken = new ethers.Contract(SUBVTokenAddress, SUBVTokenAbi, signer);
-export const paymentProcessor = new ethers.Contract(PaymentProcessorAddress, PaymentProcessorAbi, signer);
-export const staking = new ethers.Contract(StakingAddress, StakingAbi, signer);
+// export const subvToken = new ethers.Contract(SUBVTokenAddress, SUBVTokenAbi, signer);
+// export const paymentProcessor = new ethers.Contract(PaymentProcessorAddress, PaymentProcessorAbi, signer);
+// export const staking = new ethers.Contract(StakingAddress, StakingAbi, signer);
 
 
 export const ContractProvider = ({ children }) => {
-  const [currentAccount, setCurrentAccount] = useState("");
-  const router = useRouter();
+    const [currentAccount, setCurrentAccount] = useState("");
+    const router = useRouter();
    
+    const { ethereum } = typeof window !== 'undefined' ? window : { ethereum: null };
+   
+    let provider, signer;
+    if (ethereum) {
+      provider = new ethers.providers.Web3Provider(ethereum);
+      signer = provider.getSigner();
+    }
+   
+    // Instantiate contracts only if signer is available
+   export  const subvToken = signer ? new ethers.Contract(SUBVTokenAddress, SUBVTokenAbi, signer) : null;
+   export  const paymentProcessor = signer ? new ethers.Contract(PaymentProcessorAddress, PaymentProcessorAbi, signer) : null;
+   export  const staking = signer ? new ethers.Contract(StakingAddress, StakingAbi, signer) : null;
+
+     
   // Func to Connect wallet
   const ConnectWallet = async () => {
     try {
