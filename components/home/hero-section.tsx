@@ -1,20 +1,21 @@
-"use client"
+"use client";
 
-import { useState, useEffect, useContext } from "react"
-import Image from "next/image"
-import { Button } from "@/components/ui/button"
-import { ArrowRight, CheckCircle2 } from "lucide-react"
-import { ContractContext } from '../../context/contractContext'
+import { useState, useEffect, useContext } from "react";
+import Image from "next/image";
+import { Button } from "@/components/ui/button";
+import { ArrowRight, CheckCircle2 } from "lucide-react";
+import { useRouter } from 'next/navigation';
+import { ContractContext } from '../../context/contractContext';
 
 export default function HeroSection() {
-  const [isVisible, setIsVisible] = useState(false)
-  // const { ConnectWallet, currentAccount } =  useContext(ContractContext)
+  const [isVisible, setIsVisible] = useState(false);
+  const router = useRouter();
+  const { ConnectWallet, currentAccount } = useContext(ContractContext); // Access context
 
   useEffect(() => {
-    setIsVisible(true)
-  }, [])
+    setIsVisible(true);
+  }, []);
 
-  // console.log("contexts :", currentAccount, ConnectWallet);
   return (
     <section className="pt-32 pb-20 relative overflow-hidden">
       {/* Background elements */}
@@ -73,7 +74,9 @@ export default function HeroSection() {
               isVisible ? "opacity-100 transform-none" : "opacity-0 translate-y-4"
             }`}
           >
-            <Button className="bg-brand-blue hover:bg-brand-blue/90 text-white px-8 py-6 text-lg relative overflow-hidden group">
+            <Button 
+              onClick={() => router.push("dashboard/customer")}
+              className="bg-brand-blue hover:bg-brand-blue/90 text-white px-8 py-6 text-lg relative overflow-hidden group">
               <span className="relative z-10 flex items-center">
                 Get Started
                 <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
@@ -83,8 +86,9 @@ export default function HeroSection() {
             <Button
               variant="outline"
               className="border-brand-blue text-white hover:bg-brand-blue/20 px-8 py-6 text-lg relative group"
+              onClick={ConnectWallet} // Connect wallet on button click
             >
-              <span className="relative z-10">View Demo</span>
+              <span className="relative z-10">Connect Wallet</span>
               <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-brand-blue/0 via-brand-blue/5 to-brand-blue/0 opacity-0 group-hover:opacity-100 transition-opacity"></span>
             </Button>
           </div>
@@ -96,7 +100,7 @@ export default function HeroSection() {
           >
             <div className="flex items-center gap-2 bg-black/50 backdrop-blur-sm border border-brand-blue/20 rounded-full px-4 py-2">
               <CheckCircle2 className="h-5 w-5 text-brand-blue" />
-              <span className="text-gray-300">15% Savings on OTT Plans</span>
+              <span className="text-gray-300">15% Savings with SubversePay Plans</span>
             </div>
             <div className="flex items-center gap-2 bg-black/50 backdrop-blur-sm border border-brand-blue/20 rounded-full px-4 py-2">
               <CheckCircle2 className="h-5 w-5 text-brand-blue" />
@@ -124,13 +128,23 @@ export default function HeroSection() {
             <div className="absolute bottom-0 left-0 w-20 h-20 border-b-2 border-l-2 border-brand-blue rounded-bl-xl"></div>
             <div className="absolute bottom-0 right-0 w-20 h-20 border-b-2 border-r-2 border-brand-blue rounded-br-xl"></div>
 
-            <Image
-              src="/placeholder.jpg?height=600&width=1200"
-              alt="SubversePay Dashboard"
-              width={1200}
-              height={600}
-              className="w-full h-auto relative z-10"
-            />
+            {/* Logos Section */}
+            <div className="flex justify-center items-center space-x-4 p-4">
+              <Image
+                src="/subversepay-logo-black.png" // Ensure this path is correct
+                alt="SubversePay Logo"
+                width={150}
+                height={50}
+                className="h-auto"
+              />
+              <Image
+                src="/subversepay-logo-white.png" // Ensure this path is correct
+                alt="Sidra Blockchain Logo"
+                width={150}
+                height={50}
+                className="h-auto"
+              />
+            </div>
 
             {/* Animated glow */}
             <div className="absolute -inset-[1px] bg-gradient-to-r from-transparent via-brand-blue to-transparent opacity-30 blur-sm animate-glow"></div>
@@ -138,5 +152,5 @@ export default function HeroSection() {
         </div>
       </div>
     </section>
-  )
+  );
 }
