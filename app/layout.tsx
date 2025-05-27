@@ -10,7 +10,7 @@ export const metadata = {
   title: "SubversePay - Next-Generation Crypto Payment Gateway",
   description:
     "Accept cryptocurrency payments seamlessly with our next-generation payment gateway. Fast, secure, and designed for the modern web.",
-  developer: 'Mubarakumn'
+  developer: 'mubarakumn'
 }
 
 export default function RootLayout({

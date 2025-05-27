@@ -1,6 +1,11 @@
-import { paymentProcessor } from "../context/contractContext.js"
+import React, { useContext } from 'react';
+import { ContractContext } from '../context/contractContext';
+import { ethers } from 'ethers';
+
+const { paymentProcessor } = useContext(ContractContext);
+
 // Create a subscription with stablecoin
-async function createStablecoinSubscription(ottPlatform, stablecoin, amount, durationDays) {
+export async function createStablecoinSubscription(ottPlatform, stablecoin, amount, durationDays) {
     const amountWei = ethers.utils.parseUnits(amount.toString(), 6); // Assuming 6 decimals for stablecoin
     
     const tx = await paymentProcessor.createStablecoinSubscription(
@@ -14,7 +19,7 @@ async function createStablecoinSubscription(ottPlatform, stablecoin, amount, dur
   }
   
   // Create a subscription with SUBV token
-  async function createSubvSubscription(ottPlatform, amount, durationDays) {
+export async function createSubvSubscription(ottPlatform, amount, durationDays) {
     const amountWei = ethers.utils.parseEther(amount.toString());
     
     const tx = await paymentProcessor.createSubvSubscription(
@@ -27,12 +32,12 @@ async function createStablecoinSubscription(ottPlatform, stablecoin, amount, dur
   }
   
   // Check if subscription is active
-  async function checkSubscriptionStatus(subscriber, ottPlatform) {
+export  async function checkSubscriptionStatus(subscriber, ottPlatform) {
     return await paymentProcessor.isSubscriptionActive(subscriber, ottPlatform);
   }
   
   // Get subscription details
-  async function getSubscriptionDetails(subscriber, ottPlatform) {
+export  async function getSubscriptionDetails(subscriber, ottPlatform) {
     const subscription = await paymentProcessor.getSubscription(subscriber, ottPlatform);
     
     return {

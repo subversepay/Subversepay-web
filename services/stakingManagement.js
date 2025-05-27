@@ -1,3 +1,4 @@
+import { ethers } from "ethers";
 import { staking } from "../context/contractContext.js"
 
 // Stake SUBV tokens

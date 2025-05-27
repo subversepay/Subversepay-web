@@ -1,5 +1,6 @@
 // Initialize Governance contract
 const GovernanceAddress = '0x859C849F17258296a3Bb6a36292639F669ABC219';
+const { ethers } = require('ethers');
 const GovernanceABI = require('./abis/Governance.json');
 const governance = new ethers.Contract(GovernanceAddress, GovernanceABI.abi, signer);
 

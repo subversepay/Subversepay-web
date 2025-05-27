@@ -1,5 +1,6 @@
 // Initialize PremiumFeatures contract
 const PremiumFeaturesAddress = '0x9C2e3066f260BF7a23f5403748Ae518301C2A830';
+const { ethers } = require('ethers');
 const PremiumFeaturesABI = require('./abis/PremiumFeatures.json');
 const premiumFeatures = new ethers.Contract(PremiumFeaturesAddress, PremiumFeaturesABI.abi, signer);
 

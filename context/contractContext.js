@@ -13,17 +13,30 @@ import { useRouter } from 'next/navigation';
 export const ContractContext = React.createContext();
 
 export const ContractProvider = ({ children }) => {
-    const [currentAccount, setCurrentAccount] = useState("");
+    const [currentAccount, setCurrentAccount] = useState(null);
+    const [ethereum, setEthereum] = useState(null);
+    const [signer, setSigner] = useState(null);
     const router = useRouter();
-   
-    const { ethereum } = typeof window !== 'undefined' ? window : { ethereum: null };
-   
-    let provider, signer;
-    if (ethereum) {
-      provider = new ethers.providers.Web3Provider(ethereum);
-      signer = provider.getSigner();
-    }
-   
+    
+    useEffect(() => {
+        // Check for Ethereum provider
+        if (typeof window !== 'undefined') {
+            setEthereum(window.ethereum);
+        }
+    }, []);
+    
+    useEffect(() => {
+        const InitializeContract = async () => {
+            if (ethereum) {
+                const provider = new ethers.providers.Web3Provider(ethereum);
+                const signer = provider.getSigner();
+                setSigner(signer);
+            }
+        };
+
+        InitializeContract();
+    }, [ethereum]);
+
     // Instantiate contracts only if signer is available
     const subvToken = signer ? new ethers.Contract(SUBVTokenAddress, SUBVTokenAbi, signer) : null;
     const paymentProcessor = signer ? new ethers.Contract(PaymentProcessorAddress, PaymentProcessorAbi, signer) : null;
@@ -35,7 +48,6 @@ export const ContractProvider = ({ children }) => {
             if (!ethereum) return alert("Please install MetaMask.");
             const accounts = await ethereum.request({ method: "eth_requestAccounts" });
             setCurrentAccount(accounts[0]);
-            window.location.reload();
             router.push('/dashboard');
         } catch (error) {
             console.log(error);
@@ -46,10 +58,7 @@ export const ContractProvider = ({ children }) => {
     // Func to Disconnect wallet
     const DisConnectWallet = async () => {
         try {
-            if (!ethereum) return alert("Please install MetaMask.");
-            const accounts = await ethereum.request({ method: "eth_requestAccounts" });
-            setCurrentAccount(accounts[0]);
-            window.location.reload();
+            setCurrentAccount(null);
             router.push("/");
         } catch (error) {
             console.log(error);
@@ -75,7 +84,7 @@ export const ContractProvider = ({ children }) => {
 
     useEffect(() => {
         checkIfWalletIsConnect();
-    }, []);
+    }, [ethereum]);
 
     return (
         <ContractContext.Provider value={{ ConnectWallet, DisConnectWallet, currentAccount, subvToken, paymentProcessor, staking }}>
