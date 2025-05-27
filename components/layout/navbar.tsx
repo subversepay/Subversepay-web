@@ -35,7 +35,7 @@ export default function Navbar() {
               <div className="absolute inset-0 bg-brand-blue rounded-full opacity-80 group-hover:opacity-100 transition-opacity"></div>
               <div className="absolute inset-[3px] bg-black rounded-full flex items-center justify-center">
                 {/* <span className="text-white font-bold text-xs">SP</span> */}
-                <Image src="/Subversepay-logo-black.jpeg" alt="subversepay logo" />
+                <Image src="/Subversepay-logo-black.jpeg" alt="subversepay logo" width={50} height={50} />
               </div>
               <div className="absolute inset-0 border-2 border-brand-blue/50 rounded-full animate-pulse"></div>
             </div>
