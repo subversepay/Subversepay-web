@@ -10,11 +10,13 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Checkbox } from "@/components/ui/checkbox"
+import { useToast } from "@/hooks/use-toast"
 
 export default function SignupPage() {
   const router = useRouter()
   const [isLoading, setIsLoading] = useState(false)
   const [showPassword, setShowPassword] = useState(false)
+  const { toast } = useToast()
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -85,23 +87,39 @@ export default function SignupPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-
-    if (!validateForm()) return
-
     setIsLoading(true)
-    setErrors({ name: "", email: "", password: "", agreeTerms: "", general: "" })
 
     try {
-      // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 1500))
+      const response = await fetch("http://localhost:3002/api/users/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      })
 
-      // For demo purposes, redirect to dashboard
-      router.push("/dashboard/customer")
+      const data = await response.json()
+
+      if (!response.ok) {
+        throw new Error(data.msg || "Registration failed")
+      }
+
+      // Store token in localStorage
+      localStorage.setItem("token", data.token)
+      localStorage.setItem("user", JSON.stringify(data.user))
+
+      toast({
+        title: "Registration successful",
+        description: "Your account has been created.",
+      })
+
+      router.push("/dashboard")
     } catch (error) {
-      setErrors((prev) => ({
-        ...prev,
-        general: "An error occurred during sign up. Please try again.",
-      }))
+      toast({
+        title: "Registration failed",
+        description: error instanceof Error ? error.message : "An unknown error occurred",
+        variant: "destructive",
+      })
     } finally {
       setIsLoading(false)
     }

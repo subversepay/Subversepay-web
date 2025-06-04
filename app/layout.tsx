@@ -3,6 +3,7 @@ import "./globals.css"
 import { Inter } from "next/font/google"
 import { ThemeProvider } from "@/components/theme-provider"
 import { ContractProvider } from '../context/contractContext'
+import { Toaster } from "@/components/ui/toaster"
  
 const inter = Inter({ subsets: ["latin"] })
 
@@ -24,6 +25,7 @@ export default function RootLayout({
         <ContractProvider>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
           {children}
+        <Toaster />
         </ThemeProvider>
         </ContractProvider>
       </body>
