@@ -116,6 +116,8 @@
 import { useState } from "react"
 import { motion } from "framer-motion"
 import { LayoutDashboard, FileText, Settings, ChevronLeft, ChevronRight, LogOut, Play, Tv } from "lucide-react"
+import { logoutUser } from "@/lib/auth/auth";
+
 
 export default function DashboardSidebar({
   view = "customer",
@@ -156,11 +158,14 @@ export default function DashboardSidebar({
     },
   ]
 
-  const handleLogout = () => {
-    localStorage.removeItem("token")
-    localStorage.removeItem("user")
-    window.location.href = "/"
-  }
+const handleLogout = () => {
+  logoutUser();
+  router.push("/auth");
+  toast({
+    title: "Logged out",
+    description: "You have been logged out successfully",
+  });
+};
 
   return (
     <div

@@ -65,6 +65,9 @@ export default function LoginPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+
+    if (!validateForm()) return
+
     setIsLoading(true)
 
     try {
@@ -73,22 +76,37 @@ export default function LoginPage() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          email: formData.email,
+          password: formData.password,
+        }),
       })
 
       const data = await response.json()
 
       if (!response.ok) {
-        throw new Error(data.msg || "Login failed")
+        throw new Error(data.errors?.[0]?.msg || data.msg || "Login failed")
       }
 
       // Store token in localStorage
       localStorage.setItem("token", data.token)
-      localStorage.setItem("user", JSON.stringify(data.user))
+
+      // Fetch user data using the token
+      const userResponse = await fetch("http://localhost:3002/api/users/me", {
+        headers: {
+          "x-auth-token": data.token,
+        },
+      })
+
+      if (userResponse.ok) {
+        const userData = await userResponse.json()
+        localStorage.setItem("user", JSON.stringify(userData))
+      }
 
       toast({
         title: "Login successful",
         description: "You have been logged in.",
+        variant: "success",
       })
 
       router.push("/dashboard")

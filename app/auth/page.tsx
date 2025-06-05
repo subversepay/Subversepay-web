@@ -2,7 +2,7 @@
 
 import type React from "react"
 
-import { useState, useContext } from "react"
+import { useState } from "react"
 import { useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
@@ -10,8 +10,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { useToast } from "@/hooks/use-toast"
-import { ContractContext } from "@/context/contractContext"
-import { ArrowLeft, Wallet } from "lucide-react"
+import { ArrowLeft } from "lucide-react"
 import Link from "next/link"
 
 export default function AuthPage() {
@@ -19,7 +18,6 @@ export default function AuthPage() {
   const [isLoading, setIsLoading] = useState(false)
   const router = useRouter()
   const { toast } = useToast()
-  const { ConnectWallet, isConnecting } = useContext(ContractContext)
 
   const [loginData, setLoginData] = useState({
     email: "",
@@ -122,9 +120,9 @@ export default function AuthPage() {
 
       // Fetch user data using the token
       const userResponse = await fetch("http://localhost:3002/api/users/me", {
-        headers: {
-          'x-auth-token': data.token,
-        },
+         headers: {
+             'x-auth-token': data.token,
+         },
       })
 
       if (userResponse.ok) {
@@ -168,7 +166,13 @@ export default function AuthPage() {
         <div className="absolute left-3/4 top-0 h-full w-[1px] bg-gradient-to-b from-transparent via-brand-blue/20 to-transparent"></div>
       </div>
 
-  
+      <Link
+        href="/"
+        className="absolute top-8 left-8 flex items-center gap-2 text-brand-grey hover:text-white transition-colors"
+      >
+        <ArrowLeft className="h-4 w-4" />
+        <span>Back to Home</span>
+      </Link>
 
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
@@ -179,7 +183,7 @@ export default function AuthPage() {
         <Card className="border-brand-blue/30 bg-black/60 backdrop-blur-md">
           <CardHeader>
             <CardTitle className="text-center">Authentication</CardTitle>
-            <CardDescription className="text-center">Choose your preferred login method</CardDescription>
+            <CardDescription className="text-center">Sign in or create your account</CardDescription>
           </CardHeader>
           <CardContent>
             <Tabs defaultValue="login" value={activeTab} onValueChange={setActiveTab} className="w-full">
@@ -271,23 +275,17 @@ export default function AuthPage() {
               </TabsContent>
             </Tabs>
           </CardContent>
-          <CardFooter className="flex flex-col gap-4">
-            <div className="relative w-full text-center my-2">
-              <div className="absolute inset-0 flex items-center">
-                <div className="w-full border-t border-brand-blue/20"></div>
-              </div>
-              <span className="relative bg-black px-4 text-xs text-brand-grey">OR</span>
-            </div>
-            <Button
-              type="button"
-              variant="outline"
-              className="w-full border-brand-blue/30 text-white hover:bg-brand-blue/20"
-              onClick={ConnectWallet}
-              disabled={isConnecting}
-            >
-              <Wallet className="mr-2 h-4 w-4" />
-              {isConnecting ? "Connecting..." : "Connect Wallet"}
-            </Button>
+          <CardFooter className="text-center">
+            <p className="text-sm text-brand-grey">
+              By continuing, you agree to our{" "}
+              <Link href="/terms" className="text-brand-blue hover:underline">
+                Terms of Service
+              </Link>{" "}
+              and{" "}
+              <Link href="/privacy" className="text-brand-blue hover:underline">
+                Privacy Policy
+              </Link>
+            </p>
           </CardFooter>
         </Card>
       </div>

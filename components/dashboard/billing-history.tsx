@@ -284,7 +284,7 @@ export default function BillingHistory({
                       variant="ghost"
                       size="sm"
                       className="text-brand-blue hover:text-brand-blue hover:bg-brand-blue/10"
-                      onClick={() => window.open(`https://etherscan.io/tx/${transaction.transactionHash}`, "_blank")}
+                      onClick={() => window.open(`https://sepolia.etherscan.io/tx/${transaction.transactionHash}`, "_blank")}
                     >
                       View
                     </Button>

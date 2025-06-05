@@ -21,7 +21,7 @@ import {
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { useToast } from "@/hooks/use-toast"
-import { getActiveSubscriptions, getSubscriptionsForWallets } from "@/lib/subscription-api"
+import { getActiveSubscriptions, getSubscriptionsForWallets } from "@/lib/subscription/subscription-api"
 import DashboardSidebar from "@/components/dashboard/dashboard-sidebar"
 import BillingHistory from "@/components/dashboard/billing-history"
 import OttPlatforms from "@/components/dashboard/ott-platforms"

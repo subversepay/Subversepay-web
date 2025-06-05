@@ -18,14 +18,14 @@ export default function SignupPage() {
   const [showPassword, setShowPassword] = useState(false)
   const { toast } = useToast()
   const [formData, setFormData] = useState({
-    name: "",
+    displayName: "",
     email: "",
     password: "",
     agreeTerms: false,
     subscribeNewsletter: false,
   })
   const [errors, setErrors] = useState({
-    name: "",
+    displayName: "",
     email: "",
     password: "",
     agreeTerms: "",
@@ -55,8 +55,8 @@ export default function SignupPage() {
     let valid = true
     const newErrors = { ...errors }
 
-    if (!formData.name.trim()) {
-      newErrors.name = "Name is required"
+    if (!formData.displayName.trim()) {
+      newErrors.displayName = "Name is required"
       valid = false
     }
 
@@ -87,6 +87,9 @@ export default function SignupPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+
+    if (!validateForm()) return
+
     setIsLoading(true)
 
     try {
@@ -95,22 +98,38 @@ export default function SignupPage() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          displayName: formData.displayName,
+          email: formData.email,
+          password: formData.password,
+        }),
       })
 
       const data = await response.json()
 
       if (!response.ok) {
-        throw new Error(data.msg || "Registration failed")
+        throw new Error(data.errors?.[0]?.msg || data.msg || "Registration failed")
       }
 
       // Store token in localStorage
       localStorage.setItem("token", data.token)
-      localStorage.setItem("user", JSON.stringify(data.user))
+
+      // Fetch user data using the token
+      const userResponse = await fetch("http://localhost:3002/api/users/me", {
+        headers: {
+          "x-auth-token": data.token,
+        },
+      })
+
+      if (userResponse.ok) {
+        const userData = await userResponse.json()
+        localStorage.setItem("user", JSON.stringify(userData))
+      }
 
       toast({
         title: "Registration successful",
         description: "Your account has been created.",
+        variant: "success",
       })
 
       router.push("/dashboard")
@@ -169,22 +188,22 @@ export default function SignupPage() {
 
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="space-y-2.5">
-            <Label htmlFor="name" className="inline-block mb-1">
+            <Label htmlFor="displayName" className="inline-block mb-1">
               Full Name
             </Label>
             <Input
-              id="name"
-              name="name"
+              id="displayName"
+              name="displayName"
               type="text"
               placeholder="John Smith"
-              value={formData.name}
+              value={formData.displayName}
               onChange={handleChange}
               className={`bg-black/60 border ${
-                errors.name ? "border-red-500/50" : "border-brand-blue/30"
+                errors.displayName ? "border-red-500/50" : "border-brand-blue/30"
               } focus:border-brand-blue/70 h-11`}
               disabled={isLoading}
             />
-            {errors.name && <p className="text-red-400 text-xs mt-1">{errors.name}</p>}
+            {errors.displayName && <p className="text-red-400 text-xs mt-1">{errors.displayName}</p>}
           </div>
 
           <div className="space-y-2.5">

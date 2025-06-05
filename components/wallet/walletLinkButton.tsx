@@ -4,7 +4,7 @@ import { useContext, useState } from "react"
 import { Button } from "@/components/ui/button"
 import { ContractContext } from "@/context/contractContext"
 import { Wallet, Plus } from "lucide-react"
-import { hasWalletLinked, getCurrentUser } from "@/lib/auth"
+import { hasWalletLinked, getCurrentUser } from "@/lib/auth/auth"
 
 export default function WalletLinkButton({ variant = "default", size = "default", className = "" }) {
   const { LinkWallet, isLinking, currentAccount } = useContext(ContractContext)
