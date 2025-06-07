@@ -82,7 +82,9 @@ export const ContractProvider = ({ children }) => {
     setIsLinking(true)
 
     try {
+      console.log("Starting wallet linking from context...")
       const result = await completeWalletLinking()
+      console.log("Wallet linking completed:", result)
 
       setCurrentAccount(result.address)
 
@@ -92,9 +94,27 @@ export const ContractProvider = ({ children }) => {
         variant: "success",
       })
     } catch (error) {
+      console.error("Failed to link wallet:", error)
+
+      // More specific error messages
+      let errorMessage = "An unknown error occurred"
+      if (error.message.includes("User rejected")) {
+        errorMessage = "Wallet connection was rejected"
+      } else if (error.message.includes("Authentication required")) {
+        errorMessage = "Please log in first"
+      } else if (error.message.includes("MetaMask")) {
+        errorMessage = "Please install MetaMask"
+      } else if (error.message.includes("No token")) {
+        errorMessage = "Authentication token not found. Please log in again."
+      } else if (error.message.includes("Token is not valid")) {
+        errorMessage = "Authentication token expired. Please log in again."
+      } else {
+        errorMessage = error.message
+      }
+
       toast({
         title: "Failed to link wallet",
-        description: error.message || "An unknown error occurred",
+        description: errorMessage,
         variant: "destructive",
       })
     } finally {

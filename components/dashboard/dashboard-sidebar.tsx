@@ -117,6 +117,9 @@ import { useState } from "react"
 import { motion } from "framer-motion"
 import { LayoutDashboard, FileText, Settings, ChevronLeft, ChevronRight, LogOut, Play, Tv } from "lucide-react"
 import { logoutUser } from "@/lib/auth/auth";
+import { useRouter } from "next/navigation"
+import { useToast } from "@/hooks/use-toast"
+
 
 
 export default function DashboardSidebar({
@@ -129,6 +132,9 @@ export default function DashboardSidebar({
   setActiveTab: (tab: string) => void
 }) {
   const [collapsed, setCollapsed] = useState(false)
+  const { toast } = useToast()
+  const router = useRouter()
+
 
   const menuItems = [
     {

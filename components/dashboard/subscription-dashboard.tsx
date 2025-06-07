@@ -27,6 +27,7 @@ import BillingHistory from "@/components/dashboard/billing-history"
 import OttPlatforms from "@/components/dashboard/ott-platforms"
 import WalletLinkButton from "@/components/wallet/walletLinkButton"
 // import WalletManager from "@components/wallet/walletManager"
+import WalletManager from '@/components/wallet/walletManager'
 
 interface User { 
   id: string
@@ -393,7 +394,7 @@ export default function SubscriptionDashboard({ view = "customer" }: { view?: "b
                       <div>
                         <label className="block text-sm text-brand-grey mb-2">Connected Wallets</label>
                         <div className="space-y-2">
-                          {/* <WalletManager /> */}
+                          <WalletManager />
                           {/* {user?.wallets?.map((wallet, index) => (
                             <div key={wallet.id} className="bg-black/60 border border-brand-blue/20 rounded-lg p-3">
                               <div className="font-mono text-sm text-white break-all">{wallet.address}</div>

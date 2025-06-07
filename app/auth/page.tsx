@@ -166,14 +166,6 @@ export default function AuthPage() {
         <div className="absolute left-3/4 top-0 h-full w-[1px] bg-gradient-to-b from-transparent via-brand-blue/20 to-transparent"></div>
       </div>
 
-      <Link
-        href="/"
-        className="absolute top-8 left-8 flex items-center gap-2 text-brand-grey hover:text-white transition-colors"
-      >
-        <ArrowLeft className="h-4 w-4" />
-        <span>Back to Home</span>
-      </Link>
-
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
           <h1 className="text-3xl font-bold mb-2">Welcome to SubversePay</h1>

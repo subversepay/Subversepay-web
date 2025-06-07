@@ -6,8 +6,11 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Wallet, Copy, Check } from "lucide-react"
 import { useToast } from "@/hooks/use-toast"
-import { getCurrentUser, refreshUserData } from "@/lib/auth"
+import { getCurrentUser, refreshUserData } from "@/lib/auth/auth"
+import { verifyLinkWallet } from "@/lib/auth/wallet-auth"
 import WalletLinkButton from "./walletLinkButton"
+import { signMessage, requestWalletConnection } from "@/lib/web3/web3-utils"
+
 
 export default function WalletManager() {
   const [user, setUser] = useState(null)
@@ -57,6 +60,27 @@ export default function WalletManager() {
     return `${address.substring(0, 6)}...${address.substring(38)}`
   }
 
+  const handleVerifyWallet = async()=>{
+    try{
+    const address = await requestWalletConnection()
+      // 3. Sign the nonce
+    const message = `I am signing my one-time nonce: $ {nonce}`
+    const signature = await signMessage(message, address)
+
+    console.log("address & signature to verify:", address, signature);
+    // 4. Verify signature with backend
+    await verifyLinkWallet(address, signature)
+
+        // 5. Update local storage and refresh user data
+        localStorage.setItem("walletAddress", address)
+        await refreshUserData()
+
+        return { success: true, address }
+      } catch (error) {
+        console.error("Error completing wallet linking:", error)
+        throw error
+      }
+  }
   if (!user) {
     return (
       <Card>
@@ -103,7 +127,9 @@ export default function WalletManager() {
                   </p>
                 </div>
               </div>
-
+              <Button variant="ghost" size="sm" onClick={handleVerifyWallet}>
+                Verify wallet
+              </Button>
               <Button variant="ghost" size="sm" onClick={() => copyToClipboard(wallet.address)} className="h-8 w-8 p-0">
                 {copiedAddress === wallet.address ? (
                   <Check className="h-4 w-4 text-green-500" />
