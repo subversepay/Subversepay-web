@@ -1,83 +1,94 @@
 "use client"
 
-import { useContext, useState } from "react"
+import { useState, useContext } from "react"
 import { Button } from "@/components/ui/button"
-import { ContractContext } from "@/context/contractContext"
-import { Wallet, Plus } from "lucide-react"
-import { hasWalletLinked, getCurrentUser } from "@/lib/auth/auth"
+import { Wallet, Check, Loader2 } from "lucide-react"
 import { useToast } from "@/hooks/use-toast"
+import { ContractContext } from "@/context/contractContext"
+import { linkWalletToAccount, verifyWalletOwnership } from "@/lib/auth/wallet-auth"
 
-export default function WalletLinkButton({ variant = "default", size = "default", className = "" }) {
-  const { LinkWallet, isLinking, currentAccount } = useContext(ContractContext)
-  const [isChecking, setIsChecking] = useState(false)
+export default function WalletLinkButton() {
+  const [isLinking, setIsLinking] = useState(false)
+  const [isLinked, setIsLinked] = useState(false)
+  const { currentAccount, ConnectWallet, isConnecting } = useContext(ContractContext)
   const { toast } = useToast()
 
   const handleLinkWallet = async () => {
-    // Prevent multiple simultaneous attempts
-    if (isLinking || isChecking) {
-      return
-    }
-
-    setIsChecking(true)
-
     try {
-      // Check if current wallet is already linked
-      if (currentAccount && hasWalletLinked(currentAccount)) {
-        const user = getCurrentUser()
-        console.log("Wallet already linked to user:", user?.displayName)
-        toast({
-          title: "Wallet already linked",
-          description: "This wallet is already linked to your account",
-          variant: "info",
-        })
-        return
+      // Step 1: Connect wallet if not connected
+      if (!currentAccount) {
+        await ConnectWallet()
+        return // Let user click again after connection
       }
 
-      console.log("Initiating wallet linking...")
-      await LinkWallet()
-    } catch (error) {
-      console.error("Error in wallet link button:", error)
+      // Step 2: Link and verify
+      setIsLinking(true)
+
       toast({
-        title: "Error",
-        description: "Failed to link wallet. Please try again.",
+        title: "Linking wallet...",
+        description: "Adding wallet to your account",
+        variant: "info",
+      })
+
+      // Link wallet to account
+      await linkWalletToAccount(currentAccount)
+
+      toast({
+        title: "Verifying ownership...",
+        description: "Please sign the verification message",
+        variant: "info",
+      })
+
+      // Verify ownership
+      await verifyWalletOwnership(currentAccount)
+
+      setIsLinked(true)
+      toast({
+        title: "Wallet linked successfully! ✅",
+        description: "Your wallet has been linked and verified",
+        variant: "success",
+      })
+    } catch (error) {
+      console.error("Failed to link wallet:", error)
+
+      let errorMessage = "An unknown error occurred"
+      if (error.message.includes("User rejected")) {
+        errorMessage = "Signature was rejected. Please try again."
+      } else if (error.message.includes("Authentication required")) {
+        errorMessage = "Please log in first"
+      } else if (error.message.includes("MetaMask")) {
+        errorMessage = "Please install MetaMask"
+      } else {
+        errorMessage = error.message
+      }
+
+      toast({
+        title: "Failed to link wallet",
+        description: errorMessage,
         variant: "destructive",
       })
     } finally {
-      setIsChecking(false)
+      setIsLinking(false)
     }
   }
 
-  const user = getCurrentUser()
-  const walletCount = user?.wallets?.length || 0
+  if (isLinked) {
+    return (
+      <Button disabled className="w-full">
+        <Check className="mr-2 h-4 w-4" />
+        Wallet Linked
+      </Button>
+    )
+  }
 
   return (
-    <Button
-      variant={variant}
-      size={size}
-      className={className}
-      onClick={handleLinkWallet}
-      disabled={isLinking || isChecking}
-    >
-      {isLinking || isChecking ? (
-        <>
-          <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
-          {isLinking ? "Linking..." : "Checking..."}
-        </>
+    <Button onClick={handleLinkWallet} disabled={isConnecting || isLinking} className="w-full">
+      {isConnecting || isLinking ? (
+        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
       ) : (
-        <>
-          {walletCount > 0 ? (
-            <>
-              <Plus className="mr-2 h-4 w-4" />
-              Link Another Wallet
-            </>
-          ) : (
-            <>
-              <Wallet className="mr-2 h-4 w-4" />
-              Link Wallet
-            </>
-          )}
-        </>
+        <Wallet className="mr-2 h-4 w-4" />
       )}
+      {isConnecting ? "Connecting..." : isLinking ? "Linking..." : currentAccount ? "Link Wallet" : "Connect Wallet"}
     </Button>
   )
 }

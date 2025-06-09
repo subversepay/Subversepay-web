@@ -1,150 +1,93 @@
 "use client"
 
-import React, { useState, useEffect, useCallback } from "react"
+import { createContext, useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
 import { useToast } from "@/hooks/use-toast"
-import { checkIfWalletIsConnected } from "@/lib/web3/web3-utils"
-import { completeWalletLinking, walletLogin } from "@/lib/auth/wallet-auth"
-import { isAuthenticated } from "@/lib/auth/auth"
+import { connectWalletOnly, disconnectWallet } from "@/lib/auth/wallet-auth"
+import { getCurrentAccounts } from "@/lib/web3/web3-utils"
 
 // Create the context with a default value
-export const ContractContext = React.createContext()
+export const ContractContext = createContext({
+  currentAccount: null,
+  setCurrentAccount: () => {},
+  ConnectWallet: async () => {},
+  DisConnectWallet: () => {},
+  isConnecting: false,
+})
 
 export const ContractProvider = ({ children }) => {
   const [currentAccount, setCurrentAccount] = useState(null)
   const [isConnecting, setIsConnecting] = useState(false)
-  const [isLinking, setIsLinking] = useState(false)
-  const [ethereum, setEthereum] = useState(null)
   const router = useRouter()
   const { toast } = useToast()
 
-  // Initialize ethereum object and check for stored wallet
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      setEthereum(window.ethereum)
+    // Check if user has a connected wallet in localStorage
+    const storedWallet = localStorage.getItem("walletAddress")
+    if (storedWallet) {
+      setCurrentAccount(storedWallet)
+    }
 
-      // Check if user has a connected wallet in localStorage
-      const storedWallet = localStorage.getItem("walletAddress")
-      if (storedWallet) {
-        setCurrentAccount(storedWallet)
+    // Check if wallet is still connected in MetaMask
+    const checkWalletConnection = async () => {
+      try {
+        const accounts = await getCurrentAccounts()
+        if (accounts.length === 0 && storedWallet) {
+          // Wallet was disconnected in MetaMask
+          localStorage.removeItem("walletAddress")
+          setCurrentAccount(null)
+        }
+      } catch (error) {
+        console.log("Error checking wallet connection:", error)
       }
     }
+
+    checkWalletConnection()
   }, [])
 
-  // Connect wallet for authentication
   const ConnectWallet = async () => {
     setIsConnecting(true)
 
     try {
-      const hasWallet = await checkIfWalletIsConnected()
-      if (!hasWallet) {
+      const result = await connectWalletOnly()
+
+      if (result.success) {
+        setCurrentAccount(result.address)
         toast({
-          title: "Metamask not detected",
-          description: "Please install Metamask browser extension",
-          variant: "destructive",
+          title: "Wallet connected! 🔗",
+          description: `Connected to ${result.address.slice(0, 6)}...${result.address.slice(-4)}`,
+          variant: "success",
         })
-        return
       }
-
-      const result = await walletLogin()
-
-      setCurrentAccount(result.address)
-
-      toast({
-        title: "Wallet connected",
-        description: "You have been authenticated with your wallet",
-        variant: "success",
-      })
-
-      router.push("/dashboard")
     } catch (error) {
+      console.error("Failed to connect wallet:", error)
       toast({
-        title: "Connection failed",
-        description: error.message || "An unknown error occurred",
         variant: "destructive",
+        title: "Connection failed",
+        description: error instanceof Error ? error.message : "Failed to connect wallet",
       })
     } finally {
       setIsConnecting(false)
     }
   }
 
-  // Link additional wallet to existing account
-  const LinkWallet = async () => {
-    if (!isAuthenticated()) {
-      toast({
-        title: "Authentication required",
-        description: "Please log in to link a wallet",
-        variant: "warning",
-      })
-      return
-    }
-
-    setIsLinking(true)
-
-    try {
-      console.log("Starting wallet linking from context...")
-      const result = await completeWalletLinking()
-      console.log("Wallet linking completed:", result)
-
-      setCurrentAccount(result.address)
-
-      toast({
-        title: "Wallet linked successfully",
-        description: "Your wallet has been linked to your account",
-        variant: "success",
-      })
-    } catch (error) {
-      console.error("Failed to link wallet:", error)
-
-      // More specific error messages
-      let errorMessage = "An unknown error occurred"
-      if (error.message.includes("User rejected")) {
-        errorMessage = "Wallet connection was rejected"
-      } else if (error.message.includes("Authentication required")) {
-        errorMessage = "Please log in first"
-      } else if (error.message.includes("MetaMask")) {
-        errorMessage = "Please install MetaMask"
-      } else if (error.message.includes("No token")) {
-        errorMessage = "Authentication token not found. Please log in again."
-      } else if (error.message.includes("Token is not valid")) {
-        errorMessage = "Authentication token expired. Please log in again."
-      } else {
-        errorMessage = error.message
-      }
-
-      toast({
-        title: "Failed to link wallet",
-        description: errorMessage,
-        variant: "destructive",
-      })
-    } finally {
-      setIsLinking(false)
-    }
+  const DisConnectWallet = () => {
+    disconnectWallet()
+    setCurrentAccount(null)
+    toast({
+      variant: "info",
+      title: "Wallet disconnected",
+      description: "Your wallet has been disconnected",
+    })
   }
 
-  // Disconnect wallet
-  const DisConnectWallet = useCallback(() => {
-    setCurrentAccount(null)
-    localStorage.removeItem("walletAddress")
-    localStorage.removeItem("token")
-    localStorage.removeItem("user")
-
-    toast({
-      title: "Wallet disconnected",
-      description: "You have been logged out",
-      variant: "info",
-    })
-  }, [toast])
-
-  // Check wallet connection on ethereum change
+  // Setup event listeners for account changes
   useEffect(() => {
-    if (ethereum) {
-      checkIfWalletIsConnected()
-
-      // Setup event listeners for account changes
+    if (typeof window !== "undefined" && window.ethereum) {
       const handleAccountsChanged = (accounts) => {
         if (accounts.length > 0) {
           setCurrentAccount(accounts[0])
+          localStorage.setItem("walletAddress", accounts[0])
         } else {
           // User disconnected their wallet
           DisConnectWallet()
@@ -157,29 +100,27 @@ export const ContractProvider = ({ children }) => {
         window.location.reload()
       }
 
-      ethereum.on("accountsChanged", handleAccountsChanged)
-      ethereum.on("chainChanged", handleChainChanged)
+      window.ethereum.on("accountsChanged", handleAccountsChanged)
+      window.ethereum.on("chainChanged", handleChainChanged)
 
       // Cleanup listeners on unmount
       return () => {
-        if (ethereum.removeListener) {
-          ethereum.removeListener("accountsChanged", handleAccountsChanged)
-          ethereum.removeListener("chainChanged", handleChainChanged)
+        if (window.ethereum.removeListener) {
+          window.ethereum.removeListener("accountsChanged", handleAccountsChanged)
+          window.ethereum.removeListener("chainChanged", handleChainChanged)
         }
       }
     }
-  }, [ethereum, DisConnectWallet])
+  }, [])
 
   return (
     <ContractContext.Provider
       value={{
         currentAccount,
+        setCurrentAccount,
         ConnectWallet,
         DisConnectWallet,
-        LinkWallet,
         isConnecting,
-        isLinking,
-        isAuthenticated,
       }}
     >
       {children}

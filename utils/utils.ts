@@ -1,5 +1,7 @@
 import { clsx, type ClassValue } from "clsx"
 import { twMerge } from "tailwind-merge"
+import { jwtDecode } from 'jwt-decode';
+
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
@@ -48,4 +50,11 @@ export function timeRemaining(futureDate: Date | string | number): string {
   }
 
   return `${diffHours}h remaining`
+}
+
+export function isTokenExpired(token: string): boolean {
+  if(!token) return true;
+  const DecodeToken = jwtDecode<{ exp: number }>(token);
+  const currentTime = Math.floor(Date.now() / 1000); // Current time in seconds
+  return DecodeToken.exp < currentTime;
 }
