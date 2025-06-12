@@ -4,13 +4,13 @@ import { useState, useContext } from "react"
 import { Button } from "@/components/ui/button"
 import { Wallet, Check, Loader2 } from "lucide-react"
 import { useToast } from "@/hooks/use-toast"
-import { ContractContext } from "@/context/contractContext"
+import { WalletContext } from "@/context/walletContext"
 import { linkWalletToAccount, verifyWalletOwnership } from "@/lib/auth/wallet-auth"
 
 export default function WalletLinkButton() {
   const [isLinking, setIsLinking] = useState(false)
   const [isLinked, setIsLinked] = useState(false)
-  const { currentAccount, ConnectWallet, isConnecting } = useContext(ContractContext)
+  const { currentAccount, ConnectWallet, isConnecting } = useContext(WalletContext)
   const { toast } = useToast()
 
   const handleLinkWallet = async () => {
