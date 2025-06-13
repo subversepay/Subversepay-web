@@ -37,7 +37,7 @@
 //               <div className="absolute inset-0 bg-brand-blue rounded-full opacity-80 group-hover:opacity-100 transition-opacity"></div>
 //               <div className="absolute inset-[3px] bg-black rounded-full flex items-center justify-center">
 //                 {/* <span className="text-white font-bold text-xs">SP</span> */}
-//                 <Image src="/Subversepay-logo-black.jpeg" alt="subversepay logo" width={50} height={50} />
+//                 <Image src="/Subversepay-web/Subversepay-logo-black.jpeg" alt="subversepay logo" width={50} height={50} />
 //               </div>
 //               <div className="absolute inset-0 border-2 border-brand-blue/50 rounded-full animate-pulse"></div>
 //             </div>
@@ -178,7 +178,7 @@ export default function Navbar() {
             <div className="relative h-10 w-10 transition-transform duration-500 group-hover:rotate-180">
               <div className="absolute inset-0 bg-brand-blue rounded-full opacity-80 group-hover:opacity-100 transition-opacity"></div>
               <div className="absolute inset-[3px] bg-black rounded-full flex items-center justify-center">
-                <Image src="/Subversepay-logo-black.jpeg" alt="subversepay logo" width={50} height={50} />
+                <Image src="/Subversepay-web/Subversepay-logo-black.jpeg" alt="subversepay logo" width={50} height={50} />
               </div>
               <div className="absolute inset-0 border-2 border-brand-blue/50 rounded-full animate-pulse"></div>
             </div>

@@ -131,14 +131,14 @@
 //             {/* Logos Section */}
 //             <div className="flex justify-center items-center space-x-4 p-4">
 //               <Image
-//                 src="/Subversepay-logo-black.jpeg"//subversepay-logo-black.jpeg // Ensure this path is correct 
+//                 src="/Subversepay-web/Subversepay-logo-black.jpeg"//subversepay-logo-black.jpeg // Ensure this path is correct 
 //                 alt="SubversePay Logo"
 //                 width={150}
 //                 height={50}
 //                 className="h-auto"
 //               />
 //               <Image
-//                 src="/subversepay-logo-white.jpeg" // Ensure this path is correct
+//                 src="/Subversepay-web/subversepay-logo-white.jpeg" // Ensure this path is correct
 //                 alt="Sidra Blockchain Logo"
 //                 width={150}
 //                 height={50}
@@ -289,14 +289,14 @@ export default function HeroSection() {
             {/* Logos Section */}
             <div className="flex justify-center items-center space-x-4 p-4">
               <Image
-                src="/Subversepay-logo-black.jpeg"
+                src="/Subversepay-web/Subversepay-logo-black.jpeg"
                 alt="SubversePay Logo"
                 width={150}
                 height={50}
                 className="h-auto"
               />
               <Image
-                src="/subversepay-logo-white.jpeg"
+                src="/Subversepay-web/subversepay-logo-white.jpeg"
                 alt="Sidra Blockchain Logo"
                 width={150}
                 height={50}

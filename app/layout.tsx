@@ -21,15 +21,15 @@ export default function RootLayout({
   children: ReactNode
 }) {
   return (
-    <html lang="en" className="dark">
+    <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
         <AuthProvider>
-        <WalletProvider>
-        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
-          {children}
-        <Toaster />
-        </ThemeProvider>
-        </WalletProvider>
+          <WalletProvider>
+            <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
+              {children}
+              <Toaster />
+            </ThemeProvider>
+          </WalletProvider>
         </AuthProvider>
       </body>
     </html>

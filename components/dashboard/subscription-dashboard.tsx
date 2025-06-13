@@ -28,7 +28,7 @@ import OttPlatforms from "@/components/dashboard/ott-platforms"
 import WalletBalance from '@/components/dashboard/walletBalance'
 import WalletLinkButton from "@/components/wallet/walletLinkButton"
 import WalletManager from '@/components/wallet/walletManager'
-import Subscriptions from '@/components/subscriptions/page'
+import Subscriptions from '@/components/subscriptions/browse/page'
 
 interface User { 
   id: string

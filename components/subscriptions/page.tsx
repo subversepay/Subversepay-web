@@ -9,6 +9,7 @@ import { useToast } from "@/hooks/use-toast"
 import { getCurrentUser, isAuthenticated } from "@/lib/auth/auth"
 import { formatDistanceToNow } from "date-fns"
 import { WalletContext } from "@/context/walletContext"
+import SubscriptionDemo from '@/components/SubscriptionDemo'
 
 
 
@@ -184,7 +185,7 @@ export default function Subscriptions() {
 
   return (
     <div className="container py-12">
-      <div className="max-w-6xl mx-auto">
+      {/* <div className="max-w-6xl mx-auto">
         <div className="flex justify-between items-center mb-8">
           <h1 className="text-3xl font-bold">My Subscriptions</h1>
           <Button onClick={() => router.push("/subscriptions/browse")}>Browse Platforms</Button>
@@ -311,7 +312,8 @@ export default function Subscriptions() {
             </div>
           </>
         )}
-      </div>
+      </div> */}
+      <SubscriptionDemo />
     </div>
   )
 }

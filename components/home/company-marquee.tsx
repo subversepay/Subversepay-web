@@ -11,27 +11,28 @@ export default function CompanyMarquee() {
   useEffect(() => {
     setIsVisible(true)
   }, [])
+// ?height=30&width=120
 
   const companies = [
     {
       name: "Netflix",
-      logo: "/placeholder.svg?height=30&width=120",
+      logo: "/Subversepay-web/placeholder.svg",
     },
     {
       name: "Disney+",
-      logo: "/placeholder.svg?height=30&width=120",
+      logo: "/Subversepay-web/placeholder.svg",
     },
     {
       name: "HBO Max",
-      logo: "/placeholder.svg?height=30&width=120",
+      logo: "/Subversepay-web/placeholder.svg",
     },
     {
       name: "Amazon Prime",
-      logo: "/placeholder.svg?height=30&width=120",
+      logo: "/Subversepay-web/placeholder.svg",
     },
     {
       name: "Spotify",
-      logo: "/placeholder.svg?height=30&width=120",
+      logo: "/Subversepay-web/placeholder.svg",
     },
   ]
 
