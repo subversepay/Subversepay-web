@@ -5,14 +5,14 @@
 // import Image from 'next/image'
 // import { Button } from "@/components/ui/button"
 // import { Menu, X } from "lucide-react"
-// import { ContractContext } from '../../context/contractContext'
+// import { WalletContext } from '../../context/WalletContext'
 // import { useRouter } from "next/navigation"
 
 
 // export default function Navbar() {
 //   const [isMenuOpen, setIsMenuOpen] = useState(false)
 //   const [scrolled, setScrolled] = useState(false)
-//   const { ConnectWallet, DisConnectWallet, currentAccount } =  useContext(ContractContext)
+//   const { ConnectWallet, DisConnectWallet, currentAccount } =  useContext(WalletContext)
 //   const router = useRouter()
 
 //   console.log("current account :", currentAccount );
@@ -149,13 +149,13 @@ import Link from "next/link"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Menu, X, Wallet } from "lucide-react"
-import { ContractContext } from "@/context/contractContext"
+import { WalletContext } from "@/context/walletContext"
 import { useRouter } from "next/navigation"
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
-  const { DisConnectWallet, currentAccount } = useContext(ContractContext)
+  const { DisConnectWallet, currentAccount } = useContext(WalletContext)
   const router = useRouter()
 
   useEffect(() => {

@@ -8,7 +8,7 @@ import { Badge } from "@/components/ui/badge"
 import { useToast } from "@/hooks/use-toast"
 import { getCurrentUser, isAuthenticated } from "@/lib/auth/auth"
 import { formatDistanceToNow } from "date-fns"
-import { ContractContext } from "@/context/contractContext"
+import { WalletContext } from "@/context/walletContext"
 
 
 
@@ -57,13 +57,13 @@ export default function Subscriptions() {
   const [user, setUser] = useState<any>(null)
   const router = useRouter()
   const { toast } = useToast()
-  const { ConnectWallet, isConnecting } = useContext(ContractContext)
+  const { ConnectWallet, isConnecting } = useContext(WalletContext)
   
 
   useEffect(() => {
     // Check authentication
     if (!isAuthenticated()) {
-      router.push("/auth/login")
+      router.push("/auth")
       return
     }
 

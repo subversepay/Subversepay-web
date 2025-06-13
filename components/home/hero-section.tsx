@@ -5,12 +5,12 @@
 // import { Button } from "@/components/ui/button";
 // import { ArrowRight, CheckCircle2 } from "lucide-react";
 // import { useRouter } from 'next/navigation';
-// import { ContractContext } from '../../context/contractContext';
+// import { WalletContext } from '../../context/walletContext';
 
 // export default function HeroSection() {
 //   const [isVisible, setIsVisible] = useState(false);
 //   const router = useRouter();
-//   const { ConnectWallet, currentAccount } = useContext(ContractContext); // Access context
+//   const { ConnectWallet, currentAccount } = useContext(WalletContext); // Access context
 
 //   useEffect(() => {
 //     setIsVisible(true);
@@ -162,12 +162,12 @@ import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { ArrowRight, CheckCircle2 } from "lucide-react"
 import { useRouter } from "next/navigation"
-import { ContractContext } from "@/context/contractContext"
+import { WalletContext } from "@/context/walletContext"
 
 export default function HeroSection() {
   const [isVisible, setIsVisible] = useState(false)
   const router = useRouter()
-  const { ConnectWallet, currentAccount } = useContext(ContractContext)
+  const { ConnectWallet, currentAccount } = useContext(WalletContext)
 
   useEffect(() => {
     setIsVisible(true)

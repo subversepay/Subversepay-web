@@ -28,7 +28,7 @@ import OttPlatforms from "@/components/dashboard/ott-platforms"
 import WalletBalance from '@/components/dashboard/walletBalance'
 import WalletLinkButton from "@/components/wallet/walletLinkButton"
 import WalletManager from '@/components/wallet/walletManager'
-import Subscriptions from '@/components/'
+import Subscriptions from '@/components/subscriptions/page'
 
 interface User { 
   id: string
@@ -321,6 +321,7 @@ export default function SubscriptionDashboard({ view = "customer" }: { view?: "b
                 <div className="space-y-6">
                   {/* Redirect to the browse platforms page */}
                   {/* {router.push("/subscriptions/browse")} */}
+                  <OttPlatforms />
                 </div>
               )}
 
