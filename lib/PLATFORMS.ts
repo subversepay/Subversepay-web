@@ -2,7 +2,7 @@ import { Platform } from "@/types/subscription"
 
 export const PLATFORMS: Platform[] = [
   {
-    address: "0x1234567890123456789012345678901234567890",
+    address: "0xc597037Bb39C1000dC38131e576C0528a2C93F3b",
     name: "StreamFlix",
     description: "Premium video streaming service",
     plans: [

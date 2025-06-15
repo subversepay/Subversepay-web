@@ -5,6 +5,7 @@ import {
 
 // Create a subscription with stablecoin
 export async function createStablecoinSubscription(ottPlatform, stablecoin, amount, durationDays) {
+  console.log("from stacion subs:", ottPlatform, stablecoin, amount, durationDays);
   const paymentProcessor = await getPaymentProcessorContractWithSigner()
   const amountWei = ethers.utils.parseUnits(amount.toString(), 6) // Assuming 6 decimals for stablecoin
 

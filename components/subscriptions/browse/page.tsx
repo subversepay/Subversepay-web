@@ -271,6 +271,7 @@ export default function BrowsePlatforms() {
       }
       toast({ title: "Success", description: `Subscribed to ${platform.name} - ${plan.name}` })
     } catch (err) {
+      console.log("subs error", err);
       toast({ title: "Error", description: err.message, variant: "destructive" })
     }
     setSubscribing(null)

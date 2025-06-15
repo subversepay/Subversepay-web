@@ -25,7 +25,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <AuthProvider>
           <WalletProvider>
-            <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
+            <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
               {children}
               <Toaster />
             </ThemeProvider>

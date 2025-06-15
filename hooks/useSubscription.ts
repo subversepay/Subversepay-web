@@ -15,7 +15,8 @@ export function useSubscription() {
       toast({ title: "Success", description: "Subscription successful!", variant: "success" })
       return receipt
     } catch (err: any) {
-      toast({ title: "Error", description: err.message, variant: "destructive" })
+      toast({ title: "Error!", description: err.message, variant: "info" })
+      console.log(err);
       throw err
     }
   }, [toast])
@@ -28,7 +29,8 @@ export function useSubscription() {
       toast({ title: "Success", description: "Subscription successful!", variant: "success" })
       return receipt
     } catch (err: any) {
-      toast({ title: "Error", description: err.message, variant: "destructive" })
+      toast({ title: "Error!", description: err.message, variant: "info" })
+      console.log(err);
       throw err
     }
   }, [toast])
