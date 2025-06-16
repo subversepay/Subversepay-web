@@ -251,6 +251,7 @@ import { WalletContext } from "@/context/walletContext"
 import { createSubvSubscription, createStablecoinSubscription } from "@/services/subscriptionManagement"
 import { Button } from "@/components/ui/button"
 import { useToast } from "@/hooks/use-toast"
+import { ethers } from "ethers"
 
 export default function BrowsePlatforms() {
   const [subscribing, setSubscribing] = useState<string | null>(null)
@@ -264,10 +265,16 @@ export default function BrowsePlatforms() {
     }
     setSubscribing(`${platform.address}-${plan.id}`)
     try {
+      console.log("Stablecoin address before checksum:", plan.stablecoinAddress); // Add this line
+
+       // Checksum the addresses before passing them to the service function
+    const checksummedPlatformAddress = ethers.utils.getAddress(platform.address);
+    const checksummedStablecoinAddress = ethers.utils.getAddress(plan.stablecoinAddress);
+
       if (plan.tokenType === "SUBV") {
-        await createSubvSubscription(platform.address, plan.price, plan.durationDays)
+        await createSubvSubscription(checksummedPlatformAddress, plan.price, plan.durationDays)
       } else {
-        await createStablecoinSubscription(platform.address, plan.stablecoinAddress, plan.price, plan.durationDays)
+        await createStablecoinSubscription(checksummedPlatformAddress, checksummedStablecoinAddress, plan.price, plan.durationDays)
       }
       toast({ title: "Success", description: `Subscribed to ${platform.name} - ${plan.name}` })
     } catch (err) {

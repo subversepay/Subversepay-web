@@ -2,9 +2,9 @@
 
 import { useInView } from "react-intersection-observer"
 import { motion } from "framer-motion"
-import { Play, Film, Tv, Music, Gamepad2 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
+import { getPopularPlatforms } from "@/lib/PLATFORMS"
 
 export default function OttPlatformsSection() {
   const { ref, inView } = useInView({
@@ -12,64 +12,8 @@ export default function OttPlatformsSection() {
     threshold: 0.1,
   })
 
-  const platforms = [
-    {
-      name: "Netflix",
-      icon: <Play className="h-10 w-10" />,
-      color: "#E50914",
-      discount: "15% off",
-      plans: ["Basic", "Standard", "Premium"],
-    },
-    {
-      name: "Disney+",
-      icon: <Film className="h-10 w-10" />,
-      color: "#0063e5",
-      discount: "10% off",
-      plans: ["Monthly", "Annual"],
-    },
-    {
-      name: "HBO Max",
-      icon: <Tv className="h-10 w-10" />,
-      color: "#5822b4",
-      discount: "12% off",
-      plans: ["With Ads", "Ad-Free", "Ultimate"],
-    },
-    {
-      name: "Amazon Prime",
-      icon: <Play className="h-10 w-10" />,
-      color: "#00A8E1",
-      discount: "8% off",
-      plans: ["Monthly", "Annual"],
-    },
-    {
-      name: "Hulu",
-      icon: <Tv className="h-10 w-10" />,
-      color: "#1CE783",
-      discount: "10% off",
-      plans: ["With Ads", "No Ads", "Live TV"],
-    },
-    {
-      name: "Apple TV+",
-      icon: <Tv className="h-10 w-10" />,
-      color: "#A1A1A1",
-      discount: "5% off",
-      plans: ["Monthly", "Annual"],
-    },
-    {
-      name: "Spotify",
-      icon: <Music className="h-10 w-10" />,
-      color: "#1DB954",
-      discount: "12% off",
-      plans: ["Individual", "Duo", "Family"],
-    },
-    {
-      name: "Xbox Game Pass",
-      icon: <Gamepad2 className="h-10 w-10" />,
-      color: "#107C10",
-      discount: "15% off",
-      plans: ["Console", "PC", "Ultimate"],
-    },
-  ]
+  // Get the top 8 most popular platforms
+  const platforms = getPopularPlatforms(8)
 
   return (
     <section id="platforms" className="py-20 relative" ref={ref}>

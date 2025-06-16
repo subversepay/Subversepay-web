@@ -1,16 +1,7 @@
-import type React from "react"
 import { Button } from "@/components/ui/button"
+import type { PlatformProps } from "@/lib/PLATFORMS"
 
-export interface PlatformProps {
-  name: string
-  icon: React.ReactNode
-  color: string
-  discount: string
-  plans: string[]
-  description?: string
-  category?: string
-  popularity?: number
-}
+export type { PlatformProps }
 
 export function PlatformCard({ platform }: { platform: PlatformProps }) {
   return (
