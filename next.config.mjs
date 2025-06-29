@@ -15,7 +15,10 @@ const nextConfig = {
     webpackBuildWorker: true,
     parallelServerBuildTraces: true,
     parallelServerCompiles: true,
+    missingSuspenseWithCSRBailout: false,
   },
 };
 
 export default nextConfig;
+
+    
