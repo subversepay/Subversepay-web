@@ -24,9 +24,15 @@ export function AuthProvider({ children }) {
         router.push("/auth");
       }
     };
-    checkToken();
-    const interval = setInterval(checkToken, 60 * 1000); // every minute
-    return () => clearInterval(interval);
+
+    const currentPath = router.pathname;
+    
+    // Check if the current path is not the home page or the login page
+    if (currentPath !== "/" && currentPath !== "/auth") {
+      checkToken();
+      const interval = setInterval(checkToken, 60 * 1000); // every minute
+      return () => clearInterval(interval);
+    }
   }, [router]);
 
   return <>{children}</>;
