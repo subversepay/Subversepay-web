@@ -8,7 +8,7 @@ import { Badge } from "@/components/ui/badge"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { useToast } from "@/hooks/use-toast"
-import { isAuthenticated } from "@/lib/auth"
+import { isAuthenticated } from "@/lib/auth/auth"
 import { formatDistanceToNow } from "date-fns"
 
 interface Subscription {
