@@ -2,8 +2,8 @@
 
 import type React from "react"
 
-import { useState } from "react"
-import { useRouter } from "next/navigation"
+import { useState, Suspense } from "react"
+import { useRouter, useSearchParams } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
@@ -13,11 +13,14 @@ import { useToast } from "@/hooks/use-toast"
 import { ArrowLeft } from "lucide-react"
 import Link from "next/link"
 
-export default function AuthPage() {
+function AuthContent() {
   const [activeTab, setActiveTab] = useState("login")
   const [isLoading, setIsLoading] = useState(false)
   const router = useRouter()
   const { toast } = useToast()
+  const searchParams = useSearchParams();
+  
+  const next = searchParams.get("next");
 
   const [loginData, setLoginData] = useState({
     email: "",
@@ -84,7 +87,7 @@ export default function AuthPage() {
         variant: "success",
       })
 
-      router.push("/dashboard")
+      router.push(next || "/dashboard");
     } catch (error) {
       toast({
         title: "Login failed",
@@ -283,4 +286,12 @@ export default function AuthPage() {
       </div>
     </div>
   )
+}
+
+export default function Page() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <AuthContent />
+    </Suspense>
+  );
 }
