@@ -171,7 +171,7 @@ function AuthContent() {
 
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold mb-2">Welcome to SubversePay</h1>
+          {/* <h1 className="text-3xl font-bold mb-2">Welcome to SubversePay</h1> */}
           <p className="text-brand-grey">Access your OTT subscription dashboard</p>
         </div>
 

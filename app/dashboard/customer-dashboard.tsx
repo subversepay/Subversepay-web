@@ -11,6 +11,7 @@ import {
   BarChart3,
   Bell,
   Search,
+  Plus,
   ChevronDown,
   ArrowUpRight,
   ArrowDownRight,
@@ -22,10 +23,10 @@ import {
 import { Button } from "@/components/ui/button"
 import { useToast } from "@/hooks/use-toast"
 import { getActiveSubscriptions, getSubscriptionsForWallets } from "@/lib/subscription/subscription-api"
-import DashboardSidebar from "@/components/dashboard/dashboard-sidebar"
-import BillingHistory from "@/components/dashboard/billing-history"
+import DashboardSidebar from "@/components/dashboard/navigation/dashboard-sidebar"
+import BillingHistory from "@/components/dashboard/billing/billing-history"
 import OttPlatforms from "@/components/dashboard/ott-platforms"
-import WalletBalance from '@/components/dashboard/walletBalance'
+import WalletBalance from '@/components/wallet/walletBalance'
 import WalletLinkButton from "@/components/wallet/walletLinkButton"
 import WalletManager from '@/components/wallet/walletManager'
 import Subscriptions from '@/components/subscriptions/browse/page'
@@ -312,15 +313,127 @@ export default function SubscriptionDashboard({ view = "customer" }: { view?: "b
 
               {activeTab === "subscriptions" && (
                 <div className="space-y-6">
-                  {/* Redirect to the dedicated subscriptions page */}
-                  <Subscriptions />
+                  <div className="flex justify-between items-center">
+                    <div className="flex items-center gap-4">
+                      <div className="relative">
+                        <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-brand-grey" />
+                        <input
+                          type="text"
+                          placeholder="Search subscriptions..."
+                          className="h-9 w-64 rounded-md bg-black/60 border border-brand-blue/20 pl-9 pr-4 text-sm focus:outline-none focus:border-brand-blue/50 text-white"
+                        />
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span className="text-sm text-brand-grey">Status:</span>
+                        <select className="h-9 rounded-md bg-black/60 border border-brand-blue/20 px-3 text-sm focus:outline-none focus:border-brand-blue/50 text-white">
+                          <option>All</option>
+                          <option>Active</option>
+                          <option>Expired</option>
+                          <option>Cancelled</option>
+                        </select>
+                      </div>
+                    </div>
+
+                      <Button className="bg-brand-blue hover:bg-brand-blue/90 text-white">
+                        <Plus className="h-4 w-4 mr-2" />
+                        Add Subscription
+                      </Button>
+      
+                  </div>
+
+                  <div className="bg-black/40 backdrop-blur-sm border border-brand-blue/20 rounded-xl overflow-hidden">
+                    <div className="overflow-x-auto">
+                      <table className="w-full">
+                        <thead>
+                          <tr className="border-b border-brand-blue/20">
+                            <th className="px-6 py-3 text-left text-xs font-medium text-brand-grey uppercase tracking-wider">
+                              Platform
+                            </th>
+                            <th className="px-6 py-3 text-left text-xs font-medium text-brand-grey uppercase tracking-wider">
+                              Plan
+                            </th>
+                            <th className="px-6 py-3 text-left text-xs font-medium text-brand-grey uppercase tracking-wider">
+                              Status
+                            </th>
+                            <th className="px-6 py-3 text-left text-xs font-medium text-brand-grey uppercase tracking-wider">
+                              Next Billing
+                            </th>
+                            <th className="px-6 py-3 text-left text-xs font-medium text-brand-grey uppercase tracking-wider">
+                              Amount
+                            </th>
+                            <th className="px-6 py-3 text-right text-xs font-medium text-brand-grey uppercase tracking-wider">
+                              Actions
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody className="divide-y divide-brand-blue/10">
+                              {
+                              [
+                                {
+                                  platform: "NetflixPro",
+                                  plan: "Premium",
+                                  status: "Active",
+                                  nextBilling: "May 15, 2025",
+                                  amount: "$15.99",
+                                },
+                                {
+                                  platform: "DisneyPlus",
+                                  plan: "Monthly",
+                                  status: "Active",
+                                  nextBilling: "May 22, 2025",
+                                  amount: "$7.99",
+                                },
+                                {
+                                  platform: "Spotify",
+                                  plan: "Individual",
+                                  status: "Active",
+                                  nextBilling: "May 30, 2025",
+                                  amount: "$9.99",
+                                },
+                              ].map((sub, index) => (
+                            <tr key={index} className="hover:bg-brand-blue/5">
+                              <td className="px-6 py-4 whitespace-nowrap text-sm text-white">
+                                {view === "b2b" ? sub.customer : sub.platform}
+                              </td>
+                              <td className="px-6 py-4 whitespace-nowrap text-sm text-white">
+                                {view === "b2b" ? `${sub.platform} - ${sub.plan}` : sub.plan}
+                              </td>
+                              <td className="px-6 py-4 whitespace-nowrap">
+                                <span
+                                  className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
+                                    sub.status === "Active"
+                                      ? "bg-green-900/30 text-green-400"
+                                      : sub.status === "Expired"
+                                        ? "bg-red-900/30 text-red-400"
+                                        : "bg-yellow-900/30 text-yellow-400"
+                                  }`}
+                                >
+                                  {sub.status}
+                                </span>
+                              </td>
+                              <td className="px-6 py-4 whitespace-nowrap text-sm text-brand-grey">{sub.nextBilling}</td>
+                              <td className="px-6 py-4 whitespace-nowrap text-sm text-white">{sub.amount}</td>
+                              <td className="px-6 py-4 whitespace-nowrap text-right text-sm">
+                                <Button
+                                  variant="ghost"
+                                  size="sm"
+                                  className="text-brand-blue hover:text-brand-blue hover:bg-brand-blue/10"
+                                >
+                                  Manage
+                                </Button>
+                              </td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>               
+                  </div>
                 </div>
               )}
 
               {activeTab === "platforms" && (
                 <div className="space-y-6">
                   {/* Redirect to the browse platforms page */}
-                  {/* {router.push("/subscriptions/browse")} */}
                   <OttPlatforms />
                 </div>
               )}
@@ -364,7 +477,7 @@ export default function SubscriptionDashboard({ view = "customer" }: { view?: "b
                 </div>
               )}
             </>
-          )}
+        )}
         </main>
       </div>
     </div>

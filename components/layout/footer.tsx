@@ -1,4 +1,5 @@
 import Link from "next/link"
+import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Twitter, Github, Linkedin, Mail } from "lucide-react"
 
@@ -15,9 +16,9 @@ export default function Footer() {
           <div className="md:col-span-2">
             <Link href="/" className="flex items-center gap-2 mb-4 group">
               <div className="relative h-10 w-10">
-                <div className="absolute inset-0 bg-brand-blue rounded-full opacity-80 group-hover:opacity-100 transition-opacity"></div>
+                {/* <div className="absolute inset-0 bg-brand-blue rounded-full opacity-80 group-hover:opacity-100 transition-opacity"></div> */}
                 <div className="absolute inset-[3px] bg-black rounded-full flex items-center justify-center">
-                  <span className="text-white font-bold text-xs">SP</span>
+                  <Image src="/Subversepay-web/subv-logoblack.png" alt="subversepay logo" width={50} height={50} />
                 </div>
                 <div className="absolute inset-0 border border-brand-blue/50 rounded-full"></div>
               </div>

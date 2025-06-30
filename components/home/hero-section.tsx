@@ -118,47 +118,54 @@ export default function HeroSection() {
               isVisible ? "opacity-100 transform-none" : "opacity-0 translate-y-4"
             }`}
           >
-            {/* <div className="absolute inset-0 bg-gradient-to-br from-brand-blue/30 to-transparent opacity-70"></div> */}
-            {/* <div className="absolute inset-0 backdrop-blur-[2px]"></div> */}
-            {/* <div className="absolute inset-0 border border-brand-blue/50 rounded-xl"></div> */}
-            {/* <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center opacity-30"></div> */}
-
             {/* Glowing corners */}
             <div className="absolute top-0 left-0 w-20 h-20 border-t-2 border-l-2 border-brand-blue rounded-tl-xl"></div>
-            {/* <div className="absolute top-0 right-0 w-20 h-20 border-t-2 border-r-2 border-brand-blue rounded-tr-xl"></div> */}
-            {/* <div className="absolute bottom-0 left-0 w-20 h-20 border-b-2 border-l-2 border-brand-blue rounded-bl-xl"></div> */}
             <div className="absolute bottom-0 right-0 w-20 h-20 border-b-2 border-r-2 border-brand-blue rounded-br-xl"></div>
 
             {/* Logos Section */}
-            <div className="flex justify-between items-center space-x-4 p-4">
-              <Image
-                src="/Subversepay-web/subv-logoblack-text.jpg"
-                alt="SubversePay Logo"
-                width={150}
-                height={50}
-                className="h-auto rounded-xl"
-              />
-                            <div className="flex items-center justify-center">
-                <svg
-                  className="w-16 h-8"
-                  viewBox="0 0 100 20"
-                  preserveAspectRatio="none"
-                >
-                  <path
-                    d="M0 10 Q 25 0, 50 10 T 100 10 V 20 H 0 Z"
-                    fill="transparent"
-                    stroke="currentColor"
+            <div className="flex flex-col items-center md:flex-row justify-between p-4 gap-4 md:gap-0">
+              {/* First Logo */}
+              <div className="w-full max-w-[150px] md:w-auto">
+                <Image
+                  src="/Subversepay-web/subv-coin-1.jpg"
+                  alt="SubversePay Logo"
+                  width={150}
+                  height={50}
+                  className="w-full h-auto rounded-xl"
+                />
+              </div>
+                {/* Smart Wave Divider */}
+              <div className="hidden md:flex items-center justify-center w-16 h-full">
+                <svg className="w-full h-8" viewBox="0 0 100 20" preserveAspectRatio="none">
+                  <path 
+                    d="M0 10 Q 25 0, 50 10 T 100 10"
+                    stroke="#3b82f6"
                     strokeWidth="2"
+                    fill="none"
                   />
                 </svg>
               </div>
-              <Image
-                src="/Subversepay-web/sidra-logo-whitebg.jpg"
-                alt="Sidra Blockchain Logo"
-                width={150}
-                height={50}
-                className="h-auto rounded-xl"
-              />
+              {/* Mobile Vertical Wave (hidden on desktop) */}
+              <div className="flex md:hidden items-center justify-center w-full h-12 my-2">
+                <svg className="h-full w-12" viewBox="0 0 20 100" preserveAspectRatio="none">
+                  <path 
+                    d="M10 0 Q 0 25, 10 50 T 10 100"
+                    stroke="#3b82f6"
+                    strokeWidth="2"
+                    fill="none"
+                  />
+                </svg>
+              </div>
+              {/* Second Logo */}
+              <div className="w-full max-w-[150px] md:w-auto">
+                <Image
+                  src="/Subversepay-web/sidra-logo-whitebg.jpg"
+                  alt="Sidra Blockchain Logo"
+                  width={150}
+                  height={50}
+                  className="w-full h-auto rounded-xl"
+                />
+              </div>
             </div>
 
             {/* Animated glow */}

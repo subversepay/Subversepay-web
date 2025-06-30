@@ -176,7 +176,7 @@ export default function Navbar() {
         <div className="flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2 group">
             <div className="relative h-10 w-10 transition-transform duration-500 group-hover:rotate-180">
-              <div className="absolute inset-0 bg-brand-blue rounded-full opacity-80 group-hover:opacity-100 transition-opacity"></div>
+              {/* <div className="absolute inset-0 bg-brand-blue rounded-full opacity-80 group-hover:opacity-100 transition-opacity"></div> */}
               <div className="absolute inset-[3px] bg-black rounded-full flex items-center justify-center">
                 <Image src="/Subversepay-web/subv-logoblack.png" alt="subversepay logo" width={50} height={50} />
               </div>
