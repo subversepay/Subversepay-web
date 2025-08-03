@@ -19,6 +19,8 @@ import {
   CheckCircle2,
   Play,
   Wallet,
+  Moon,
+  Sun,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { useToast } from "@/hooks/use-toast"
@@ -68,6 +70,7 @@ export default function SubscriptionDashboard({ view = "customer" }: { view?: "b
   const [user, setUser] = useState<User | null>(null)
   const [subscriptions, setSubscriptions] = useState<Subscription[]>([])
   const [activeSubscriptions, setActiveSubscriptions] = useState<Subscription[]>([])
+  const [mode, setMode] = useState("light");
   const router = useRouter()
   const { toast } = useToast()
 
@@ -157,20 +160,44 @@ export default function SubscriptionDashboard({ view = "customer" }: { view?: "b
 
   const stats = getStats()
 
+    const toggleTheme = () => {
+    const html = document.documentElement;
+    if (html.classList.contains('dark')) {
+      html.classList.remove('dark');
+      setMode("light");
+      localStorage.setItem('theme', 'light');
+    } else {
+      html.classList.add('dark');
+      setMode("dark");
+      localStorage.setItem('theme', 'dark');
+    }
+  };
+
+  useEffect(() => {
+    const saved = localStorage.getItem('theme');
+    if (saved === 'dark') {
+      document.documentElement.classList.add('dark');
+      setMode("dark");
+    } else {
+      document.documentElement.classList.remove('dark');
+      setMode("light");
+    }
+  }, []);
+
   return (
-    <div className="flex h-screen bg-black text-white overflow-hidden">
+    <div className="flex h-screen bg-background text-foreground overflow-hidden">
       <DashboardSidebar view={view} activeTab={activeTab} setActiveTab={setActiveTab} />
 
       <div className="flex-1 flex flex-col overflow-hidden">
         {/* Header */}
-        <header className="h-16 border-b border-brand-blue/20 flex items-center justify-between px-6 bg-black/60 backdrop-blur-sm">
+        <header className="h-16 border-b border-brand-blue/20 flex items-center justify-between px-6 bg-background/60 backdrop-blur-sm">
           <div className="flex items-center gap-4">
             <div className="relative">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-brand-grey" />
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
               <input
                 type="text"
                 placeholder="Search subscriptions..."
-                className="h-9 w-64 rounded-md bg-black/60 border border-brand-blue/20 pl-9 pr-4 text-sm focus:outline-none focus:border-brand-blue/50 text-white"
+                className="h-9 w-64 rounded-md bg-background/60 border border-brand-blue/20 pl-9 pr-4 text-sm focus:outline-none focus:border-brand-blue/50 text-foreground"
               />
             </div>
           </div>
@@ -180,21 +207,27 @@ export default function SubscriptionDashboard({ view = "customer" }: { view?: "b
           </div>
 
           <div className="flex items-center gap-4">
+            {/* Theme Toggle Button */}
+            <Button variant="ghost" onClick={toggleTheme} className="flex items-center gap-2">
+              {mode === "light" ? <Moon /> : <Sun />}
+              <span className="hidden sm:inline">{mode === "light" ? "Dark Mode" : "Light Mode"}</span>
+            </Button>
+
             <button className="relative p-2 rounded-full hover:bg-brand-blue/10 transition-colors">
-              <Bell className="h-5 w-5 text-brand-grey" />
+              <Bell className="h-5 w-5 text-muted-foreground" />
               <span className="absolute top-1 right-1 h-2 w-2 rounded-full bg-brand-blue"></span>
             </button>
 
             <div className="flex items-center gap-3">
               <div className="w-8 h-8 rounded-full bg-brand-blue/20 flex items-center justify-center">
-                <span className="text-sm font-medium text-white">{user?.displayName?.charAt(0) || "U"}</span>
+                <span className="text-sm font-medium text-foreground">{user?.displayName?.charAt(0) || "U"}</span>
               </div>
               <div className="text-sm">
-                <div className="font-medium text-white">{user?.displayName || "User"}</div>
-                <div className="text-xs text-brand-grey">Subscriber</div>
+                <div className="font-medium text-foreground">{user?.displayName || "User"}</div>
+                <div className="text-xs text-muted-foreground">Subscriber</div>
               </div>
               <button onClick={handleLogout}>
-                <ChevronDown className="h-4 w-4 text-brand-grey" />
+                <ChevronDown className="h-4 w-4 text-muted-foreground" />
               </button>
             </div>
           </div>
@@ -208,13 +241,13 @@ export default function SubscriptionDashboard({ view = "customer" }: { view?: "b
                 <div className="relative w-12 h-12">
                   <div className="absolute inset-0 rounded-full border-2 border-brand-blue/20 border-t-brand-blue animate-spin"></div>
                 </div>
-                <div className="text-brand-grey">Loading dashboard...</div>
+                <div className="text-muted-foreground">Loading dashboard...</div>
               </div>
             </div>
           ) : (
             <>
               <div className="mb-6">
-                <h1 className="text-2xl font-bold text-white mb-1">
+                <h1 className="text-2xl font-bold text-foreground mb-1">
                   {activeTab === "overview"
                     ? "Dashboard Overview"
                     : activeTab === "subscriptions"
@@ -225,7 +258,7 @@ export default function SubscriptionDashboard({ view = "customer" }: { view?: "b
                           ? "Billing & Payments"
                           : "Account Settings"}
                 </h1>
-                <p className="text-brand-grey">Manage your OTT platform subscriptions paid with stablecoins</p>
+                <p className="text-muted-foreground">Manage your OTT platform subscriptions paid with stablecoins</p>
               </div>
 
               {activeTab === "overview" && (
@@ -278,10 +311,10 @@ export default function SubscriptionDashboard({ view = "customer" }: { view?: "b
                       <BillingHistory view={view} subscriptions={subscriptions} />
                     </div>
                     <div className="lg:col-span-1">
-                      <div className="bg-black/40 backdrop-blur-sm border border-brand-blue/20 rounded-xl p-5 h-full">
+                      <div className="bg-background/40 backdrop-blur-sm border border-brand-blue/20 rounded-xl p-5 h-full">
                         <div className="flex items-center justify-between mb-4">
-                          <h2 className="text-lg font-medium text-white">Recent Activity</h2>
-                          <Button variant="ghost" size="sm" className="text-xs h-8 text-brand-grey hover:text-white">
+                          <h2 className="text-lg font-medium text-foreground">Recent Activity</h2>
+                          <Button variant="ghost" size="sm" className="text-xs h-8 text-muted-foreground hover:text-foreground">
                             View All
                           </Button>
                         </div>
@@ -293,11 +326,11 @@ export default function SubscriptionDashboard({ view = "customer" }: { view?: "b
                                 <CheckCircle2 className="h-4 w-4 text-green-500" />
                               </div>
                               <div>
-                                <div className="text-sm text-white">
+                                <div className="text-sm text-foreground">
                                   Subscription {subscription.isActive ? "renewed" : "expired"} - Plan{" "}
                                   {subscription.planId}
                                 </div>
-                                <div className="text-xs text-brand-grey flex items-center gap-1">
+                                <div className="text-xs text-muted-foreground flex items-center gap-1">
                                   <Clock className="h-3 w-3" />
                                   <span>{new Date(subscription.createdAt).toLocaleDateString()}</span>
                                 </div>
@@ -316,16 +349,16 @@ export default function SubscriptionDashboard({ view = "customer" }: { view?: "b
                   <div className="flex justify-between items-center">
                     <div className="flex items-center gap-4">
                       <div className="relative">
-                        <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-brand-grey" />
+                        <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                         <input
                           type="text"
                           placeholder="Search subscriptions..."
-                          className="h-9 w-64 rounded-md bg-black/60 border border-brand-blue/20 pl-9 pr-4 text-sm focus:outline-none focus:border-brand-blue/50 text-white"
+                          className="h-9 w-64 rounded-md bg-background/60 border border-brand-blue/20 pl-9 pr-4 text-sm focus:outline-none focus:border-brand-blue/50 text-foreground"
                         />
                       </div>
                       <div className="flex items-center gap-2">
-                        <span className="text-sm text-brand-grey">Status:</span>
-                        <select className="h-9 rounded-md bg-black/60 border border-brand-blue/20 px-3 text-sm focus:outline-none focus:border-brand-blue/50 text-white">
+                        <span className="text-sm text-muted-foreground">Status:</span>
+                        <select className="h-9 rounded-md bg-background/60 border border-brand-blue/20 px-3 text-sm focus:outline-none focus:border-brand-blue/50 text-foreground">
                           <option>All</option>
                           <option>Active</option>
                           <option>Expired</option>
@@ -334,34 +367,34 @@ export default function SubscriptionDashboard({ view = "customer" }: { view?: "b
                       </div>
                     </div>
 
-                      <Button className="bg-brand-blue hover:bg-brand-blue/90 text-white">
+                      <Button className="bg-brand-blue hover:bg-brand-blue/90 text-foreground">
                         <Plus className="h-4 w-4 mr-2" />
                         Add Subscription
                       </Button>
       
                   </div>
 
-                  <div className="bg-black/40 backdrop-blur-sm border border-brand-blue/20 rounded-xl overflow-hidden">
+                  <div className="bg-background/40 backdrop-blur-sm border border-brand-blue/20 rounded-xl overflow-hidden">
                     <div className="overflow-x-auto">
                       <table className="w-full">
                         <thead>
                           <tr className="border-b border-brand-blue/20">
-                            <th className="px-6 py-3 text-left text-xs font-medium text-brand-grey uppercase tracking-wider">
+                            <th className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">
                               Platform
                             </th>
-                            <th className="px-6 py-3 text-left text-xs font-medium text-brand-grey uppercase tracking-wider">
+                            <th className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">
                               Plan
                             </th>
-                            <th className="px-6 py-3 text-left text-xs font-medium text-brand-grey uppercase tracking-wider">
+                            <th className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">
                               Status
                             </th>
-                            <th className="px-6 py-3 text-left text-xs font-medium text-brand-grey uppercase tracking-wider">
+                            <th className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">
                               Next Billing
                             </th>
-                            <th className="px-6 py-3 text-left text-xs font-medium text-brand-grey uppercase tracking-wider">
+                            <th className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">
                               Amount
                             </th>
-                            <th className="px-6 py-3 text-right text-xs font-medium text-brand-grey uppercase tracking-wider">
+                            <th className="px-6 py-3 text-right text-xs font-medium text-muted-foreground uppercase tracking-wider">
                               Actions
                             </th>
                           </tr>
@@ -392,27 +425,27 @@ export default function SubscriptionDashboard({ view = "customer" }: { view?: "b
                                 },
                               ].map((sub, index) => (
                             <tr key={index} className="hover:bg-brand-blue/5">
-                              <td className="px-6 py-4 whitespace-nowrap text-sm text-white">
+                              <td className="px-6 py-4 whitespace-nowrap text-sm text-foreground">
                                 {view === "b2b" ? sub.customer : sub.platform}
                               </td>
-                              <td className="px-6 py-4 whitespace-nowrap text-sm text-white">
+                              <td className="px-6 py-4 whitespace-nowrap text-sm text-foreground">
                                 {view === "b2b" ? `${sub.platform} - ${sub.plan}` : sub.plan}
                               </td>
                               <td className="px-6 py-4 whitespace-nowrap">
                                 <span
                                   className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
                                     sub.status === "Active"
-                                      ? "bg-green-900/30 text-green-400"
+                                      ? "bg-success/20 text-success"
                                       : sub.status === "Expired"
-                                        ? "bg-red-900/30 text-red-400"
+                                        ? "bg-destructive/20 text-destructive"
                                         : "bg-yellow-900/30 text-yellow-400"
                                   }`}
                                 >
                                   {sub.status}
                                 </span>
                               </td>
-                              <td className="px-6 py-4 whitespace-nowrap text-sm text-brand-grey">{sub.nextBilling}</td>
-                              <td className="px-6 py-4 whitespace-nowrap text-sm text-white">{sub.amount}</td>
+                              <td className="px-6 py-4 whitespace-nowrap text-sm text-muted-foreground">{sub.nextBilling}</td>
+                              <td className="px-6 py-4 whitespace-nowrap text-sm text-foreground">{sub.amount}</td>
                               <td className="px-6 py-4 whitespace-nowrap text-right text-sm">
                                 <Button
                                   variant="ghost"
@@ -446,32 +479,32 @@ export default function SubscriptionDashboard({ view = "customer" }: { view?: "b
 
               {activeTab === "settings" && (
                 <div className="space-y-6">
-                  <div className="bg-black/40 backdrop-blur-sm border border-brand-blue/20 rounded-xl p-5">
-                    <h2 className="text-lg font-medium text-white mb-4">Account Settings</h2>
+                  <div className="bg-background/40 backdrop-blur-sm border border-brand-blue/20 rounded-xl p-5">
+                    <h2 className="text-lg font-medium text-foreground mb-4">Account Settings</h2>
                     <div className="space-y-6">
                       <div>
-                        <label className="block text-sm text-brand-grey mb-2">Display Name</label>
+                        <label className="block text-sm text-muted-foreground mb-2">Display Name</label>
                         <input
                           type="text"
-                          className="w-full h-10 rounded-md bg-black/60 border border-brand-blue/20 px-3 text-sm focus:outline-none focus:border-brand-blue/50 text-white"
+                          className="w-full h-10 rounded-md bg-background/60 border border-brand-blue/20 px-3 text-sm focus:outline-none focus:border-brand-blue/50 text-foreground"
                           defaultValue={user?.displayName || ""}
                         />
                       </div>
                       <div>
-                        <label className="block text-sm text-brand-grey mb-2">Email Address</label>
+                        <label className="block text-sm text-muted-foreground mb-2">Email Address</label>
                         <input
                           type="email"
-                          className="w-full h-10 rounded-md bg-black/60 border border-brand-blue/20 px-3 text-sm focus:outline-none focus:border-brand-blue/50 text-white"
+                          className="w-full h-10 rounded-md bg-background/60 border border-brand-blue/20 px-3 text-sm focus:outline-none focus:border-brand-blue/50 text-foreground"
                           defaultValue={user?.email || ""}
                         />
                       </div>
                       <div>
-                        <label className="block text-sm text-brand-grey mb-2">Connected Wallets</label>
+                        <label className="block text-sm text-muted-foreground mb-2">Connected Wallets</label>
                         <div className="space-y-2">
                           <WalletManager />
                         </div>
                       </div>
-                      <Button className="bg-brand-blue hover:bg-brand-blue/90 text-white">Save Changes</Button>
+                      <Button className="bg-brand-blue hover:bg-brand-blue/90 text-foreground">Save Changes</Button>
                     </div>
                   </div>
                 </div>
@@ -499,34 +532,34 @@ function StatsCard({
 }) {
   return (
     <motion.div
-      className="bg-black/40 backdrop-blur-sm border border-brand-blue/20 rounded-xl p-5"
+      className="bg-background/40 backdrop-blur-sm border border-brand-blue/20 rounded-xl p-5"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3 }}
     >
       <div className="flex items-center justify-between mb-3">
-        <div className="text-sm text-brand-grey">{title}</div>
+        <div className="text-sm text-muted-foreground">{title}</div>
         <div className="w-8 h-8 rounded-md bg-brand-blue/10 flex items-center justify-center">{icon}</div>
       </div>
-      <div className="text-2xl font-bold text-white mb-1">{value}</div>
+      <div className="text-2xl font-bold text-foreground mb-1">{value}</div>
       {change && (
         <div className="flex items-center text-xs">
           {trend === "up" ? (
-            <div className="flex items-center text-green-400">
+            <div className="flex items-center text-success">
               <ArrowUpRight className="h-3 w-3 mr-1" />
               <span>{change}</span>
             </div>
           ) : trend === "down" ? (
-            <div className="flex items-center text-red-400">
+            <div className="flex items-center text-destructive">
               <ArrowDownRight className="h-3 w-3 mr-1" />
               <span>{change}</span>
             </div>
           ) : (
-            <div className="text-brand-grey">
+            <div className="text-muted-foreground">
               <span>No change</span>
             </div>
           )}
-          <span className="text-brand-grey ml-1">from last month</span>
+          <span className="text-muted-foreground ml-1">from last month</span>
         </div>
       )}
     </motion.div>

@@ -54,10 +54,10 @@
 
 //   return (
 //     <div
-//       className={`relative ${collapsed ? "w-16" : "w-64"} bg-black/60 backdrop-blur-sm border-r border-brand-blue/20 transition-all duration-300 ease-in-out`}
+//       className={`relative ${collapsed ? "w-16" : "w-64"} bg-background/60 backdrop-blur-sm border-r border-brand-blue/20 transition-all duration-300 ease-in-out`}
 //     >
 //       <button
-//         className="absolute -right-3 top-8 w-6 h-6 bg-black border border-brand-blue/30 rounded-full flex items-center justify-center text-brand-grey hover:text-white transition-colors z-10"
+//         className="absolute -right-3 top-8 w-6 h-6 bg-background border border-brand-blue/30 rounded-full flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors z-10"
 //         onClick={() => setCollapsed(!collapsed)}
 //       >
 //         {collapsed ? <ChevronRight className="h-3 w-3" /> : <ChevronLeft className="h-3 w-3" />}
@@ -67,8 +67,8 @@
 //         <div className="p-4 border-b border-brand-blue/20 flex items-center">
 //           <div className="relative h-8 w-8 mr-3">
 //             <div className="absolute inset-0 bg-brand-blue rounded-full opacity-80"></div>
-//             <div className="absolute inset-[2px] bg-black rounded-full flex items-center justify-center">
-//               <span className="text-white font-bold text-xs">SP</span>
+//             <div className="absolute inset-[2px] bg-background rounded-full flex items-center justify-center">
+//               <span className="text-foreground font-bold text-xs">SP</span>
 //             </div>
 //             <div className="absolute inset-0 border border-brand-blue/50 rounded-full"></div>
 //           </div>
@@ -83,8 +83,8 @@
 //                 <button
 //                   className={`w-full flex items-center gap-3 px-3 py-2 rounded-md transition-colors ${
 //                     activeTab === item.id
-//                       ? "bg-brand-blue/20 text-white"
-//                       : "text-brand-grey hover:text-white hover:bg-brand-blue/10"
+//                       ? "bg-brand-blue/20 text-foreground"
+//                       : "text-muted-foreground hover:text-foreground hover:bg-brand-blue/10"
 //                   }`}
 //                   onClick={() => setActiveTab(item.id)}
 //                 >
@@ -101,7 +101,7 @@
 //         </div>
 
 //         <div className="p-4 border-t border-brand-blue/20">
-//           <button className="w-full flex items-center gap-3 px-3 py-2 rounded-md text-brand-grey hover:text-white hover:bg-brand-blue/10 transition-colors">
+//           <button className="w-full flex items-center gap-3 px-3 py-2 rounded-md text-muted-foreground hover:text-foreground hover:bg-brand-blue/10 transition-colors">
 //             <LogOut className="h-5 w-5" />
 //             {!collapsed && <span>Logout</span>}
 //           </button>
@@ -175,10 +175,10 @@ const handleLogout = () => {
 
   return (
     <div
-      className={`relative ${collapsed ? "w-16" : "w-64"} bg-black/60 backdrop-blur-sm border-r border-brand-blue/20 transition-all duration-300 ease-in-out`}
+      className={`relative ${collapsed ? "w-16" : "w-64"} bg-background/60 backdrop-blur-sm border-r border-brand-blue/20 transition-all duration-300 ease-in-out`}
     >
       <button
-        className="absolute -right-3 top-8 w-6 h-6 bg-black border border-brand-blue/30 rounded-full flex items-center justify-center text-brand-grey hover:text-white transition-colors z-10"
+        className="absolute -right-3 top-8 w-6 h-6 bg-background border border-brand-blue/30 rounded-full flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors z-10"
         onClick={() => setCollapsed(!collapsed)}
       >
         {collapsed ? <ChevronRight className="h-3 w-3" /> : <ChevronLeft className="h-3 w-3" />}
@@ -188,8 +188,8 @@ const handleLogout = () => {
         <div className="p-4 border-b border-brand-blue/20 flex items-center">
           <div className="relative h-8 w-8 mr-3">
             <div className="absolute inset-0 bg-brand-blue rounded-full opacity-80"></div>
-            <div className="absolute inset-[2px] bg-black rounded-full flex items-center justify-center">
-              <span className="text-white font-bold text-xs">SP</span>
+            <div className="absolute inset-[2px] bg-background rounded-full flex items-center justify-center">
+              <span className="text-foreground font-bold text-xs">SP</span>
             </div>
             <div className="absolute inset-0 border border-brand-blue/50 rounded-full"></div>
           </div>
@@ -204,8 +204,8 @@ const handleLogout = () => {
                 <button
                   className={`w-full flex items-center gap-3 px-3 py-2 rounded-md transition-colors ${
                     activeTab === item.id
-                      ? "bg-brand-blue/20 text-white"
-                      : "text-brand-grey hover:text-white hover:bg-brand-blue/10"
+                      ? "bg-brand-blue/20 text-foreground"
+                      : "text-muted-foreground hover:text-foreground hover:bg-brand-blue/10"
                   }`}
                   onClick={() => setActiveTab(item.id)}
                 >
@@ -224,7 +224,7 @@ const handleLogout = () => {
         <div className="p-4 border-t border-brand-blue/20">
           <button
             onClick={handleLogout}
-            className="w-full flex items-center gap-3 px-3 py-2 rounded-md text-brand-grey hover:text-white hover:bg-brand-blue/10 transition-colors"
+            className="w-full flex items-center gap-3 px-3 py-2 rounded-md text-muted-foreground hover:text-foreground hover:bg-brand-blue/10 transition-colors"
           >
             <LogOut className="h-5 w-5" />
             {!collapsed && <span>Logout</span>}

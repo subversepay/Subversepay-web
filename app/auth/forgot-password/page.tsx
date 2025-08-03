@@ -48,9 +48,9 @@ export default function ForgotPasswordPage() {
 
   return (
     <div className="w-full max-w-md">
-      <div className="bg-black/40 backdrop-blur-sm border border-brand-blue/20 rounded-xl p-8">
+      <div className="bg-background/40 backdrop-blur-sm border border-brand-blue/20 rounded-xl p-8">
         <div className="text-center mb-8">
-          <h1 className="text-2xl font-bold text-white mb-2">Reset your password</h1>
+          <h1 className="text-2xl font-bold text-foreground mb-2">Reset your password</h1>
           <p className="text-brand-grey">
             {isSubmitted
               ? "Check your email for reset instructions"
@@ -66,7 +66,7 @@ export default function ForgotPasswordPage() {
               </div>
             </div>
             <p className="text-brand-grey mb-6">
-              We've sent a password reset link to <span className="text-white font-medium">{email}</span>
+              We've sent a password reset link to <span className="text-foreground font-medium">{email}</span>
             </p>
             <p className="text-sm text-brand-grey mb-8">
               If you don't see the email in your inbox, please check your spam folder or{" "}
@@ -79,7 +79,7 @@ export default function ForgotPasswordPage() {
               </button>
             </p>
             <Link href="/login" className="block w-full">
-              <Button className="w-full bg-brand-blue hover:bg-brand-blue/90 text-white h-11 relative overflow-hidden group">
+              <Button className="w-full bg-brand-blue hover:bg-brand-blue/90 text-foreground h-11 relative overflow-hidden group">
                 <span className="relative z-10 flex items-center">
                   Return to sign in
                   <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
@@ -110,14 +110,14 @@ export default function ForgotPasswordPage() {
                     setEmail(e.target.value)
                     if (error) setError("")
                   }}
-                  className="bg-black/60 border border-brand-blue/30 focus:border-brand-blue/70 h-11"
+                  className="bg-background/60 border border-brand-blue/30 focus:border-brand-blue/70 h-11"
                   disabled={isLoading}
                 />
               </div>
 
               <Button
                 type="submit"
-                className="w-full bg-brand-blue hover:bg-brand-blue/90 text-white h-11 relative overflow-hidden group"
+                className="w-full bg-brand-blue hover:bg-brand-blue/90 text-foreground h-11 relative overflow-hidden group"
                 disabled={isLoading}
               >
                 <span className="relative z-10 flex items-center">

@@ -11,7 +11,6 @@ export default function CompanyMarquee() {
   useEffect(() => {
     setIsVisible(true)
   }, [])
-// ?height=30&width=120
 
   const companies = [
     {
@@ -43,7 +42,7 @@ export default function CompanyMarquee() {
   return (
     <div className="relative w-full max-w-4xl mx-auto h-[300px] overflow-hidden" ref={containerRef}>
       {/* Background elements */}
-      <div className="absolute inset-0 bg-black rounded-xl overflow-hidden">
+      <div className="absolute inset-0 bg-background rounded-xl overflow-hidden">
         <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center opacity-20"></div>
 
         {/* Animated particles */}
@@ -80,8 +79,8 @@ export default function CompanyMarquee() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4 }}
         >
-          <h2 className="text-2xl font-bold text-white mb-2">Trusted By Leading OTT Platforms</h2>
-          <p className="text-brand-grey max-w-lg mx-auto">
+          <h2 className="text-2xl font-bold text-foreground mb-2">Trusted By Leading OTT Platforms</h2>
+          <p className="text-muted-foreground max-w-lg mx-auto">
             Join the growing ecosystem of streaming services leveraging SubversePay's stablecoin payment solutions
           </p>
         </motion.div>
@@ -109,7 +108,7 @@ export default function CompanyMarquee() {
               {[...companies, ...companies, ...companies].map((company, index) => (
                 <div
                   key={`${company.name}-${index}`}
-                  className="flex-shrink-0 bg-black/40 backdrop-blur-sm border border-brand-blue/20 rounded-lg px-6 py-4 hover:border-brand-blue/50 transition-colors"
+                  className="flex-shrink-0 bg-background/40 backdrop-blur-sm border border-brand-blue/20 rounded-lg px-6 py-4 hover:border-brand-blue/50 transition-colors"
                 >
                   <Image
                     src={company.logo || "/placeholder.svg"}
@@ -123,8 +122,8 @@ export default function CompanyMarquee() {
             </motion.div>
 
             {/* Overlay gradients */}
-            <div className="absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-black to-transparent z-10"></div>
-            <div className="absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-black to-transparent z-10"></div>
+            <div className="absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-background to-transparent z-10"></div>
+            <div className="absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-background to-transparent z-10"></div>
           </div>
         </motion.div>
 
@@ -135,17 +134,17 @@ export default function CompanyMarquee() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.8 }}
         >
-          <div className="text-white text-sm">
+          <div className="text-foreground text-sm">
             <span className="text-brand-blue font-medium">SOL</span>
-            <span className="mx-2 text-brand-grey">•</span>
+            <span className="mx-2 text-muted-foreground">•</span>
             <span className="text-brand-blue font-medium">ETH</span>
-            <span className="mx-2 text-brand-grey">•</span>
-            <span className="text-brand-grey">USDC</span>
+            <span className="mx-2 text-muted-foreground">•</span>
+            <span className="text-muted-foreground">USDC</span>
           </div>
 
           <div className="h-px w-12 bg-gradient-to-r from-transparent via-brand-blue/50 to-transparent"></div>
 
-          <div className="text-white font-medium">Focus Keys</div>
+          <div className="text-foreground font-medium">Focus Keys</div>
 
           <div className="text-brand-blue">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

@@ -35,9 +35,9 @@ export default function OttPlatforms({ subscriptions = [] }: { subscriptions?: S
   const blockchainPlatforms = getPlatformsByCategory(activeCategory).filter((platform) => platform.address)
 
   return (
-    <div className="bg-black/40 backdrop-blur-sm border border-brand-blue/20 rounded-xl p-5">
+    <div className="bg-background/40 backdrop-blur-sm border border-brand-blue/20 rounded-xl p-5">
       <div className="flex items-center justify-between mb-6">
-        <h2 className="text-lg font-medium text-white">Your Subscriptions</h2>
+        <h2 className="text-lg font-medium text-foreground">Your Subscriptions</h2>
 
         <div className="flex items-center gap-2">
           <Button
@@ -45,8 +45,8 @@ export default function OttPlatforms({ subscriptions = [] }: { subscriptions?: S
             size="sm"
             className={`h-8 text-xs ${
               activeCategory === "all"
-                ? "bg-brand-blue hover:bg-brand-blue/90 text-white"
-                : "border-brand-blue/30 text-brand-grey hover:text-white hover:bg-brand-blue/10"
+                ? "bg-brand-blue hover:bg-brand-blue/90 text-primary-foreground"
+                : "border-brand-blue/30 text-muted-foreground hover:text-primary-foreground hover:bg-brand-blue/10"
             }`}
             onClick={() => setActiveCategory("all")}
           >
@@ -57,8 +57,8 @@ export default function OttPlatforms({ subscriptions = [] }: { subscriptions?: S
             size="sm"
             className={`h-8 text-xs ${
               activeCategory === "video"
-                ? "bg-brand-blue hover:bg-brand-blue/90 text-white"
-                : "border-brand-blue/30 text-brand-grey hover:text-white hover:bg-brand-blue/10"
+                ? "bg-brand-blue hover:bg-brand-blue/90 text-primary-foreground"
+                : "border-brand-blue/30 text-muted-foreground hover:text-primary-foreground hover:bg-brand-blue/10"
             }`}
             onClick={() => setActiveCategory("video")}
           >
@@ -69,8 +69,8 @@ export default function OttPlatforms({ subscriptions = [] }: { subscriptions?: S
             size="sm"
             className={`h-8 text-xs ${
               activeCategory === "music"
-                ? "bg-brand-blue hover:bg-brand-blue/90 text-white"
-                : "border-brand-blue/30 text-brand-grey hover:text-white hover:bg-brand-blue/10"
+                ? "bg-brand-blue hover:bg-brand-blue/90 text-primary-foreground"
+                : "border-brand-blue/30 text-muted-foreground hover:text-primary-foreground hover:bg-brand-blue/10"
             }`}
             onClick={() => setActiveCategory("music")}
           >
@@ -87,7 +87,7 @@ export default function OttPlatforms({ subscriptions = [] }: { subscriptions?: S
           return (
             <motion.div
               key={platform.address}
-              className="bg-black/60 border border-brand-blue/20 rounded-lg p-4 hover:border-brand-blue/50 transition-colors"
+              className="bg-background/60 border border-brand-blue/20 rounded-lg p-4 hover:border-brand-blue/50 transition-colors"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3, delay: index * 0.1 }}
@@ -102,7 +102,7 @@ export default function OttPlatforms({ subscriptions = [] }: { subscriptions?: S
 
                 <div className="flex-1">
                   <div className="flex items-center justify-between">
-                    <h3 className="text-lg font-medium text-white">{platform.name}</h3>
+                    <h3 className="text-lg font-medium text-foreground">{platform.name}</h3>
                     {isSubscribed ? (
                       <span className="px-2 py-0.5 rounded text-xs bg-green-900/30 text-green-400">Active</span>
                     ) : (
@@ -110,19 +110,19 @@ export default function OttPlatforms({ subscriptions = [] }: { subscriptions?: S
                     )}
                   </div>
                   {isSubscribed ? (
-                    <div className="text-sm text-brand-grey">
+                    <div className="text-sm text-muted-foreground">
                       Plan: {subscription.planId} • Expires:{" "}
                       {new Date(subscription.expiryTimestamp).toLocaleDateString()}
                     </div>
                   ) : (
-                    <div className="text-sm text-brand-grey">Save up to {platform.discount} with SubversePay</div>
+                    <div className="text-sm text-muted-foreground">Save up to {platform.discount} with SubversePay</div>
                   )}
                 </div>
               </div>
 
               {isSubscribed && (
                 <div className="mt-3 pt-3 border-t border-brand-blue/10 flex items-center justify-between">
-                  <div className="text-xs text-brand-grey">
+                  <div className="text-xs text-muted-foreground">
                     Next billing: {new Date(subscription.expiryTimestamp).toLocaleDateString()}
                   </div>
                   <Button
@@ -140,7 +140,7 @@ export default function OttPlatforms({ subscriptions = [] }: { subscriptions?: S
                 <div className="mt-3 pt-3 border-t border-brand-blue/10 flex justify-end">
                   <Button
                     size="sm"
-                    className="h-7 text-xs bg-brand-blue hover:bg-brand-blue/90 text-white"
+                    className="h-7 text-xs bg-brand-blue hover:bg-brand-blue/90 text-primary-foreground"
                     onClick={() => router.push("/subscriptions/browse")}
                   >
                     Subscribe

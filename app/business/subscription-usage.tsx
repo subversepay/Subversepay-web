@@ -21,9 +21,9 @@
 //   const maxValue = Math.max(...currentData)
 
 //   return (
-//     <div className="bg-black/40 backdrop-blur-sm border border-brand-blue/20 rounded-xl p-5">
+//     <div className="bg-background/40 backdrop-blur-sm border border-brand-blue/20 rounded-xl p-5">
 //       <div className="flex items-center justify-between mb-6">
-//         <h2 className="text-lg font-medium text-white">API Integration Usage</h2>
+//         <h2 className="text-lg font-medium text-foreground">API Integration Usage</h2>
 
 //         <div className="flex items-center gap-2">
 //           <Button
@@ -31,8 +31,8 @@
 //             size="sm"
 //             className={`h-8 text-xs ${
 //               timeRange === "7d"
-//                 ? "bg-brand-blue hover:bg-brand-blue/90 text-white"
-//                 : "border-brand-blue/30 text-brand-grey hover:text-white hover:bg-brand-blue/10"
+//                 ? "bg-brand-blue hover:bg-brand-blue/90 text-foreground"
+//                 : "border-brand-blue/30 text-muted-foreground hover:text-foreground hover:bg-brand-blue/10"
 //             }`}
 //             onClick={() => setTimeRange("7d")}
 //           >
@@ -43,8 +43,8 @@
 //             size="sm"
 //             className={`h-8 text-xs ${
 //               timeRange === "30d"
-//                 ? "bg-brand-blue hover:bg-brand-blue/90 text-white"
-//                 : "border-brand-blue/30 text-brand-grey hover:text-white hover:bg-brand-blue/10"
+//                 ? "bg-brand-blue hover:bg-brand-blue/90 text-foreground"
+//                 : "border-brand-blue/30 text-muted-foreground hover:text-foreground hover:bg-brand-blue/10"
 //             }`}
 //             onClick={() => setTimeRange("30d")}
 //           >
@@ -55,8 +55,8 @@
 //             size="sm"
 //             className={`h-8 text-xs ${
 //               timeRange === "90d"
-//                 ? "bg-brand-blue hover:bg-brand-blue/90 text-white"
-//                 : "border-brand-blue/30 text-brand-grey hover:text-white hover:bg-brand-blue/10"
+//                 ? "bg-brand-blue hover:bg-brand-blue/90 text-foreground"
+//                 : "border-brand-blue/30 text-muted-foreground hover:text-foreground hover:bg-brand-blue/10"
 //             }`}
 //             onClick={() => setTimeRange("90d")}
 //           >
@@ -66,7 +66,7 @@
 //       </div>
 
 //       <div className="h-64 relative">
-//         <div className="absolute inset-y-0 left-0 w-10 flex flex-col justify-between text-xs text-brand-grey">
+//         <div className="absolute inset-y-0 left-0 w-10 flex flex-col justify-between text-xs text-muted-foreground">
 //           <div>1M</div>
 //           <div>750K</div>
 //           <div>500K</div>
@@ -100,7 +100,7 @@
 //                     <div className="absolute inset-0 bg-gradient-to-t from-brand-blue to-brand-blue/50 opacity-80"></div>
 
 //                     {/* Tooltip */}
-//                     <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 bg-black/90 border border-brand-blue/30 rounded px-2 py-1 text-xs text-white whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+//                     <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 bg-background/90 border border-brand-blue/30 rounded px-2 py-1 text-xs text-foreground whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
 //                       {value}K API calls
 //                     </div>
 //                   </motion.div>
@@ -111,7 +111,7 @@
 //         </div>
 //       </div>
 
-//       <div className="flex justify-between text-xs text-brand-grey mt-2 pl-10">
+//       <div className="flex justify-between text-xs text-muted-foreground mt-2 pl-10">
 //         {timeRange === "7d" && (
 //           <>
 //             <div>Mon</div>
@@ -141,10 +141,10 @@
 //       </div>
 
 //       <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4">
-//         <div className="bg-black/60 border border-brand-blue/20 rounded-lg p-3">
-//           <div className="text-sm text-brand-grey mb-1">Total API Calls</div>
-//           <div className="text-xl font-bold text-white">782.4K</div>
-//           <div className="text-xs text-green-400 flex items-center mt-1">
+//         <div className="bg-background/60 border border-brand-blue/20 rounded-lg p-3">
+//           <div className="text-sm text-muted-foreground mb-1">Total API Calls</div>
+//           <div className="text-xl font-bold text-foreground">782.4K</div>
+//           <div className="text-xs text-success flex items-center mt-1">
 //             <svg
 //               width="12"
 //               height="12"
@@ -162,14 +162,14 @@
 //               />
 //             </svg>
 //             <span>12.5%</span>
-//             <span className="text-brand-grey ml-1">vs last period</span>
+//             <span className="text-muted-foreground ml-1">vs last period</span>
 //           </div>
 //         </div>
 
-//         <div className="bg-black/60 border border-brand-blue/20 rounded-lg p-3">
-//           <div className="text-sm text-brand-grey mb-1">OTT Platforms</div>
-//           <div className="text-xl font-bold text-white">8</div>
-//           <div className="text-xs text-green-400 flex items-center mt-1">
+//         <div className="bg-background/60 border border-brand-blue/20 rounded-lg p-3">
+//           <div className="text-sm text-muted-foreground mb-1">OTT Platforms</div>
+//           <div className="text-xl font-bold text-foreground">8</div>
+//           <div className="text-xs text-success flex items-center mt-1">
 //             <svg
 //               width="12"
 //               height="12"
@@ -187,14 +187,14 @@
 //               />
 //             </svg>
 //             <span>+2</span>
-//             <span className="text-brand-grey ml-1">vs last period</span>
+//             <span className="text-muted-foreground ml-1">vs last period</span>
 //           </div>
 //         </div>
 
-//         <div className="bg-black/60 border border-brand-blue/20 rounded-lg p-3">
-//           <div className="text-sm text-brand-grey mb-1">Success Rate</div>
-//           <div className="text-xl font-bold text-white">99.8%</div>
-//           <div className="text-xs text-green-400 flex items-center mt-1">
+//         <div className="bg-background/60 border border-brand-blue/20 rounded-lg p-3">
+//           <div className="text-sm text-muted-foreground mb-1">Success Rate</div>
+//           <div className="text-xl font-bold text-foreground">99.8%</div>
+//           <div className="text-xs text-success flex items-center mt-1">
 //             <svg
 //               width="12"
 //               height="12"
@@ -212,7 +212,7 @@
 //               />
 //             </svg>
 //             <span>0.2%</span>
-//             <span className="text-brand-grey ml-1">vs last period</span>
+//             <span className="text-muted-foreground ml-1">vs last period</span>
 //           </div>
 //         </div>
 //       </div>
@@ -243,9 +243,9 @@ export default function SubscriptionUsage({ view = "customer" }: { view?: "b2b" 
   const maxValue = Math.max(...currentData)
 
   return (
-    <div className="bg-black/40 backdrop-blur-sm border border-brand-blue/20 rounded-xl p-5">
+    <div className="bg-background/40 backdrop-blur-sm border border-brand-blue/20 rounded-xl p-5">
       <div className="flex items-center justify-between mb-6">
-        <h2 className="text-lg font-medium text-white">Subscription Usage</h2>
+        <h2 className="text-lg font-medium text-foreground">Subscription Usage</h2>
 
         <div className="flex items-center gap-2">
           <Button
@@ -253,8 +253,8 @@ export default function SubscriptionUsage({ view = "customer" }: { view?: "b2b" 
             size="sm"
             className={`h-8 text-xs ${
               timeRange === "7d"
-                ? "bg-brand-blue hover:bg-brand-blue/90 text-white"
-                : "border-brand-blue/30 text-brand-grey hover:text-white hover:bg-brand-blue/10"
+                ? "bg-brand-blue hover:bg-brand-blue/90 text-foreground"
+                : "border-brand-blue/30 text-muted-foreground hover:text-foreground hover:bg-brand-blue/10"
             }`}
             onClick={() => setTimeRange("7d")}
           >
@@ -265,8 +265,8 @@ export default function SubscriptionUsage({ view = "customer" }: { view?: "b2b" 
             size="sm"
             className={`h-8 text-xs ${
               timeRange === "30d"
-                ? "bg-brand-blue hover:bg-brand-blue/90 text-white"
-                : "border-brand-blue/30 text-brand-grey hover:text-white hover:bg-brand-blue/10"
+                ? "bg-brand-blue hover:bg-brand-blue/90 text-foreground"
+                : "border-brand-blue/30 text-muted-foreground hover:text-foreground hover:bg-brand-blue/10"
             }`}
             onClick={() => setTimeRange("30d")}
           >
@@ -277,8 +277,8 @@ export default function SubscriptionUsage({ view = "customer" }: { view?: "b2b" 
             size="sm"
             className={`h-8 text-xs ${
               timeRange === "90d"
-                ? "bg-brand-blue hover:bg-brand-blue/90 text-white"
-                : "border-brand-blue/30 text-brand-grey hover:text-white hover:bg-brand-blue/10"
+                ? "bg-brand-blue hover:bg-brand-blue/90 text-foreground"
+                : "border-brand-blue/30 text-muted-foreground hover:text-foreground hover:bg-brand-blue/10"
             }`}
             onClick={() => setTimeRange("90d")}
           >
@@ -288,7 +288,7 @@ export default function SubscriptionUsage({ view = "customer" }: { view?: "b2b" 
       </div>
 
       <div className="h-64 relative">
-        <div className="absolute inset-y-0 left-0 w-10 flex flex-col justify-between text-xs text-brand-grey">
+        <div className="absolute inset-y-0 left-0 w-10 flex flex-col justify-between text-xs text-muted-foreground">
           <div>100</div>
           <div>75</div>
           <div>50</div>
@@ -322,7 +322,7 @@ export default function SubscriptionUsage({ view = "customer" }: { view?: "b2b" 
                     <div className="absolute inset-0 bg-gradient-to-t from-brand-blue to-brand-blue/50 opacity-80"></div>
 
                     {/* Tooltip */}
-                    <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 bg-black/90 border border-brand-blue/30 rounded px-2 py-1 text-xs text-white whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+                    <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 bg-background/90 border border-brand-blue/30 rounded px-2 py-1 text-xs text-foreground whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
                       {value} hours
                     </div>
                   </motion.div>
@@ -333,7 +333,7 @@ export default function SubscriptionUsage({ view = "customer" }: { view?: "b2b" 
         </div>
       </div>
 
-      <div className="flex justify-between text-xs text-brand-grey mt-2 pl-10">
+      <div className="flex justify-between text-xs text-muted-foreground mt-2 pl-10">
         {timeRange === "7d" && (
           <>
             <div>Mon</div>
@@ -363,30 +363,30 @@ export default function SubscriptionUsage({ view = "customer" }: { view?: "b2b" 
       </div>
 
       <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div className="bg-black/60 border border-brand-blue/20 rounded-lg p-3">
-          <div className="text-sm text-brand-grey mb-1">Total Hours</div>
-          <div className="text-xl font-bold text-white">142.5</div>
-          <div className="text-xs text-green-400 flex items-center mt-1">
+        <div className="bg-background/60 border border-brand-blue/20 rounded-lg p-3">
+          <div className="text-sm text-muted-foreground mb-1">Total Hours</div>
+          <div className="text-xl font-bold text-foreground">142.5</div>
+          <div className="text-xs text-success flex items-center mt-1">
             <span>+12.5%</span>
-            <span className="text-brand-grey ml-1">vs last period</span>
+            <span className="text-muted-foreground ml-1">vs last period</span>
           </div>
         </div>
 
-        <div className="bg-black/60 border border-brand-blue/20 rounded-lg p-3">
-          <div className="text-sm text-brand-grey mb-1">Active Subscriptions</div>
-          <div className="text-xl font-bold text-white">3</div>
-          <div className="text-xs text-green-400 flex items-center mt-1">
+        <div className="bg-background/60 border border-brand-blue/20 rounded-lg p-3">
+          <div className="text-sm text-muted-foreground mb-1">Active Subscriptions</div>
+          <div className="text-xl font-bold text-foreground">3</div>
+          <div className="text-xs text-success flex items-center mt-1">
             <span>+1</span>
-            <span className="text-brand-grey ml-1">vs last period</span>
+            <span className="text-muted-foreground ml-1">vs last period</span>
           </div>
         </div>
 
-        <div className="bg-black/60 border border-brand-blue/20 rounded-lg p-3">
-          <div className="text-sm text-brand-grey mb-1">Avg. Daily Usage</div>
-          <div className="text-xl font-bold text-white">4.7h</div>
-          <div className="text-xs text-green-400 flex items-center mt-1">
+        <div className="bg-background/60 border border-brand-blue/20 rounded-lg p-3">
+          <div className="text-sm text-muted-foreground mb-1">Avg. Daily Usage</div>
+          <div className="text-xl font-bold text-foreground">4.7h</div>
+          <div className="text-xs text-success flex items-center mt-1">
             <span>+0.3h</span>
-            <span className="text-brand-grey ml-1">vs last period</span>
+            <span className="text-muted-foreground ml-1">vs last period</span>
           </div>
         </div>
       </div>

@@ -175,7 +175,7 @@ function AuthContent() {
           <p className="text-brand-grey">Access your OTT subscription dashboard</p>
         </div>
 
-        <Card className="border-brand-blue/30 bg-black/60 backdrop-blur-md">
+        <Card className="border-brand-blue/30 bg-background/60 backdrop-blur-md">
           <CardHeader>
             <CardTitle className="text-center">Authentication</CardTitle>
             <CardDescription className="text-center">Sign in or create your account</CardDescription>
@@ -199,7 +199,7 @@ function AuthContent() {
                         value={loginData.email}
                         onChange={handleLoginChange}
                         required
-                        className="bg-black/60 border-brand-blue/30"
+                        className="bg-background/60 border-brand-blue/30"
                       />
                     </div>
                     <div className="space-y-2">
@@ -212,7 +212,7 @@ function AuthContent() {
                         value={loginData.password}
                         onChange={handleLoginChange}
                         required
-                        className="bg-black/60 border-brand-blue/30"
+                        className="bg-background/60 border-brand-blue/30"
                       />
                     </div>
                     <Button type="submit" className="w-full bg-brand-blue hover:bg-brand-blue/90" disabled={isLoading}>
@@ -233,7 +233,7 @@ function AuthContent() {
                         value={registerData.displayName}
                         onChange={handleRegisterChange}
                         required
-                        className="bg-black/60 border-brand-blue/30"
+                        className="bg-background/60 border-brand-blue/30"
                       />
                     </div>
                     <div className="space-y-2">
@@ -246,7 +246,7 @@ function AuthContent() {
                         value={registerData.email}
                         onChange={handleRegisterChange}
                         required
-                        className="bg-black/60 border-brand-blue/30"
+                        className="bg-background/60 border-brand-blue/30"
                       />
                     </div>
                     <div className="space-y-2">
@@ -259,7 +259,7 @@ function AuthContent() {
                         value={registerData.password}
                         onChange={handleRegisterChange}
                         required
-                        className="bg-black/60 border-brand-blue/30"
+                        className="bg-background/60 border-brand-blue/30"
                       />
                     </div>
                     <Button type="submit" className="w-full bg-brand-blue hover:bg-brand-blue/90" disabled={isLoading}>

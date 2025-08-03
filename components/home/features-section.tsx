@@ -56,10 +56,10 @@ export default function FeaturesSection() {
             inView ? "opacity-100 transform-none" : "opacity-0 translate-y-4"
           }`}
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-foreground to-muted-foreground bg-clip-text text-transparent">
             Streamlined OTT Subscription Management
           </h2>
-          <p className="text-brand-grey text-lg">
+          <p className="text-muted-foreground text-lg">
             Everything you need to manage and pay for your streaming subscriptions with stablecoins.
           </p>
         </div>
@@ -82,13 +82,13 @@ export default function FeaturesSection() {
               <div className="absolute bottom-0 left-0 w-10 h-10 border-b border-l border-brand-blue/50 rounded-bl-xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
               <div className="absolute bottom-0 right-0 w-10 h-10 border-b border-r border-brand-blue/50 rounded-br-xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
 
-              <div className="relative bg-black/50 backdrop-blur-sm rounded-xl p-6 z-10 border border-brand-blue/10 hover:border-brand-blue/30 transition-colors">
+              <div className="relative bg-background/50 backdrop-blur-sm rounded-xl p-6 z-10 border border-brand-blue/10 hover:border-brand-blue/30 transition-colors">
                 <div className="mb-4 relative">
                   {feature.icon}
                   <div className="absolute -inset-1 bg-brand-blue/20 rounded-full blur-md opacity-0 group-hover:opacity-70 transition-opacity"></div>
                 </div>
-                <h3 className="text-xl font-semibold mb-2 text-white">{feature.title}</h3>
-                <p className="text-brand-grey">{feature.description}</p>
+                <h3 className="text-xl font-semibold mb-2 text-foreground">{feature.title}</h3>
+                <p className="text-muted-foreground">{feature.description}</p>
               </div>
             </div>
           ))}

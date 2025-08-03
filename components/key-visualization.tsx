@@ -76,7 +76,7 @@ export default function KeyVisualization() {
   return (
     <div className="relative w-full max-w-4xl mx-auto h-[600px] overflow-hidden" ref={containerRef}>
       {/* Background elements */}
-      <div className="absolute inset-0 bg-black rounded-xl overflow-hidden">
+      <div className="absolute inset-0 bg-background rounded-xl overflow-hidden">
         <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center opacity-20"></div>
 
         {/* Animated particles */}
@@ -299,7 +299,7 @@ export default function KeyVisualization() {
                   {/* Node icon */}
                   <div
                     className={`w-12 h-12 rounded-lg flex items-center justify-center ${
-                      isActive ? "bg-brand-blue text-white" : "bg-black/60 text-brand-blue"
+                      isActive ? "bg-brand-blue text-white" : "bg-background/60 text-brand-blue"
                     } backdrop-blur-sm border border-brand-blue/30 transition-colors duration-300`}
                   >
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

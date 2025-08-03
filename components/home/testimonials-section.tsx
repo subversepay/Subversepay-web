@@ -49,10 +49,10 @@ export default function TestimonialsSection() {
             inView ? "opacity-100 transform-none" : "opacity-0 translate-y-4"
           }`}
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-foreground to-muted-foreground bg-clip-text text-transparent">
             Trusted by Streaming Enthusiasts & Platforms
           </h2>
-          <p className="text-brand-grey text-lg">See what our customers are saying about SubversePay.</p>
+          <p className="text-muted-foreground text-lg">See what our customers are saying about SubversePay.</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -70,13 +70,13 @@ export default function TestimonialsSection() {
               {/* Glowing effect on hover */}
               <div className="absolute -inset-0.5 bg-gradient-to-r from-brand-blue/0 via-brand-blue/30 to-brand-blue/0 rounded-xl opacity-0 group-hover:opacity-100 blur-sm transition-opacity"></div>
 
-              <div className="relative bg-black/50 backdrop-blur-sm rounded-xl p-6 z-10 border border-brand-blue/10 hover:border-brand-blue/30 transition-colors">
+              <div className="relative bg-background/50 backdrop-blur-sm rounded-xl p-6 z-10 border border-brand-blue/10 hover:border-brand-blue/30 transition-colors">
                 <div className="flex mb-4">
                   {[...Array(5)].map((_, i) => (
                     <Star key={i} className="h-5 w-5 text-brand-blue fill-brand-blue" />
                   ))}
                 </div>
-                <p className="text-gray-300 mb-6">"{testimonial.content}"</p>
+                <p className="text-muted-foreground mb-6">"{testimonial.content}"</p>
                 <div className="flex items-center gap-4">
                   <div className="relative">
                     <div className="absolute -inset-0.5 bg-brand-blue/50 rounded-full blur-sm opacity-0 group-hover:opacity-100 transition-opacity"></div>
@@ -89,8 +89,8 @@ export default function TestimonialsSection() {
                     />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-white">{testimonial.name}</h4>
-                    <p className="text-brand-grey text-sm">{testimonial.role}</p>
+                    <h4 className="font-semibold text-foreground">{testimonial.name}</h4>
+                    <p className="text-muted-foreground text-sm">{testimonial.role}</p>
                   </div>
                 </div>
               </div>

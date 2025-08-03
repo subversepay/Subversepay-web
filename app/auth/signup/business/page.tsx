@@ -228,9 +228,9 @@ export default function BusinessSignupPage() {
 
   return (
     <div className="w-full max-w-2xl">
-      <div className="bg-black/40 backdrop-blur-sm border border-brand-blue/20 rounded-xl p-8">
+      <div className="bg-background/40 backdrop-blur-sm border border-brand-blue/20 rounded-xl p-8">
         <div className="text-center mb-8">
-          <h1 className="text-2xl font-bold text-white mb-2">OTT Platform Registration</h1>
+          <h1 className="text-2xl font-bold text-foreground mb-2">OTT Platform Registration</h1>
           <p className="text-brand-grey">Join SubversePay to offer stablecoin payments for your subscribers</p>
         </div>
 
@@ -248,17 +248,17 @@ export default function BusinessSignupPage() {
                 <div
                   className={`w-10 h-10 rounded-full flex items-center justify-center ${
                     currentStep === step
-                      ? "bg-brand-blue text-white"
+                      ? "bg-brand-blue text-foreground"
                       : currentStep > step
                         ? "bg-brand-blue/20 text-brand-blue"
-                        : "bg-gray-800 text-gray-400"
+                        : "bg-gray-800 text-muted-foreground"
                   }`}
                 >
                   {currentStep > step ? <Check className="h-5 w-5" /> : step}
                 </div>
                 <div
                   className={`text-xs mt-2 ${
-                    currentStep === step ? "text-white" : currentStep > step ? "text-brand-blue" : "text-gray-400"
+                    currentStep === step ? "text-foreground" : currentStep > step ? "text-brand-blue" : "text-muted-foreground"
                   }`}
                 >
                   {step === 1 ? "Company" : step === 2 ? "Contact" : "Account"}
@@ -290,7 +290,7 @@ export default function BusinessSignupPage() {
                   placeholder="Your OTT Platform Name"
                   value={formData.companyName}
                   onChange={handleChange}
-                  className={`bg-black/60 border ${
+                  className={`bg-background/60 border ${
                     errors.companyName ? "border-red-500/50" : "border-brand-blue/30"
                   } focus:border-brand-blue/70 h-11`}
                   disabled={isLoading}
@@ -309,7 +309,7 @@ export default function BusinessSignupPage() {
                   placeholder="https://yourplatform.com"
                   value={formData.website}
                   onChange={handleChange}
-                  className={`bg-black/60 border ${
+                  className={`bg-background/60 border ${
                     errors.website ? "border-red-500/50" : "border-brand-blue/30"
                   } focus:border-brand-blue/70 h-11`}
                   disabled={isLoading}
@@ -328,7 +328,7 @@ export default function BusinessSignupPage() {
                   >
                     <SelectTrigger
                       id="companySize"
-                      className={`bg-black/60 border ${
+                      className={`bg-background/60 border ${
                         errors.companySize ? "border-red-500/50" : "border-brand-blue/30"
                       } focus:border-brand-blue/70 h-11`}
                     >
@@ -355,7 +355,7 @@ export default function BusinessSignupPage() {
                   >
                     <SelectTrigger
                       id="platformType"
-                      className={`bg-black/60 border ${
+                      className={`bg-background/60 border ${
                         errors.platformType ? "border-red-500/50" : "border-brand-blue/30"
                       } focus:border-brand-blue/70 h-11`}
                     >
@@ -390,7 +390,7 @@ export default function BusinessSignupPage() {
                     placeholder="John"
                     value={formData.firstName}
                     onChange={handleChange}
-                    className={`bg-black/60 border ${
+                    className={`bg-background/60 border ${
                       errors.firstName ? "border-red-500/50" : "border-brand-blue/30"
                     } focus:border-brand-blue/70 h-11`}
                     disabled={isLoading}
@@ -409,7 +409,7 @@ export default function BusinessSignupPage() {
                     placeholder="Smith"
                     value={formData.lastName}
                     onChange={handleChange}
-                    className={`bg-black/60 border ${
+                    className={`bg-background/60 border ${
                       errors.lastName ? "border-red-500/50" : "border-brand-blue/30"
                     } focus:border-brand-blue/70 h-11`}
                     disabled={isLoading}
@@ -429,7 +429,7 @@ export default function BusinessSignupPage() {
                   placeholder="john@yourcompany.com"
                   value={formData.email}
                   onChange={handleChange}
-                  className={`bg-black/60 border ${
+                  className={`bg-background/60 border ${
                     errors.email ? "border-red-500/50" : "border-brand-blue/30"
                   } focus:border-brand-blue/70 h-11`}
                   disabled={isLoading}
@@ -448,7 +448,7 @@ export default function BusinessSignupPage() {
                   placeholder="+1 (555) 123-4567"
                   value={formData.phone}
                   onChange={handleChange}
-                  className={`bg-black/60 border ${
+                  className={`bg-background/60 border ${
                     errors.phone ? "border-red-500/50" : "border-brand-blue/30"
                   } focus:border-brand-blue/70 h-11`}
                   disabled={isLoading}
@@ -473,14 +473,14 @@ export default function BusinessSignupPage() {
                     placeholder="••••••••"
                     value={formData.password}
                     onChange={handleChange}
-                    className={`bg-black/60 border ${
+                    className={`bg-background/60 border ${
                       errors.password ? "border-red-500/50" : "border-brand-blue/30"
                     } focus:border-brand-blue/70 h-11 pr-10`}
                     disabled={isLoading}
                   />
                   <button
                     type="button"
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-brand-grey hover:text-white transition-colors"
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-brand-grey hover:text-foreground transition-colors"
                     onClick={() => setShowPassword(!showPassword)}
                   >
                     {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
@@ -591,7 +591,7 @@ export default function BusinessSignupPage() {
               <Button
                 type="button"
                 variant="outline"
-                className="border-brand-blue/30 text-white hover:bg-brand-blue/10 h-11"
+                className="border-brand-blue/30 text-foreground hover:bg-brand-blue/10 h-11"
                 onClick={handlePrevStep}
                 disabled={isLoading}
               >
@@ -604,7 +604,7 @@ export default function BusinessSignupPage() {
             {currentStep < 3 ? (
               <Button
                 type="button"
-                className="bg-brand-blue hover:bg-brand-blue/90 text-white h-11 relative overflow-hidden group"
+                className="bg-brand-blue hover:bg-brand-blue/90 text-foreground h-11 relative overflow-hidden group"
                 onClick={handleNextStep}
                 disabled={isLoading}
               >
@@ -617,7 +617,7 @@ export default function BusinessSignupPage() {
             ) : (
               <Button
                 type="submit"
-                className="bg-brand-blue hover:bg-brand-blue/90 text-white h-11 relative overflow-hidden group"
+                className="bg-brand-blue hover:bg-brand-blue/90 text-foreground h-11 relative overflow-hidden group"
                 disabled={isLoading}
               >
                 <span className="relative z-10 flex items-center">

@@ -37,12 +37,12 @@ export default function HeroSection() {
       <div className="container mx-auto px-4">
         <div className="flex flex-col items-center text-center max-w-4xl mx-auto">
           <div
-            className={`inline-flex items-center gap-2 bg-gradient-to-r from-black to-black/80 backdrop-blur-sm border border-brand-blue/30 rounded-full px-4 py-1.5 mb-6 transition-all duration-1000 ${
+            className={`inline-flex items-center gap-2 bg-gradient-to-r from-background to-background/80 backdrop-blur-sm border border-brand-blue/30 rounded-full px-4 py-1.5 mb-6 transition-all duration-1000 ${
               isVisible ? "opacity-100 transform-none" : "opacity-0 translate-y-4"
             }`}
           >
             <span className="text-brand-blue font-medium">Introducing SubversePay</span>
-            <span className="bg-brand-blue text-white text-xs px-2 py-0.5 rounded-full">BETA</span>
+            <span className="bg-brand-blue text-primary-foreground text-xs px-2 py-0.5 rounded-full">BETA</span>
           </div>
 
           <h1
@@ -50,18 +50,20 @@ export default function HeroSection() {
               isVisible ? "opacity-100 transform-none" : "opacity-0 translate-y-4"
             }`}
           >
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400">Pay for</span>
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-foreground to-muted-foreground">
+              Pay for
+            </span>
             <span className="relative ml-2">
               <span className="text-brand-blue">OTT Subscriptions</span>
               <span className="absolute -bottom-2 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-brand-blue to-transparent"></span>
             </span>
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400 block mt-2">
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-foreground to-muted-foreground block mt-2">
               with Stablecoins
             </span>
           </h1>
 
           <p
-            className={`text-lg md:text-xl text-brand-grey mb-8 max-w-2xl transition-all duration-1000 delay-500 ${
+            className={`text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl transition-all duration-1000 delay-500 ${
               isVisible ? "opacity-100 transform-none" : "opacity-0 translate-y-4"
             }`}
           >
@@ -76,17 +78,17 @@ export default function HeroSection() {
           >
             <Button
               onClick={() => router.push("/auth")}
-              className="bg-brand-blue hover:bg-brand-blue/90 text-white px-8 py-6 text-lg relative overflow-hidden group"
+              className="bg-brand-blue hover:bg-brand-blue/90 text-primary-foreground px-8 py-6 text-lg relative overflow-hidden group"
             >
               <span className="relative z-10 flex items-center">
                 Get Started
                 <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
               </span>
-              <span className="absolute top-0 -inset-full h-full w-1/2 z-5 block transform -skew-x-12 bg-gradient-to-r from-transparent to-white opacity-20 group-hover:animate-shine"></span>
+              <span className="absolute top-0 -inset-full h-full w-1/2 z-5 block transform -skew-x-12 bg-gradient-to-r from-transparent to-primary-foreground opacity-20 group-hover:animate-shine"></span>
             </Button>
             <Button
               variant="outline"
-              className="border-brand-blue text-white hover:bg-brand-blue/20 px-8 py-6 text-lg relative group"
+              className="border-brand-blue text-primary-foreground hover:bg-brand-blue/20 px-8 py-6 text-lg relative group"
               onClick={() => router.push("/auth")}
             >
               <span className="relative z-10">Sign In</span>
@@ -99,17 +101,17 @@ export default function HeroSection() {
               isVisible ? "opacity-100 transform-none" : "opacity-0 translate-y-4"
             }`}
           >
-            <div className="flex items-center gap-2 bg-black/50 backdrop-blur-sm border border-brand-blue/20 rounded-full px-4 py-2">
+            <div className="flex items-center gap-2 bg-background/50 backdrop-blur-sm border border-brand-blue/20 rounded-full px-4 py-2">
               <CheckCircle2 className="h-5 w-5 text-brand-blue" />
-              <span className="text-gray-300">15% Savings with SubversePay Plans</span>
+              <span className="text-muted-foreground">15% Savings with SubversePay Plans</span>
             </div>
-            <div className="flex items-center gap-2 bg-black/50 backdrop-blur-sm border border-brand-blue/20 rounded-full px-4 py-2">
+            <div className="flex items-center gap-2 bg-background/50 backdrop-blur-sm border border-brand-blue/20 rounded-full px-4 py-2">
               <CheckCircle2 className="h-5 w-5 text-brand-blue" />
-              <span className="text-gray-300">Stablecoin Payments</span>
+              <span className="text-muted-foreground">Stablecoin Payments</span>
             </div>
-            <div className="flex items-center gap-2 bg-black/50 backdrop-blur-sm border border-brand-blue/20 rounded-full px-4 py-2">
+            <div className="flex items-center gap-2 bg-background/50 backdrop-blur-sm border border-brand-blue/20 rounded-full px-4 py-2">
               <CheckCircle2 className="h-5 w-5 text-brand-blue" />
-              <span className="text-gray-300">Manage All Subscriptions</span>
+              <span className="text-muted-foreground">Manage All Subscriptions</span>
             </div>
           </div>
 
@@ -139,7 +141,7 @@ export default function HeroSection() {
                 <svg className="w-full h-8" viewBox="0 0 100 20" preserveAspectRatio="none">
                   <path 
                     d="M0 10 Q 25 0, 50 10 T 100 10"
-                    stroke="#3b82f6"
+                    stroke="hsl(var(--brand-blue))"
                     strokeWidth="2"
                     fill="none"
                   />
@@ -150,7 +152,7 @@ export default function HeroSection() {
                 <svg className="h-full w-12" viewBox="0 0 20 100" preserveAspectRatio="none">
                   <path 
                     d="M10 0 Q 0 25, 10 50 T 10 100"
-                    stroke="#3b82f6"
+                    stroke="hsl(var(--brand-blue))"
                     strokeWidth="2"
                     fill="none"
                   />

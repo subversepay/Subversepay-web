@@ -61,7 +61,7 @@ export default function SeamlessFeatures() {
   return (
     <div className="relative w-full max-w-4xl mx-auto h-[600px] overflow-hidden" ref={containerRef}>
       {/* Background elements */}
-      <div className="absolute inset-0 bg-black rounded-xl overflow-hidden">
+      <div className="absolute inset-0 bg-background rounded-xl overflow-hidden">
         <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center opacity-20"></div>
 
         {/* Animated particles */}
@@ -122,7 +122,7 @@ export default function SeamlessFeatures() {
           transition={{ delay: 0.4 }}
         >
           <div className="relative">
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-12 h-12 rounded-full bg-black/60 backdrop-blur-sm border border-brand-blue/30 flex items-center justify-center">
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-12 h-12 rounded-full bg-background/60 backdrop-blur-sm border border-brand-blue/30 flex items-center justify-center">
               <div className="w-6 h-6 rounded-full bg-brand-blue/20 flex items-center justify-center">
                 <span className="text-brand-blue text-xs">01</span>
               </div>
@@ -239,7 +239,7 @@ export default function SeamlessFeatures() {
           >
             <div className="relative">
               <motion.div
-                className="bg-black/60 backdrop-blur-sm border border-brand-blue/30 rounded-lg p-4 w-64"
+                className="bg-background/60 backdrop-blur-sm border border-brand-blue/30 rounded-lg p-4 w-64"
                 initial={{ scale: 0.9 }}
                 animate={{ scale: 1 }}
                 transition={{

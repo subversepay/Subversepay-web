@@ -36,7 +36,7 @@ export default function FocusKeys() {
   return (
     <div className="relative w-full max-w-4xl mx-auto h-[600px] overflow-hidden" ref={containerRef}>
       {/* Background elements */}
-      <div className="absolute inset-0 bg-black rounded-xl overflow-hidden">
+      <div className="absolute inset-0 bg-background rounded-xl overflow-hidden">
         <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center opacity-20"></div>
 
         {/* Animated particles */}
@@ -66,7 +66,7 @@ export default function FocusKeys() {
       </div>
 
       {/* Sidebar navigation */}
-      <div className="absolute left-0 top-0 bottom-0 w-20 border-r border-brand-blue/20 bg-black/40 backdrop-blur-sm flex flex-col items-center py-8 gap-8">
+      <div className="absolute left-0 top-0 bottom-0 w-20 border-r border-brand-blue/20 bg-background/40 backdrop-blur-sm flex flex-col items-center py-8 gap-8">
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
@@ -101,7 +101,7 @@ export default function FocusKeys() {
           transition={{ delay: 0.3 }}
           className="relative group"
         >
-          <div className="w-10 h-10 rounded-full bg-black/40 flex items-center justify-center">
+          <div className="w-10 h-10 rounded-full bg-background/40 flex items-center justify-center">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
                 d="M20 21V19C20 17.9391 19.5786 16.9217 18.8284 16.1716C18.0783 15.4214 17.0609 15 16 15H8C6.93913 15 5.92172 15.4214 5.17157 16.1716C4.42143 16.9217 4 17.9391 4 19V21"
@@ -130,7 +130,7 @@ export default function FocusKeys() {
           transition={{ delay: 0.4 }}
           className="relative group"
         >
-          <div className="w-10 h-10 rounded-full bg-black/40 flex items-center justify-center">
+          <div className="w-10 h-10 rounded-full bg-background/40 flex items-center justify-center">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
                 d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
@@ -154,7 +154,7 @@ export default function FocusKeys() {
           transition={{ delay: 0.5 }}
           className="relative group"
         >
-          <div className="w-10 h-10 rounded-full bg-black/40 flex items-center justify-center">
+          <div className="w-10 h-10 rounded-full bg-background/40 flex items-center justify-center">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
                 d="M19 4H5C3.89543 4 3 4.89543 3 6V20C3 21.1046 3.89543 22 5 22H19C20.1046 22 21 21.1046 21 20V6C21 4.89543 20.1046 4 19 4Z"
@@ -312,7 +312,7 @@ export default function FocusKeys() {
 
             {/* Card below the circle */}
             <motion.div
-              className="absolute -bottom-20 left-1/2 -translate-x-1/2 w-48 bg-black/60 backdrop-blur-md border border-brand-blue/30 rounded-lg p-4"
+              className="absolute -bottom-20 left-1/2 -translate-x-1/2 w-48 bg-background/60 backdrop-blur-md border border-brand-blue/30 rounded-lg p-4"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1.5 }}

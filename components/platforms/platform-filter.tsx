@@ -43,7 +43,7 @@ export function PlatformFilter({
               ${
                 selectedCategory === category.value
                   ? "bg-brand-blue text-white"
-                  : "bg-transparent border-brand-blue/30 text-brand-grey hover:text-white"
+                  : "bg-transparent border-border text-muted-foreground hover:text-foreground"
               }
             `}
             onClick={() => onCategoryChange(category.value)}
@@ -55,18 +55,19 @@ export function PlatformFilter({
 
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button variant="outline" className="border-brand-blue/30 text-brand-grey">
+          <Button variant="outline" className="border-border text-muted-foreground hover:text-foreground">
             Sort by: {sortOptions.find((o) => o.value === selectedSort)?.label}
             <ChevronDown className="ml-2 h-4 w-4" />
           </Button>
         </DropdownMenuTrigger>
-        <DropdownMenuContent className="bg-black/90 border border-brand-blue/30 backdrop-blur-md">
+
+        <DropdownMenuContent className="bg-background border border-border backdrop-blur-md">
           <DropdownMenuRadioGroup value={selectedSort} onValueChange={onSortChange}>
             {sortOptions.map((option) => (
               <DropdownMenuRadioItem
                 key={option.value}
                 value={option.value}
-                className="text-brand-grey hover:text-white hover:bg-brand-blue/20 cursor-pointer"
+                className="text-muted-foreground hover:text-foreground hover:bg-brand-blue/20 cursor-pointer"
               >
                 {option.label}
               </DropdownMenuRadioItem>

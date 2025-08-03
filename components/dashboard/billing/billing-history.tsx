@@ -62,7 +62,7 @@
 //   return (
 //     <div className="bg-black/40 backdrop-blur-sm border border-brand-blue/20 rounded-xl p-5">
 //       <div className="flex items-center justify-between mb-4">
-//         <h2 className="text-lg font-medium text-white">Transaction History</h2>
+//         <h2 className="text-lg font-medium text-foreground">Transaction History</h2>
 
 //         <div className="flex items-center gap-2">
 //           <div className="relative">
@@ -70,7 +70,7 @@
 //             <input
 //               type="text"
 //               placeholder="Search transactions..."
-//               className="h-9 w-48 rounded-md bg-black/60 border border-brand-blue/20 pl-9 pr-4 text-sm focus:outline-none focus:border-brand-blue/50 text-white"
+//               className="h-9 w-48 rounded-md bg-black/60 border border-brand-blue/20 pl-9 pr-4 text-sm focus:outline-none focus:border-brand-blue/50 text-foreground"
 //               value={searchTerm}
 //               onChange={(e) => setSearchTerm(e.target.value)}
 //             />
@@ -117,12 +117,12 @@
 //           <tbody className="divide-y divide-brand-blue/10">
 //             {invoices.map((invoice) => (
 //               <tr key={invoice.id} className="hover:bg-brand-blue/5">
-//                 <td className="px-4 py-3 whitespace-nowrap text-sm text-white">{invoice.id}</td>
+//                 <td className="px-4 py-3 whitespace-nowrap text-sm text-foreground">{invoice.id}</td>
 //                 <td className="px-4 py-3 whitespace-nowrap text-sm text-brand-grey">{invoice.date}</td>
 //                 {view === "customer" && (
-//                   <td className="px-4 py-3 whitespace-nowrap text-sm text-white">{invoice.platform}</td>
+//                   <td className="px-4 py-3 whitespace-nowrap text-sm text-foreground">{invoice.platform}</td>
 //                 )}
-//                 <td className="px-4 py-3 whitespace-nowrap text-sm text-white">{invoice.amount}</td>
+//                 <td className="px-4 py-3 whitespace-nowrap text-sm text-foreground">{invoice.amount}</td>
 //                 <td className="px-4 py-3 whitespace-nowrap">
 //                   <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-brand-blue/20 text-brand-blue">
 //                     {invoice.method}
@@ -203,9 +203,9 @@ export default function BillingHistory({
   )
 
   return (
-    <div className="bg-black/40 backdrop-blur-sm border border-brand-blue/20 rounded-xl p-5">
+    <div className="bg-background/40 backdrop-blur-sm border border-brand-blue/20 rounded-xl p-5">
       <div className="flex items-center justify-between mb-4">
-        <h2 className="text-lg font-medium text-white">Transaction History</h2>
+        <h2 className="text-lg font-medium text-foreground">Transaction History</h2>
 
         <div className="flex items-center gap-2">
           <div className="relative">
@@ -213,7 +213,7 @@ export default function BillingHistory({
             <input
               type="text"
               placeholder="Search transactions..."
-              className="h-9 w-48 rounded-md bg-black/60 border border-brand-blue/20 pl-9 pr-4 text-sm focus:outline-none focus:border-brand-blue/50 text-white"
+              className="h-9 w-48 rounded-md bg-background/60 border border-brand-blue/20 pl-9 pr-4 text-sm focus:outline-none focus:border-brand-blue/50 text-foreground"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />
@@ -265,10 +265,10 @@ export default function BillingHistory({
             ) : (
               filteredTransactions.map((transaction) => (
                 <tr key={transaction.id} className="hover:bg-brand-blue/5">
-                  <td className="px-4 py-3 whitespace-nowrap text-sm text-white">{transaction.id}</td>
+                  <td className="px-4 py-3 whitespace-nowrap text-sm text-foreground">{transaction.id}</td>
                   <td className="px-4 py-3 whitespace-nowrap text-sm text-brand-grey">{transaction.date}</td>
-                  <td className="px-4 py-3 whitespace-nowrap text-sm text-white">{transaction.platform}</td>
-                  <td className="px-4 py-3 whitespace-nowrap text-sm text-white">{transaction.amount}</td>
+                  <td className="px-4 py-3 whitespace-nowrap text-sm text-foreground">{transaction.platform}</td>
+                  <td className="px-4 py-3 whitespace-nowrap text-sm text-foreground">{transaction.amount}</td>
                   <td className="px-4 py-3 whitespace-nowrap">
                     <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-brand-blue/20 text-brand-blue">
                       {transaction.method}

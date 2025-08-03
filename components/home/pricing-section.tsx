@@ -68,10 +68,10 @@ export default function PricingSection() {
             inView ? "opacity-100 transform-none" : "opacity-0 translate-y-4"
           }`}
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-foreground to-muted-foreground bg-clip-text text-transparent">
             Simple, Transparent Subscription Plans
           </h2>
-          <p className="text-brand-grey text-lg">
+          <p className="text-muted-foreground text-lg">
             Choose the plan that works best for your streaming needs. No hidden fees.
           </p>
         </div>
@@ -108,7 +108,7 @@ export default function PricingSection() {
               ></div>
 
               <div
-                className={`relative bg-black/50 backdrop-blur-sm rounded-xl overflow-hidden z-10 ${
+                className={`relative bg-background/50 backdrop-blur-sm rounded-xl overflow-hidden z-10 ${
                   plan.highlighted
                     ? "border-2 border-brand-blue"
                     : "border border-brand-blue/10 hover:border-brand-blue/30"
@@ -117,27 +117,27 @@ export default function PricingSection() {
                 {plan.highlighted && <div className="absolute top-0 left-0 w-full h-1 bg-brand-blue"></div>}
 
                 <div className="p-6">
-                  <h3 className="text-xl font-semibold mb-2 text-white flex items-center">
+                  <h3 className="text-xl font-semibold mb-2 text-foreground flex items-center">
                     {plan.name}
                     {plan.highlighted && (
-                      <span className="ml-2 text-xs bg-brand-blue text-white px-2 py-0.5 rounded-full">Popular</span>
+                      <span className="ml-2 text-xs bg-brand-blue text-primary-foreground px-2 py-0.5 rounded-full">Popular</span>
                     )}
                   </h3>
                   <div className="flex items-end gap-1 mb-4">
-                    <span className="text-4xl font-bold text-white">{plan.price}</span>
-                    {plan.price !== "Custom" && <span className="text-brand-grey">/month</span>}
+                    <span className="text-4xl font-bold text-foreground">{plan.price}</span>
+                    {plan.price !== "Custom" && <span className="text-muted-foreground">/month</span>}
                   </div>
-                  <p className="text-brand-grey mb-6">{plan.description}</p>
+                  <p className="text-muted-foreground mb-6">{plan.description}</p>
 
                   <Button
                     className={`w-full relative overflow-hidden group ${
                       plan.highlighted
-                        ? "bg-brand-blue hover:bg-brand-blue/90 text-white"
-                        : "bg-gray-800 hover:bg-gray-700 text-white"
+                        ? "bg-brand-blue hover:bg-brand-blue/90 text-primary-foreground"
+                        : "bg-background/80 hover:bg-background/90 text-foreground"
                     }`}
                   >
                     <span className="relative z-10">{plan.price === "Custom" ? "Contact Sales" : "Get Started"}</span>
-                    <span className="absolute top-0 -inset-full h-full w-1/2 z-5 block transform -skew-x-12 bg-gradient-to-r from-transparent to-white opacity-20 group-hover:animate-shine"></span>
+                    <span className="absolute top-0 -inset-full h-full w-1/2 z-5 block transform -skew-x-12 bg-gradient-to-r from-transparent to-primary-foreground opacity-20 group-hover:animate-shine"></span>
                   </Button>
                 </div>
 
@@ -146,7 +146,7 @@ export default function PricingSection() {
                     {plan.features.map((feature, i) => (
                       <li key={i} className="flex items-start gap-2">
                         <CheckCircle2 className="h-5 w-5 text-brand-blue shrink-0 mt-0.5" />
-                        <span className="text-gray-300">{feature}</span>
+                        <span className="text-muted-foreground">{feature}</span>
                       </li>
                     ))}
                   </ul>

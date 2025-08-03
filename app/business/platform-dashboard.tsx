@@ -97,26 +97,26 @@ export default function SubscriptionDashboard({ view = "b2b" }: { view?: "b2b" |
   }
 
   return (
-    <div className="flex h-screen bg-black text-white overflow-hidden">
+    <div className="flex h-screen bg-background text-foreground overflow-hidden">
       <DashboardSidebar view={view} activeTab={activeTab} setActiveTab={setActiveTab} />
 
       <div className="flex-1 flex flex-col overflow-hidden">
         {/* Header */}
-        <header className="h-16 border-b border-brand-blue/20 flex items-center justify-between px-6 bg-black/60 backdrop-blur-sm">
+        <header className="h-16 border-b border-brand-blue/20 flex items-center justify-between px-6 bg-background/60 backdrop-blur-sm">
           <div className="flex items-center gap-4">
             <div className="relative">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-brand-grey" />
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
               <input
                 type="text"
                 placeholder={view === "b2b" ? "Search..." : "Search OTT platforms..."}
-                className="h-9 w-64 rounded-md bg-black/60 border border-brand-blue/20 pl-9 pr-4 text-sm focus:outline-none focus:border-brand-blue/50 text-white"
+                className="h-9 w-64 rounded-md bg-background/60 border border-brand-blue/20 pl-9 pr-4 text-sm focus:outline-none focus:border-brand-blue/50 text-foreground"
               />
             </div>
 
             {view === "b2b" && (
               <div className="flex items-center gap-2 text-sm">
-                <span className="text-brand-grey">Organization:</span>
-                <div className="flex items-center gap-1 text-white cursor-pointer hover:text-brand-blue transition-colors">
+                <span className="text-muted-foreground">Organization:</span>
+                <div className="flex items-center gap-1 text-foreground cursor-pointer hover:text-brand-blue transition-colors">
                   <span>StreamFlix Media</span>
                   <ChevronDown className="h-4 w-4" />
                 </div>
@@ -126,19 +126,19 @@ export default function SubscriptionDashboard({ view = "b2b" }: { view?: "b2b" |
 
           <div className="flex items-center gap-4">
             <button className="relative p-2 rounded-full hover:bg-brand-blue/10 transition-colors">
-              <Bell className="h-5 w-5 text-brand-grey" />
+              <Bell className="h-5 w-5 text-muted-foreground" />
               <span className="absolute top-1 right-1 h-2 w-2 rounded-full bg-brand-blue"></span>
             </button>
 
             <div className="flex items-center gap-3">
               <div className="w-8 h-8 rounded-full bg-brand-blue/20 flex items-center justify-center">
-                <span className="text-sm font-medium text-white">{view === "b2b" ? "SM" : "JS"}</span>
+                <span className="text-sm font-medium text-foreground">{view === "b2b" ? "SM" : "JS"}</span>
               </div>
               <div className="text-sm">
-                <div className="font-medium text-white">{view === "b2b" ? "Sarah Miller" : "John Smith"}</div>
-                <div className="text-xs text-brand-grey">{view === "b2b" ? "API Admin" : "Subscriber"}</div>
+                <div className="font-medium text-foreground">{view === "b2b" ? "Sarah Miller" : "John Smith"}</div>
+                <div className="text-xs text-muted-foreground">{view === "b2b" ? "API Admin" : "Subscriber"}</div>
               </div>
-              <ChevronDown className="h-4 w-4 text-brand-grey" />
+              <ChevronDown className="h-4 w-4 text-muted-foreground" />
             </div>
           </div>
         </header>
@@ -151,13 +151,13 @@ export default function SubscriptionDashboard({ view = "b2b" }: { view?: "b2b" |
                 <div className="relative w-12 h-12">
                   <div className="absolute inset-0 rounded-full border-2 border-brand-blue/20 border-t-brand-blue animate-spin"></div>
                 </div>
-                <div className="text-brand-grey">Loading dashboard...</div>
+                <div className="text-muted-foreground">Loading dashboard...</div>
               </div>
             </div>
           ) : (
             <>
               <div className="mb-6">
-                <h1 className="text-2xl font-bold text-white mb-1">
+                <h1 className="text-2xl font-bold text-foreground mb-1">
                   {activeTab === "overview"
                     ? "Dashboard Overview"
                     : activeTab === "subscriptions"
@@ -170,7 +170,7 @@ export default function SubscriptionDashboard({ view = "b2b" }: { view?: "b2b" |
                             ? "Billing & Payments"
                             : "Account Settings"}
                 </h1>
-                <p className="text-brand-grey">
+                <p className="text-muted-foreground">
                   {view === "b2b"
                     ? "Manage your OTT platform API integrations and stablecoin payments"
                     : "Manage your OTT platform subscriptions paid with stablecoins"}
@@ -223,9 +223,9 @@ export default function SubscriptionDashboard({ view = "b2b" }: { view?: "b2b" |
                       {view === "b2b" ? <SubscriptionUsage view={view} /> : <OttPlatforms />}
                     </div>
                     <div className="lg:col-span-1">
-                      <div className="bg-black/40 backdrop-blur-sm border border-brand-blue/20 rounded-xl p-5 h-full">
+                      <div className="bg-background/40 backdrop-blur-sm border border-brand-blue/20 rounded-xl p-5 h-full">
                         <div className="flex items-center justify-between mb-4">
-                          <h2 className="text-lg font-medium text-white">
+                          <h2 className="text-lg font-medium text-foreground">
                             {view === "b2b" ? "API Integration" : "Stablecoin Balance"}
                           </h2>
                           <Button
@@ -238,21 +238,21 @@ export default function SubscriptionDashboard({ view = "b2b" }: { view?: "b2b" |
                         </div>
 
                         {view === "b2b" ? (
-                          <div className="bg-black/60 border border-brand-blue/30 rounded-lg p-4 mb-4">
+                          <div className="bg-background/60 border border-brand-blue/30 rounded-lg p-4 mb-4">
                             <div className="flex items-center justify-between mb-2">
-                              <div className="text-lg font-medium text-white">Enterprise API</div>
+                              <div className="text-lg font-medium text-foreground">Enterprise API</div>
                               <div className="text-sm text-brand-blue font-medium">$999/mo</div>
                             </div>
 
-                            <div className="text-sm text-brand-grey mb-4">
+                            <div className="text-sm text-muted-foreground mb-4">
                               Full access to OTT platform integration APIs with unlimited transactions
                             </div>
 
                             <div className="space-y-3">
                               <div>
                                 <div className="flex items-center justify-between text-xs mb-1">
-                                  <span className="text-brand-grey">API Calls</span>
-                                  <span className="text-white">782,450 / 1,000,000</span>
+                                  <span className="text-muted-foreground">API Calls</span>
+                                  <span className="text-foreground">782,450 / 1,000,000</span>
                                 </div>
                                 <Progress
                                   value={78}
@@ -263,8 +263,8 @@ export default function SubscriptionDashboard({ view = "b2b" }: { view?: "b2b" |
 
                               <div>
                                 <div className="flex items-center justify-between text-xs mb-1">
-                                  <span className="text-brand-grey">OTT Platforms</span>
-                                  <span className="text-white">8 / 12</span>
+                                  <span className="text-muted-foreground">OTT Platforms</span>
+                                  <span className="text-foreground">8 / 12</span>
                                 </div>
                                 <Progress
                                   value={66}
@@ -275,8 +275,8 @@ export default function SubscriptionDashboard({ view = "b2b" }: { view?: "b2b" |
 
                               <div>
                                 <div className="flex items-center justify-between text-xs mb-1">
-                                  <span className="text-brand-grey">Stablecoin Types</span>
-                                  <span className="text-white">5 / 8</span>
+                                  <span className="text-muted-foreground">Stablecoin Types</span>
+                                  <span className="text-foreground">5 / 8</span>
                                 </div>
                                 <Progress
                                   value={62}
@@ -288,7 +288,7 @@ export default function SubscriptionDashboard({ view = "b2b" }: { view?: "b2b" |
                           </div>
                         ) : (
                           <div className="space-y-4">
-                            <div className="bg-black/60 border border-brand-blue/30 rounded-lg p-4">
+                            <div className="bg-background/60 border border-brand-blue/30 rounded-lg p-4">
                               <div className="flex items-center gap-3 mb-3">
                                 <div className="w-10 h-10 rounded-full bg-brand-blue/20 flex items-center justify-center">
                                   <svg
@@ -315,13 +315,13 @@ export default function SubscriptionDashboard({ view = "b2b" }: { view?: "b2b" |
                                   </svg>
                                 </div>
                                 <div>
-                                  <div className="text-white font-medium">USDC Balance</div>
-                                  <div className="text-2xl font-bold text-white">$124.50</div>
+                                  <div className="text-foreground font-medium">USDC Balance</div>
+                                  <div className="text-2xl font-bold text-foreground">$124.50</div>
                                 </div>
                               </div>
                             </div>
 
-                            <div className="bg-black/60 border border-brand-blue/10 rounded-lg p-4">
+                            <div className="bg-background/60 border border-brand-blue/10 rounded-lg p-4">
                               <div className="flex items-center gap-3 mb-3">
                                 <div className="w-10 h-10 rounded-full bg-brand-blue/10 flex items-center justify-center">
                                   <svg
@@ -348,13 +348,13 @@ export default function SubscriptionDashboard({ view = "b2b" }: { view?: "b2b" |
                                   </svg>
                                 </div>
                                 <div>
-                                  <div className="text-white font-medium">USDT Balance</div>
-                                  <div className="text-2xl font-bold text-white">$75.00</div>
+                                  <div className="text-foreground font-medium">USDT Balance</div>
+                                  <div className="text-2xl font-bold text-foreground">$75.00</div>
                                 </div>
                               </div>
                             </div>
 
-                            <div className="bg-black/60 border border-brand-blue/10 rounded-lg p-4">
+                            <div className="bg-background/60 border border-brand-blue/10 rounded-lg p-4">
                               <div className="flex items-center gap-3 mb-3">
                                 <div className="w-10 h-10 rounded-full bg-brand-blue/10 flex items-center justify-center">
                                   <svg
@@ -381,15 +381,15 @@ export default function SubscriptionDashboard({ view = "b2b" }: { view?: "b2b" |
                                   </svg>
                                 </div>
                                 <div>
-                                  <div className="text-white font-medium">DAI Balance</div>
-                                  <div className="text-2xl font-bold text-white">$50.00</div>
+                                  <div className="text-foreground font-medium">DAI Balance</div>
+                                  <div className="text-2xl font-bold text-foreground">$50.00</div>
                                 </div>
                               </div>
                             </div>
                           </div>
                         )}
 
-                        <div className="text-sm text-brand-grey mt-4">
+                        <div className="text-sm text-muted-foreground mt-4">
                           {view === "b2b"
                             ? "Next billing date: May 15, 2025"
                             : "Auto-convert enabled for subscription payments"}
@@ -404,10 +404,10 @@ export default function SubscriptionDashboard({ view = "b2b" }: { view?: "b2b" |
                       <BillingHistory view={view} />
                     </div>
                     <div className="lg:col-span-1">
-                      <div className="bg-black/40 backdrop-blur-sm border border-brand-blue/20 rounded-xl p-5 h-full">
+                      <div className="bg-background/40 backdrop-blur-sm border border-brand-blue/20 rounded-xl p-5 h-full">
                         <div className="flex items-center justify-between mb-4">
-                          <h2 className="text-lg font-medium text-white">Recent Activity</h2>
-                          <Button variant="ghost" size="sm" className="text-xs h-8 text-brand-grey hover:text-white">
+                          <h2 className="text-lg font-medium text-foreground">Recent Activity</h2>
+                          <Button variant="ghost" size="sm" className="text-xs h-8 text-muted-foreground hover:text-foreground">
                             View All
                           </Button>
                         </div>
@@ -462,8 +462,8 @@ export default function SubscriptionDashboard({ view = "b2b" }: { view?: "b2b" |
                             <div key={index} className="flex items-start gap-3">
                               <div className="mt-0.5">{activity.icon}</div>
                               <div>
-                                <div className="text-sm text-white">{activity.title}</div>
-                                <div className="text-xs text-brand-grey flex items-center gap-1">
+                                <div className="text-sm text-foreground">{activity.title}</div>
+                                <div className="text-xs text-muted-foreground flex items-center gap-1">
                                   <Clock className="h-3 w-3" />
                                   <span>{activity.time}</span>
                                 </div>
@@ -482,16 +482,16 @@ export default function SubscriptionDashboard({ view = "b2b" }: { view?: "b2b" |
                   <div className="flex justify-between items-center">
                     <div className="flex items-center gap-4">
                       <div className="relative">
-                        <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-brand-grey" />
+                        <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                         <input
                           type="text"
                           placeholder="Search OTT platforms..."
-                          className="h-9 w-64 rounded-md bg-black/60 border border-brand-blue/20 pl-9 pr-4 text-sm focus:outline-none focus:border-brand-blue/50 text-white"
+                          className="h-9 w-64 rounded-md bg-background/60 border border-brand-blue/20 pl-9 pr-4 text-sm focus:outline-none focus:border-brand-blue/50 text-foreground"
                         />
                       </div>
                       <div className="flex items-center gap-2">
-                        <span className="text-sm text-brand-grey">Category:</span>
-                        <select className="h-9 rounded-md bg-black/60 border border-brand-blue/20 px-3 text-sm focus:outline-none focus:border-brand-blue/50 text-white">
+                        <span className="text-sm text-muted-foreground">Category:</span>
+                        <select className="h-9 rounded-md bg-background/60 border border-brand-blue/20 px-3 text-sm focus:outline-none focus:border-brand-blue/50 text-foreground">
                           <option>All Categories</option>
                           <option>Streaming</option>
                           <option>Movies</option>
@@ -503,7 +503,7 @@ export default function SubscriptionDashboard({ view = "b2b" }: { view?: "b2b" |
                     </div>
 
                     {view === "b2b" && (
-                      <Button className="bg-brand-blue hover:bg-brand-blue/90 text-white">
+                      <Button className="bg-brand-blue hover:bg-brand-blue/90 text-foreground">
                         <Plus className="h-4 w-4 mr-2" />
                         Add Platform
                       </Button>
@@ -587,7 +587,7 @@ export default function SubscriptionDashboard({ view = "b2b" }: { view?: "b2b" |
                     ].map((platform, index) => (
                       <div
                         key={index}
-                        className="bg-black/40 backdrop-blur-sm border border-brand-blue/20 rounded-xl overflow-hidden group hover:border-brand-blue/50 transition-colors"
+                        className="bg-background/40 backdrop-blur-sm border border-brand-blue/20 rounded-xl overflow-hidden group hover:border-brand-blue/50 transition-colors"
                       >
                         <div className="p-5">
                           <div className="flex items-center justify-between mb-4">
@@ -596,18 +596,18 @@ export default function SubscriptionDashboard({ view = "b2b" }: { view?: "b2b" |
                                 {platform.icon}
                               </div>
                               <div>
-                                <h3 className="text-lg font-medium text-white">{platform.name}</h3>
-                                <div className="text-sm text-brand-grey">{platform.category}</div>
+                                <h3 className="text-lg font-medium text-foreground">{platform.name}</h3>
+                                <div className="text-sm text-muted-foreground">{platform.category}</div>
                               </div>
                             </div>
                             {platform.integrated && (
-                              <div className="px-2 py-1 rounded text-xs bg-green-900/30 text-green-400">Integrated</div>
+                              <div className="px-2 py-1 rounded text-xs bg-success/20 text-success">Integrated</div>
                             )}
                           </div>
 
                           <div className="space-y-3 mb-4">
                             <div>
-                              <div className="text-sm text-brand-grey mb-1">Available Plans</div>
+                              <div className="text-sm text-muted-foreground mb-1">Available Plans</div>
                               <div className="flex flex-wrap gap-2">
                                 {platform.plans.map((plan, i) => (
                                   <span
@@ -621,16 +621,16 @@ export default function SubscriptionDashboard({ view = "b2b" }: { view?: "b2b" |
                             </div>
 
                             <div>
-                              <div className="text-sm text-brand-grey mb-1">Discount with SubversePay</div>
-                              <div className="text-green-400 font-medium">{platform.discount}</div>
+                              <div className="text-sm text-muted-foreground mb-1">Discount with SubversePay</div>
+                              <div className="text-success font-medium">{platform.discount}</div>
                             </div>
                           </div>
 
                           <Button
                             className={`w-full ${
                               view === "b2b"
-                                ? "bg-brand-blue hover:bg-brand-blue/90 text-white"
-                                : "bg-brand-blue hover:bg-brand-blue/90 text-white"
+                                ? "bg-brand-blue hover:bg-brand-blue/90 text-foreground"
+                                : "bg-brand-blue hover:bg-brand-blue/90 text-foreground"
                             }`}
                           >
                             {view === "b2b"
@@ -651,16 +651,16 @@ export default function SubscriptionDashboard({ view = "b2b" }: { view?: "b2b" |
                   <div className="flex justify-between items-center">
                     <div className="flex items-center gap-4">
                       <div className="relative">
-                        <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-brand-grey" />
+                        <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                         <input
                           type="text"
                           placeholder="Search subscriptions..."
-                          className="h-9 w-64 rounded-md bg-black/60 border border-brand-blue/20 pl-9 pr-4 text-sm focus:outline-none focus:border-brand-blue/50 text-white"
+                          className="h-9 w-64 rounded-md bg-background/60 border border-brand-blue/20 pl-9 pr-4 text-sm focus:outline-none focus:border-brand-blue/50 text-foreground"
                         />
                       </div>
                       <div className="flex items-center gap-2">
-                        <span className="text-sm text-brand-grey">Status:</span>
-                        <select className="h-9 rounded-md bg-black/60 border border-brand-blue/20 px-3 text-sm focus:outline-none focus:border-brand-blue/50 text-white">
+                        <span className="text-sm text-muted-foreground">Status:</span>
+                        <select className="h-9 rounded-md bg-background/60 border border-brand-blue/20 px-3 text-sm focus:outline-none focus:border-brand-blue/50 text-foreground">
                           <option>All</option>
                           <option>Active</option>
                           <option>Expired</option>
@@ -670,34 +670,34 @@ export default function SubscriptionDashboard({ view = "b2b" }: { view?: "b2b" |
                     </div>
 
                     {view === "customer" && (
-                      <Button className="bg-brand-blue hover:bg-brand-blue/90 text-white">
+                      <Button className="bg-brand-blue hover:bg-brand-blue/90 text-foreground">
                         <Plus className="h-4 w-4 mr-2" />
                         Add Subscription
                       </Button>
                     )}
                   </div>
 
-                  <div className="bg-black/40 backdrop-blur-sm border border-brand-blue/20 rounded-xl overflow-hidden">
+                  <div className="bg-background/40 backdrop-blur-sm border border-brand-blue/20 rounded-xl overflow-hidden">
                     <div className="overflow-x-auto">
                       <table className="w-full">
                         <thead>
                           <tr className="border-b border-brand-blue/20">
-                            <th className="px-6 py-3 text-left text-xs font-medium text-brand-grey uppercase tracking-wider">
+                            <th className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">
                               {view === "b2b" ? "Customer" : "Platform"}
                             </th>
-                            <th className="px-6 py-3 text-left text-xs font-medium text-brand-grey uppercase tracking-wider">
+                            <th className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">
                               Plan
                             </th>
-                            <th className="px-6 py-3 text-left text-xs font-medium text-brand-grey uppercase tracking-wider">
+                            <th className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">
                               Status
                             </th>
-                            <th className="px-6 py-3 text-left text-xs font-medium text-brand-grey uppercase tracking-wider">
+                            <th className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">
                               Next Billing
                             </th>
-                            <th className="px-6 py-3 text-left text-xs font-medium text-brand-grey uppercase tracking-wider">
+                            <th className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">
                               Amount
                             </th>
-                            <th className="px-6 py-3 text-right text-xs font-medium text-brand-grey uppercase tracking-wider">
+                            <th className="px-6 py-3 text-right text-xs font-medium text-muted-foreground uppercase tracking-wider">
                               Actions
                             </th>
                           </tr>
@@ -771,27 +771,27 @@ export default function SubscriptionDashboard({ view = "b2b" }: { view?: "b2b" |
                               ]
                           ).map((sub, index) => (
                             <tr key={index} className="hover:bg-brand-blue/5">
-                              <td className="px-6 py-4 whitespace-nowrap text-sm text-white">
+                              <td className="px-6 py-4 whitespace-nowrap text-sm text-foreground">
                                 {view === "b2b" ? sub.customer : sub.platform}
                               </td>
-                              <td className="px-6 py-4 whitespace-nowrap text-sm text-white">
+                              <td className="px-6 py-4 whitespace-nowrap text-sm text-foreground">
                                 {view === "b2b" ? `${sub.platform} - ${sub.plan}` : sub.plan}
                               </td>
                               <td className="px-6 py-4 whitespace-nowrap">
                                 <span
                                   className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
                                     sub.status === "Active"
-                                      ? "bg-green-900/30 text-green-400"
+                                      ? "bg-success/20 text-success"
                                       : sub.status === "Expired"
-                                        ? "bg-red-900/30 text-red-400"
+                                        ? "bg-destructive/20 text-destructive"
                                         : "bg-yellow-900/30 text-yellow-400"
                                   }`}
                                 >
                                   {sub.status}
                                 </span>
                               </td>
-                              <td className="px-6 py-4 whitespace-nowrap text-sm text-brand-grey">{sub.nextBilling}</td>
-                              <td className="px-6 py-4 whitespace-nowrap text-sm text-white">{sub.amount}</td>
+                              <td className="px-6 py-4 whitespace-nowrap text-sm text-muted-foreground">{sub.nextBilling}</td>
+                              <td className="px-6 py-4 whitespace-nowrap text-sm text-foreground">{sub.amount}</td>
                               <td className="px-6 py-4 whitespace-nowrap text-right text-sm">
                                 <Button
                                   variant="ghost"
@@ -809,12 +809,12 @@ export default function SubscriptionDashboard({ view = "b2b" }: { view?: "b2b" |
 
                     {view === "b2b" && (
                       <div className="px-6 py-3 flex items-center justify-between border-t border-brand-blue/20">
-                        <div className="text-sm text-brand-grey">Showing 5 of 12,458 subscriptions</div>
+                        <div className="text-sm text-muted-foreground">Showing 5 of 12,458 subscriptions</div>
                         <div className="flex items-center gap-2">
-                          <Button variant="outline" size="sm" className="h-8 border-brand-blue/30 text-brand-grey">
+                          <Button variant="outline" size="sm" className="h-8 border-brand-blue/30 text-muted-foreground">
                             Previous
                           </Button>
-                          <Button variant="outline" size="sm" className="h-8 border-brand-blue/30 text-white">
+                          <Button variant="outline" size="sm" className="h-8 border-brand-blue/30 text-foreground">
                             Next
                           </Button>
                         </div>
@@ -829,16 +829,16 @@ export default function SubscriptionDashboard({ view = "b2b" }: { view?: "b2b" |
                   <div className="flex justify-between items-center">
                     <div className="flex items-center gap-4">
                       <div className="relative">
-                        <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-brand-grey" />
+                        <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                         <input
                           type="text"
                           placeholder="Search customers..."
-                          className="h-9 w-64 rounded-md bg-black/60 border border-brand-blue/20 pl-9 pr-4 text-sm focus:outline-none focus:border-brand-blue/50 text-white"
+                          className="h-9 w-64 rounded-md bg-background/60 border border-brand-blue/20 pl-9 pr-4 text-sm focus:outline-none focus:border-brand-blue/50 text-foreground"
                         />
                       </div>
                       <div className="flex items-center gap-2">
-                        <span className="text-sm text-brand-grey">Platform:</span>
-                        <select className="h-9 rounded-md bg-black/60 border border-brand-blue/20 px-3 text-sm focus:outline-none focus:border-brand-blue/50 text-white">
+                        <span className="text-sm text-muted-foreground">Platform:</span>
+                        <select className="h-9 rounded-md bg-background/60 border border-brand-blue/20 px-3 text-sm focus:outline-none focus:border-brand-blue/50 text-foreground">
                           <option>All Platforms</option>
                           <option>NetflixPro</option>
                           <option>DisneyPlus</option>
@@ -849,33 +849,33 @@ export default function SubscriptionDashboard({ view = "b2b" }: { view?: "b2b" |
                       </div>
                     </div>
 
-                    <Button className="bg-brand-blue hover:bg-brand-blue/90 text-white">
+                    <Button className="bg-brand-blue hover:bg-brand-blue/90 text-foreground">
                       <Plus className="h-4 w-4 mr-2" />
                       Add Customer
                     </Button>
                   </div>
 
-                  <div className="bg-black/40 backdrop-blur-sm border border-brand-blue/20 rounded-xl overflow-hidden">
+                  <div className="bg-background/40 backdrop-blur-sm border border-brand-blue/20 rounded-xl overflow-hidden">
                     <div className="overflow-x-auto">
                       <table className="w-full">
                         <thead>
                           <tr className="border-b border-brand-blue/20">
-                            <th className="px-6 py-3 text-left text-xs font-medium text-brand-grey uppercase tracking-wider">
+                            <th className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">
                               Customer
                             </th>
-                            <th className="px-6 py-3 text-left text-xs font-medium text-brand-grey uppercase tracking-wider">
+                            <th className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">
                               Email
                             </th>
-                            <th className="px-6 py-3 text-left text-xs font-medium text-brand-grey uppercase tracking-wider">
+                            <th className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">
                               Subscriptions
                             </th>
-                            <th className="px-6 py-3 text-left text-xs font-medium text-brand-grey uppercase tracking-wider">
+                            <th className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">
                               Status
                             </th>
-                            <th className="px-6 py-3 text-left text-xs font-medium text-brand-grey uppercase tracking-wider">
+                            <th className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">
                               MRR
                             </th>
-                            <th className="px-6 py-3 text-right text-xs font-medium text-brand-grey uppercase tracking-wider">
+                            <th className="px-6 py-3 text-right text-xs font-medium text-muted-foreground uppercase tracking-wider">
                               Actions
                             </th>
                           </tr>
@@ -922,29 +922,29 @@ export default function SubscriptionDashboard({ view = "b2b" }: { view?: "b2b" |
                               <td className="px-6 py-4 whitespace-nowrap">
                                 <div className="flex items-center">
                                   <div className="flex-shrink-0 h-8 w-8 rounded-full bg-brand-blue/20 flex items-center justify-center">
-                                    <span className="text-sm font-medium text-white">{customer.name.charAt(0)}</span>
+                                    <span className="text-sm font-medium text-foreground">{customer.name.charAt(0)}</span>
                                   </div>
                                   <div className="ml-3">
-                                    <div className="text-sm font-medium text-white">{customer.name}</div>
+                                    <div className="text-sm font-medium text-foreground">{customer.name}</div>
                                   </div>
                                 </div>
                               </td>
-                              <td className="px-6 py-4 whitespace-nowrap text-sm text-brand-grey">{customer.email}</td>
-                              <td className="px-6 py-4 whitespace-nowrap text-sm text-white">
+                              <td className="px-6 py-4 whitespace-nowrap text-sm text-muted-foreground">{customer.email}</td>
+                              <td className="px-6 py-4 whitespace-nowrap text-sm text-foreground">
                                 {customer.subscriptions}
                               </td>
                               <td className="px-6 py-4 whitespace-nowrap">
                                 <span
                                   className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
                                     customer.status === "Active"
-                                      ? "bg-green-900/30 text-green-400"
-                                      : "bg-red-900/30 text-red-400"
+                                      ? "bg-success/20 text-success"
+                                      : "bg-destructive/20 text-destructive"
                                   }`}
                                 >
                                   {customer.status}
                                 </span>
                               </td>
-                              <td className="px-6 py-4 whitespace-nowrap text-sm text-white">{customer.mrr}</td>
+                              <td className="px-6 py-4 whitespace-nowrap text-sm text-foreground">{customer.mrr}</td>
                               <td className="px-6 py-4 whitespace-nowrap text-right text-sm">
                                 <Button
                                   variant="ghost"
@@ -961,12 +961,12 @@ export default function SubscriptionDashboard({ view = "b2b" }: { view?: "b2b" |
                     </div>
 
                     <div className="px-6 py-3 flex items-center justify-between border-t border-brand-blue/20">
-                      <div className="text-sm text-brand-grey">Showing 5 of 12,458 customers</div>
+                      <div className="text-sm text-muted-foreground">Showing 5 of 12,458 customers</div>
                       <div className="flex items-center gap-2">
-                        <Button variant="outline" size="sm" className="h-8 border-brand-blue/30 text-brand-grey">
+                        <Button variant="outline" size="sm" className="h-8 border-brand-blue/30 text-muted-foreground">
                           Previous
                         </Button>
-                        <Button variant="outline" size="sm" className="h-8 border-brand-blue/30 text-white">
+                        <Button variant="outline" size="sm" className="h-8 border-brand-blue/30 text-foreground">
                           Next
                         </Button>
                       </div>
@@ -979,11 +979,11 @@ export default function SubscriptionDashboard({ view = "b2b" }: { view?: "b2b" |
                 <div className="space-y-6">
                   <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                     <div className="lg:col-span-2">
-                      <div className="bg-black/40 backdrop-blur-sm border border-brand-blue/20 rounded-xl p-5">
-                        <h2 className="text-lg font-medium text-white mb-4">Payment Methods</h2>
+                      <div className="bg-background/40 backdrop-blur-sm border border-brand-blue/20 rounded-xl p-5">
+                        <h2 className="text-lg font-medium text-foreground mb-4">Payment Methods</h2>
 
                         <div className="space-y-4 mb-6">
-                          <div className="bg-black/60 border border-brand-blue/30 rounded-lg p-4 relative">
+                          <div className="bg-background/60 border border-brand-blue/30 rounded-lg p-4 relative">
                             <div className="absolute top-4 right-4 px-2 py-0.5 rounded text-xs bg-brand-blue/20 text-brand-blue">
                               Default
                             </div>
@@ -1013,13 +1013,13 @@ export default function SubscriptionDashboard({ view = "b2b" }: { view?: "b2b" |
                                 </svg>
                               </div>
                               <div>
-                                <div className="text-white font-medium">USDC Wallet</div>
-                                <div className="text-sm text-brand-grey">Connected to MetaMask</div>
+                                <div className="text-foreground font-medium">USDC Wallet</div>
+                                <div className="text-sm text-muted-foreground">Connected to MetaMask</div>
                               </div>
                             </div>
                           </div>
 
-                          <div className="bg-black/60 border border-brand-blue/10 rounded-lg p-4">
+                          <div className="bg-background/60 border border-brand-blue/10 rounded-lg p-4">
                             <div className="flex items-center gap-3">
                               <div className="w-10 h-10 rounded-md bg-brand-blue/10 flex items-center justify-center">
                                 <svg
@@ -1046,8 +1046,8 @@ export default function SubscriptionDashboard({ view = "b2b" }: { view?: "b2b" |
                                 </svg>
                               </div>
                               <div>
-                                <div className="text-white font-medium">USDT Wallet</div>
-                                <div className="text-sm text-brand-grey">Connected to MetaMask</div>
+                                <div className="text-foreground font-medium">USDT Wallet</div>
+                                <div className="text-sm text-muted-foreground">Connected to MetaMask</div>
                               </div>
                             </div>
                           </div>
@@ -1065,30 +1065,30 @@ export default function SubscriptionDashboard({ view = "b2b" }: { view?: "b2b" |
                     </div>
 
                     <div className="lg:col-span-1">
-                      <div className="bg-black/40 backdrop-blur-sm border border-brand-blue/20 rounded-xl p-5">
-                        <h2 className="text-lg font-medium text-white mb-4">Billing Information</h2>
+                      <div className="bg-background/40 backdrop-blur-sm border border-brand-blue/20 rounded-xl p-5">
+                        <h2 className="text-lg font-medium text-foreground mb-4">Billing Information</h2>
 
                         <div className="space-y-4">
                           <div>
-                            <div className="text-sm text-brand-grey mb-1">Name</div>
-                            <div className="text-white">{view === "b2b" ? "StreamFlix Media" : "John Smith"}</div>
+                            <div className="text-sm text-muted-foreground mb-1">Name</div>
+                            <div className="text-foreground">{view === "b2b" ? "StreamFlix Media" : "John Smith"}</div>
                           </div>
 
                           <div>
-                            <div className="text-sm text-brand-grey mb-1">Email</div>
-                            <div className="text-white">
+                            <div className="text-sm text-muted-foreground mb-1">Email</div>
+                            <div className="text-foreground">
                               {view === "b2b" ? "billing@streamflix.com" : "john.smith@example.com"}
                             </div>
                           </div>
 
                           <div>
-                            <div className="text-sm text-brand-grey mb-1">Wallet Address</div>
-                            <div className="text-white text-sm">0x1a2b...3c4d</div>
+                            <div className="text-sm text-muted-foreground mb-1">Wallet Address</div>
+                            <div className="text-foreground text-sm">0x1a2b...3c4d</div>
                           </div>
 
                           <div>
-                            <div className="text-sm text-brand-grey mb-1">Default Currency</div>
-                            <div className="text-white">USDC</div>
+                            <div className="text-sm text-muted-foreground mb-1">Default Currency</div>
+                            <div className="text-foreground">USDC</div>
                           </div>
                         </div>
 
@@ -1113,34 +1113,34 @@ export default function SubscriptionDashboard({ view = "b2b" }: { view?: "b2b" |
                 <div className="space-y-6">
                   <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                     <div className="lg:col-span-2">
-                      <div className="bg-black/40 backdrop-blur-sm border border-brand-blue/20 rounded-xl p-5">
-                        <h2 className="text-lg font-medium text-white mb-4">Account Settings</h2>
+                      <div className="bg-background/40 backdrop-blur-sm border border-brand-blue/20 rounded-xl p-5">
+                        <h2 className="text-lg font-medium text-foreground mb-4">Account Settings</h2>
 
                         <div className="space-y-6">
                           <div>
-                            <label className="block text-sm text-brand-grey mb-2">
+                            <label className="block text-sm text-muted-foreground mb-2">
                               {view === "b2b" ? "Organization Name" : "Full Name"}
                             </label>
                             <input
                               type="text"
-                              className="w-full h-10 rounded-md bg-black/60 border border-brand-blue/20 px-3 text-sm focus:outline-none focus:border-brand-blue/50 text-white"
+                              className="w-full h-10 rounded-md bg-background/60 border border-brand-blue/20 px-3 text-sm focus:outline-none focus:border-brand-blue/50 text-foreground"
                               defaultValue={view === "b2b" ? "StreamFlix Media" : "John Smith"}
                             />
                           </div>
 
                           <div>
-                            <label className="block text-sm text-brand-grey mb-2">Email Address</label>
+                            <label className="block text-sm text-muted-foreground mb-2">Email Address</label>
                             <input
                               type="email"
-                              className="w-full h-10 rounded-md bg-black/60 border border-brand-blue/20 px-3 text-sm focus:outline-none focus:border-brand-blue/50 text-white"
+                              className="w-full h-10 rounded-md bg-background/60 border border-brand-blue/20 px-3 text-sm focus:outline-none focus:border-brand-blue/50 text-foreground"
                               defaultValue={view === "b2b" ? "admin@streamflix.com" : "john.smith@example.com"}
                             />
                           </div>
 
                           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div>
-                              <label className="block text-sm text-brand-grey mb-2">Default Stablecoin</label>
-                              <select className="w-full h-10 rounded-md bg-black/60 border border-brand-blue/20 px-3 text-sm focus:outline-none focus:border-brand-blue/50 text-white">
+                              <label className="block text-sm text-muted-foreground mb-2">Default Stablecoin</label>
+                              <select className="w-full h-10 rounded-md bg-background/60 border border-brand-blue/20 px-3 text-sm focus:outline-none focus:border-brand-blue/50 text-foreground">
                                 <option>USDC</option>
                                 <option>USDT</option>
                                 <option>DAI</option>
@@ -1149,8 +1149,8 @@ export default function SubscriptionDashboard({ view = "b2b" }: { view?: "b2b" |
                             </div>
 
                             <div>
-                              <label className="block text-sm text-brand-grey mb-2">Auto-Renewal</label>
-                              <select className="w-full h-10 rounded-md bg-black/60 border border-brand-blue/20 px-3 text-sm focus:outline-none focus:border-brand-blue/50 text-white">
+                              <label className="block text-sm text-muted-foreground mb-2">Auto-Renewal</label>
+                              <select className="w-full h-10 rounded-md bg-background/60 border border-brand-blue/20 px-3 text-sm focus:outline-none focus:border-brand-blue/50 text-foreground">
                                 <option>Enabled</option>
                                 <option>Disabled</option>
                               </select>
@@ -1161,42 +1161,42 @@ export default function SubscriptionDashboard({ view = "b2b" }: { view?: "b2b" |
                             <label className="flex items-center gap-2 cursor-pointer">
                               <input
                                 type="checkbox"
-                                className="rounded border-brand-blue/30 text-brand-blue focus:ring-brand-blue/30 bg-black/60 h-4 w-4"
+                                className="rounded border-brand-blue/30 text-brand-blue focus:ring-brand-blue/30 bg-background/60 h-4 w-4"
                                 defaultChecked
                               />
-                              <span className="text-sm text-white">
+                              <span className="text-sm text-foreground">
                                 Receive email notifications for subscription renewals
                               </span>
                             </label>
                           </div>
 
                           <div className="pt-4 border-t border-brand-blue/20">
-                            <Button className="bg-brand-blue hover:bg-brand-blue/90 text-white">Save Changes</Button>
+                            <Button className="bg-brand-blue hover:bg-brand-blue/90 text-foreground">Save Changes</Button>
                           </div>
                         </div>
                       </div>
                     </div>
 
                     <div className="lg:col-span-1">
-                      <div className="bg-black/40 backdrop-blur-sm border border-brand-blue/20 rounded-xl p-5">
-                        <h2 className="text-lg font-medium text-white mb-4">Security</h2>
+                      <div className="bg-background/40 backdrop-blur-sm border border-brand-blue/20 rounded-xl p-5">
+                        <h2 className="text-lg font-medium text-foreground mb-4">Security</h2>
 
                         <div className="space-y-6">
                           <div>
-                            <label className="block text-sm text-brand-grey mb-2">Change Password</label>
+                            <label className="block text-sm text-muted-foreground mb-2">Change Password</label>
                             <input
                               type="password"
-                              className="w-full h-10 rounded-md bg-black/60 border border-brand-blue/20 px-3 text-sm focus:outline-none focus:border-brand-blue/50 text-white mb-2"
+                              className="w-full h-10 rounded-md bg-background/60 border border-brand-blue/20 px-3 text-sm focus:outline-none focus:border-brand-blue/50 text-foreground mb-2"
                               placeholder="Current password"
                             />
                             <input
                               type="password"
-                              className="w-full h-10 rounded-md bg-black/60 border border-brand-blue/20 px-3 text-sm focus:outline-none focus:border-brand-blue/50 text-white mb-2"
+                              className="w-full h-10 rounded-md bg-background/60 border border-brand-blue/20 px-3 text-sm focus:outline-none focus:border-brand-blue/50 text-foreground mb-2"
                               placeholder="New password"
                             />
                             <input
                               type="password"
-                              className="w-full h-10 rounded-md bg-black/60 border border-brand-blue/20 px-3 text-sm focus:outline-none focus:border-brand-blue/50 text-white"
+                              className="w-full h-10 rounded-md bg-background/60 border border-brand-blue/20 px-3 text-sm focus:outline-none focus:border-brand-blue/50 text-foreground"
                               placeholder="Confirm new password"
                             />
                           </div>
@@ -1205,15 +1205,15 @@ export default function SubscriptionDashboard({ view = "b2b" }: { view?: "b2b" |
                             <label className="flex items-center gap-2 cursor-pointer">
                               <input
                                 type="checkbox"
-                                className="rounded border-brand-blue/30 text-brand-blue focus:ring-brand-blue/30 bg-black/60 h-4 w-4"
+                                className="rounded border-brand-blue/30 text-brand-blue focus:ring-brand-blue/30 bg-background/60 h-4 w-4"
                                 defaultChecked
                               />
-                              <span className="text-sm text-white">Enable two-factor authentication</span>
+                              <span className="text-sm text-foreground">Enable two-factor authentication</span>
                             </label>
                           </div>
 
                           <div className="pt-4 border-t border-brand-blue/20">
-                            <Button className="bg-brand-blue hover:bg-brand-blue/90 text-white w-full">
+                            <Button className="bg-brand-blue hover:bg-brand-blue/90 text-foreground w-full">
                               Update Password
                             </Button>
                           </div>
@@ -1223,19 +1223,19 @@ export default function SubscriptionDashboard({ view = "b2b" }: { view?: "b2b" |
                   </div>
 
                   {view === "b2b" && (
-                    <div className="bg-black/40 backdrop-blur-sm border border-brand-blue/20 rounded-xl p-5">
-                      <h2 className="text-lg font-medium text-white mb-4">API Integration</h2>
+                    <div className="bg-background/40 backdrop-blur-sm border border-brand-blue/20 rounded-xl p-5">
+                      <h2 className="text-lg font-medium text-foreground mb-4">API Integration</h2>
 
                       <div className="space-y-4 mb-6">
-                        <div className="bg-black/60 border border-brand-blue/30 rounded-lg p-4">
+                        <div className="bg-background/60 border border-brand-blue/30 rounded-lg p-4">
                           <div className="flex items-center justify-between mb-2">
-                            <div className="text-white font-medium">Production API Key</div>
-                            <div className="text-xs text-brand-grey">Created: Apr 12, 2025</div>
+                            <div className="text-foreground font-medium">Production API Key</div>
+                            <div className="text-xs text-muted-foreground">Created: Apr 12, 2025</div>
                           </div>
                           <div className="flex items-center gap-2">
                             <input
                               type="text"
-                              className="flex-1 h-9 rounded-md bg-black/80 border border-brand-blue/20 px-3 text-sm focus:outline-none focus:border-brand-blue/50 text-brand-grey"
+                              className="flex-1 h-9 rounded-md bg-background/80 border border-brand-blue/20 px-3 text-sm focus:outline-none focus:border-brand-blue/50 text-muted-foreground"
                               value="sp_live_••••••••••••••••••••••••••••••"
                               readOnly
                             />
@@ -1256,15 +1256,15 @@ export default function SubscriptionDashboard({ view = "b2b" }: { view?: "b2b" |
                           </div>
                         </div>
 
-                        <div className="bg-black/60 border border-brand-blue/10 rounded-lg p-4">
+                        <div className="bg-background/60 border border-brand-blue/10 rounded-lg p-4">
                           <div className="flex items-center justify-between mb-2">
-                            <div className="text-white font-medium">Test API Key</div>
-                            <div className="text-xs text-brand-grey">Created: Apr 12, 2025</div>
+                            <div className="text-foreground font-medium">Test API Key</div>
+                            <div className="text-xs text-muted-foreground">Created: Apr 12, 2025</div>
                           </div>
                           <div className="flex items-center gap-2">
                             <input
                               type="text"
-                              className="flex-1 h-9 rounded-md bg-black/80 border border-brand-blue/20 px-3 text-sm focus:outline-none focus:border-brand-blue/50 text-brand-grey"
+                              className="flex-1 h-9 rounded-md bg-background/80 border border-brand-blue/20 px-3 text-sm focus:outline-none focus:border-brand-blue/50 text-muted-foreground"
                               value="sp_test_••••••••••••••••••••••••••••••"
                               readOnly
                             />
@@ -1286,7 +1286,7 @@ export default function SubscriptionDashboard({ view = "b2b" }: { view?: "b2b" |
                         </div>
                       </div>
 
-                      <div className="text-sm text-brand-grey">
+                      <div className="text-sm text-muted-foreground">
                         API keys provide access to your OTT platform integrations. Keep them secure and never share them
                         in public areas such as GitHub or client-side code.
                       </div>
@@ -1317,34 +1317,34 @@ function StatsCard({
 }) {
   return (
     <motion.div
-      className="bg-black/40 backdrop-blur-sm border border-brand-blue/20 rounded-xl p-5"
+      className="bg-background/40 backdrop-blur-sm border border-brand-blue/20 rounded-xl p-5"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3 }}
     >
       <div className="flex items-center justify-between mb-3">
-        <div className="text-sm text-brand-grey">{title}</div>
+        <div className="text-sm text-muted-foreground">{title}</div>
         <div className="w-8 h-8 rounded-md bg-brand-blue/10 flex items-center justify-center">{icon}</div>
       </div>
-      <div className="text-2xl font-bold text-white mb-1">{value}</div>
+      <div className="text-2xl font-bold text-foreground mb-1">{value}</div>
       {change && (
         <div className="flex items-center text-xs">
           {trend === "up" ? (
-            <div className="flex items-center text-green-400">
+            <div className="flex items-center text-success">
               <ArrowUpRight className="h-3 w-3 mr-1" />
               <span>{change}</span>
             </div>
           ) : trend === "down" ? (
-            <div className="flex items-center text-red-400">
+            <div className="flex items-center text-destructive">
               <ArrowDownRight className="h-3 w-3 mr-1" />
               <span>{change}</span>
             </div>
           ) : (
-            <div className="text-brand-grey">
+            <div className="text-muted-foreground">
               <span>No change</span>
             </div>
           )}
-          <span className="text-brand-grey ml-1">from last month</span>
+          <span className="text-muted-foreground ml-1">from last month</span>
         </div>
       )}
     </motion.div>

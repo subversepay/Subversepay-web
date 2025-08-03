@@ -87,9 +87,9 @@ export default function BusinessLoginPage() {
 
   return (
     <div className="w-full max-w-md">
-      <div className="bg-black/40 backdrop-blur-sm border border-brand-blue/20 rounded-xl p-8">
+      <div className="bg-background/40 backdrop-blur-sm border border-brand-blue/20 rounded-xl p-8">
         <div className="text-center mb-8">
-          <h1 className="text-2xl font-bold text-white mb-2">OTT Platform Sign In</h1>
+          <h1 className="text-2xl font-bold text-foreground mb-2">OTT Platform Sign In</h1>
           <p className="text-brand-grey">Access your SubversePay business dashboard</p>
         </div>
 
@@ -109,7 +109,7 @@ export default function BusinessLoginPage() {
               placeholder="admin@yourcompany.com"
               value={formData.email}
               onChange={handleChange}
-              className={`bg-black/60 border ${
+              className={`bg-background/60 border ${
                 errors.email ? "border-red-500/50" : "border-brand-blue/30"
               } focus:border-brand-blue/70 h-11`}
               disabled={isLoading}
@@ -135,14 +135,14 @@ export default function BusinessLoginPage() {
                 placeholder="••••••••"
                 value={formData.password}
                 onChange={handleChange}
-                className={`bg-black/60 border ${
+                className={`bg-background/60 border ${
                   errors.password ? "border-red-500/50" : "border-brand-blue/30"
                 } focus:border-brand-blue/70 h-11 pr-10`}
                 disabled={isLoading}
               />
               <button
                 type="button"
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-brand-grey hover:text-white transition-colors"
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-brand-grey hover:text-foreground transition-colors"
                 onClick={() => setShowPassword(!showPassword)}
               >
                 {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
@@ -168,7 +168,7 @@ export default function BusinessLoginPage() {
 
           <Button
             type="submit"
-            className="w-full bg-brand-blue hover:bg-brand-blue/90 text-white h-11 relative overflow-hidden group"
+            className="w-full bg-brand-blue hover:bg-brand-blue/90 text-foreground h-11 relative overflow-hidden group"
             disabled={isLoading}
           >
             <span className="relative z-10 flex items-center">
@@ -194,7 +194,7 @@ export default function BusinessLoginPage() {
         <div className="mt-8 pt-6 border-t border-brand-blue/20">
           <p className="text-center text-xs text-brand-grey mb-4">Are you a regular user?</p>
           <Link href="/login" className="block w-full">
-            <Button variant="outline" className="w-full border-brand-blue/30 text-white hover:bg-brand-blue/10 h-10">
+            <Button variant="outline" className="w-full border-brand-blue/30 text-foreground hover:bg-brand-blue/10 h-10">
               Sign in as User
             </Button>
           </Link>
