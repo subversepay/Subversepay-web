@@ -1,7 +1,7 @@
 "use client"
 
 import { useContext, useState } from "react"
-import { WalletContext } from "@/context/walletContext"
+import { WalletContext } from "@/context/ConnectWalletContext"
 import { useSubscription } from "@/hooks/useSubscription"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"

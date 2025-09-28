@@ -2,6 +2,7 @@ import type { ReactNode } from "react"
 import Link from "next/link"
 import { ArrowLeft } from "lucide-react"
 import "./auth-utils.css"
+import Image from "next/image"
 
 export default function AuthLayout({ children }: { children: ReactNode }) {
   return (
@@ -21,9 +22,9 @@ export default function AuthLayout({ children }: { children: ReactNode }) {
         <div className="flex justify-between items-center max-w-7xl mx-auto">
           <Link href="/" className="flex items-center gap-2 group">
             <div className="relative h-10 w-10 transition-transform duration-500 group-hover:rotate-180">
-              <div className="absolute inset-0 bg-brand-blue rounded-full opacity-80 group-hover:opacity-100 transition-opacity"></div>
+              {/* <div className="absolute inset-0 bg-brand-blue rounded-full opacity-80 group-hover:opacity-100 transition-opacity"></div> */}
               <div className="absolute inset-[3px] bg-background rounded-full flex items-center justify-center">
-                <span className="text-white font-bold text-xs">SP</span>
+                <Image src="/Subversepay-web/subv-logoblack.png" alt="subversepay logo" width={50} height={50} />
               </div>
               <div className="absolute inset-0 border-2 border-brand-blue/50 rounded-full animate-pulse"></div>
             </div>

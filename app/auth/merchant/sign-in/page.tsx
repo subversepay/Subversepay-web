@@ -1,7 +1,5 @@
 "use client"
 
-import type React from "react"
-
 import { useState } from "react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
@@ -11,7 +9,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Checkbox } from "@/components/ui/checkbox"
 
-export default function BusinessLoginPage() {
+export default function MerchantLoginPage() {
   const router = useRouter()
   const [isLoading, setIsLoading] = useState(false)
   const [showPassword, setShowPassword] = useState(false)
@@ -30,7 +28,6 @@ export default function BusinessLoginPage() {
     const { name, value } = e.target
     setFormData((prev) => ({ ...prev, [name]: value }))
 
-    // Clear error when user types
     if (errors[name as keyof typeof errors]) {
       setErrors((prev) => ({ ...prev, [name]: "" }))
     }
@@ -63,7 +60,6 @@ export default function BusinessLoginPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-
     if (!validateForm()) return
 
     setIsLoading(true)
@@ -73,8 +69,8 @@ export default function BusinessLoginPage() {
       // Simulate API call
       await new Promise((resolve) => setTimeout(resolve, 1500))
 
-      // For demo purposes, redirect to dashboard
-      router.push("/dashboard")
+      // Redirect merchant to dashboard
+      router.push("/merchant/dashboard")
     } catch (error) {
       setErrors((prev) => ({
         ...prev,
@@ -89,8 +85,8 @@ export default function BusinessLoginPage() {
     <div className="w-full max-w-md">
       <div className="bg-background/40 backdrop-blur-sm border border-brand-blue/20 rounded-xl p-8">
         <div className="text-center mb-8">
-          <h1 className="text-2xl font-bold text-foreground mb-2">OTT Platform Sign In</h1>
-          <p className="text-brand-grey">Access your SubversePay business dashboard</p>
+          <h1 className="text-2xl font-bold text-foreground mb-2">Merchant Sign In</h1>
+          <p className="text-brand-grey">Access your SubversePay merchant dashboard</p>
         </div>
 
         {errors.general && (
@@ -121,7 +117,7 @@ export default function BusinessLoginPage() {
             <div className="flex justify-between items-center">
               <Label htmlFor="password">Password</Label>
               <Link
-                href="/forgot-password"
+                href="/auth/forgot-password"
                 className="text-xs text-brand-blue hover:text-brand-blue/80 transition-colors inline-flex items-center"
               >
                 Forgot password?
@@ -181,23 +177,14 @@ export default function BusinessLoginPage() {
 
         <div className="mt-6 text-center">
           <p className="text-brand-grey text-sm">
-            Don't have a business account?{" "}
+            Don&apos;t have a merchant account?{" "}
             <Link
-              href="/signup/business"
+              href="/auth/merchant/sign-up"
               className="text-brand-blue hover:text-brand-blue/80 transition-colors inline-flex items-center"
             >
               Sign up
             </Link>
           </p>
-        </div>
-
-        <div className="mt-8 pt-6 border-t border-brand-blue/20">
-          <p className="text-center text-xs text-brand-grey mb-4">Are you a regular user?</p>
-          <Link href="/login" className="block w-full">
-            <Button variant="outline" className="w-full border-brand-blue/30 text-foreground hover:bg-brand-blue/10 h-10">
-              Sign in as User
-            </Button>
-          </Link>
         </div>
       </div>
     </div>

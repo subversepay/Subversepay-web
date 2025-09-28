@@ -12,36 +12,21 @@ export default function CompanyMarquee() {
     setIsVisible(true)
   }, [])
 
-  const companies = [
-    {
-      name: "Netflix",
-      logo: "/Subversepay-web/placeholder.svg",
-    },
-    {
-      name: "Disney+",
-      logo: "/Subversepay-web/placeholder.svg",
-    },
-    {
-      name: "HBO Max",
-      logo: "/Subversepay-web/placeholder.svg",
-    },
-    {
-      name: "Amazon Prime",
-      logo: "/Subversepay-web/placeholder.svg",
-    },
-    {
-      name: "Spotify",
-      logo: "/Subversepay-web/placeholder.svg",
-    },
+  const partners = [
+    { name: "Binance Pay", logo: "/Subversepay-web/placeholder.svg" },
+    { name: "Stripe", logo: "/Subversepay-web/placeholder.svg" },
+    { name: "MetaMask", logo: "/Subversepay-web/placeholder.svg" },
+    { name: "WalletConnect", logo: "/Subversepay-web/placeholder.svg" },
+    { name: "Payoneer", logo: "/Subversepay-web/placeholder.svg" },
   ]
 
-  // Generate particles for the background
+  // Generate particles for background
   const particleCount = 30
   const particles = Array.from({ length: particleCount })
 
   return (
-    <div className="relative w-full max-w-4xl mx-auto h-[300px] overflow-hidden" ref={containerRef}>
-      {/* Background elements */}
+    <div className="relative w-full px-4 max-w-4xl mx-auto h-[300px] overflow-hidden" ref={containerRef}>
+      {/* Background */}
       <div className="absolute inset-0 bg-background rounded-xl overflow-hidden">
         <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center opacity-20"></div>
 
@@ -79,9 +64,11 @@ export default function CompanyMarquee() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4 }}
         >
-          <h2 className="text-2xl font-bold text-foreground mb-2">Trusted By Leading OTT Platforms</h2>
+          <h2 className="text-2xl font-bold text-foreground mb-2">
+            Trusted By Merchants & Developers
+          </h2>
           <p className="text-muted-foreground max-w-lg mx-auto">
-            Join the growing ecosystem of streaming services leveraging SubversePay's stablecoin payment solutions
+            Join the growing ecosystem of businesses integrating SubversePay for seamless stablecoin payments.
           </p>
         </motion.div>
 
@@ -93,41 +80,39 @@ export default function CompanyMarquee() {
           transition={{ delay: 0.6 }}
         >
           <div className="relative">
-            {/* First marquee (left to right) */}
+            {/* Marquee motion */}
             <motion.div
               className="flex gap-12 items-center"
-              animate={{
-                x: [0, -1500],
-              }}
+              animate={{ x: [0, -1500] }}
               transition={{
                 duration: 30,
                 repeat: Number.POSITIVE_INFINITY,
                 ease: "linear",
               }}
             >
-              {[...companies, ...companies, ...companies].map((company, index) => (
+              {[...partners, ...partners, ...partners].map((partner, index) => (
                 <div
-                  key={`${company.name}-${index}`}
+                  key={`${partner.name}-${index}`}
                   className="flex-shrink-0 bg-background/40 backdrop-blur-sm border border-brand-blue/20 rounded-lg px-6 py-4 hover:border-brand-blue/50 transition-colors"
                 >
                   <Image
-                    src={company.logo || "/placeholder.svg"}
-                    alt={company.name}
+                    src={partner.logo}
+                    alt={partner.name}
                     width={120}
                     height={30}
-                    className="h-8 w-auto object-contain filter brightness-0 invert opacity-80 hover:opacity-100 transition-opacity"
+                    className="h-8 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity"
                   />
                 </div>
               ))}
             </motion.div>
 
-            {/* Overlay gradients */}
+            {/* Fade edges */}
             <div className="absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-background to-transparent z-10"></div>
             <div className="absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-background to-transparent z-10"></div>
           </div>
         </motion.div>
 
-        {/* Focus Keys section preview */}
+        {/* Focus Keys */}
         <motion.div
           className="mt-12 flex items-center gap-4"
           initial={{ opacity: 0, y: 20 }}
@@ -144,19 +129,7 @@ export default function CompanyMarquee() {
 
           <div className="h-px w-12 bg-gradient-to-r from-transparent via-brand-blue/50 to-transparent"></div>
 
-          <div className="text-foreground font-medium">Focus Keys</div>
-
-          <div className="text-brand-blue">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M9 18L15 12L9 6"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </div>
+          <div className="text-foreground font-medium">API First • Merchant Ready</div>
         </motion.div>
       </div>
     </div>
