@@ -62,7 +62,7 @@ export default function HeroSection() {
             }`}
           >
             The all-in-one gateway for merchants to accept crypto & fiat payments,  
-            with <strong>real-time settlement</strong> and <strong>1.5% flat fees</strong>.
+            with <strong>real-time settlement</strong> and <strong>1% + 0.2$ fees</strong>.
           </p>
 
           {/* CTA Buttons */}

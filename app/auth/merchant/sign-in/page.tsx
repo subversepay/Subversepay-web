@@ -70,7 +70,7 @@ export default function MerchantLoginPage() {
       await new Promise((resolve) => setTimeout(resolve, 1500))
 
       // Redirect merchant to dashboard
-      router.push("/merchant/dashboard")
+      router.push("/merchant")
     } catch (error) {
       setErrors((prev) => ({
         ...prev,

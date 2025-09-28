@@ -38,7 +38,7 @@ export default function FeaturesSection() {
     {
       icon: Wallet,
       title: "Transparent Pricing",
-      description: "Flat 1.5% per transaction with no hidden fees. High-volume merchants get discounts.",
+      description: "Flat 1% + 0.2$ per transaction with no hidden fees. High-volume merchants get discounts.",
     },
   ]
 
