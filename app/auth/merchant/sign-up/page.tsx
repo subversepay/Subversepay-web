@@ -98,13 +98,33 @@ export default function MerchantSignupPage() {
         newErrors.lastName = "Last name is required"
         valid = false
       }
+
       if (!formData.email) {
-        newErrors.email = "Email is required"
+        newErrors.email = "Business email is required"
         valid = false
       } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
         newErrors.email = "Invalid email address"
         valid = false
+      } else {
+        // Block common free email domains
+        const blockedDomains = [
+          "gmail.com",
+          "yahoo.com",
+          "hotmail.com",
+          "outlook.com",
+          "aol.com",
+          "protonmail.com",
+          "icloud.com",
+          "live.com",
+        ]
+
+        const emailDomain = formData.email.split("@")[1]?.toLowerCase()
+        if (blockedDomains.includes(emailDomain)) {
+          newErrors.email = "Please use your business email (not Gmail, hotmail, etc.)"
+          valid = false
+        }
       }
+
       if (!formData.phone.trim()) {
         newErrors.phone = "Phone number is required"
         valid = false
