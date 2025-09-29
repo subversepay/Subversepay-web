@@ -16,11 +16,11 @@ import {
   Clock,
   CheckCircle2,
   AlertCircle,
-  Plus,
   Play,
+  X,
+  Menu,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { Progress } from "@/components/ui/progress"
 import DashboardSidebar from "./dashboard-sidebar"
 import SubscriptionUsage from "./subscription-usage"
 import BillingHistory from "@/components/dashboard/billing/billing-history"
@@ -28,10 +28,12 @@ import ConnectWalletButton from "@/components/wallet/ConnectWalletButton"
 import Subscriptions from "./Subscriptions"
 import MerchantSettings from "./Settings"
 import KycCompliance from "./KycCompliance"
+import { toast } from "@/hooks/use-toast"
 
 export default function SubscriptionDashboard() {
   const [activeTab, setActiveTab] = useState("overview")
   const [isLoading, setIsLoading] = useState(false)
+  const [sidebarOpen, setSidebarOpen] = useState(false)
   const router = useRouter()
 
   const handleLogout = () => {
@@ -69,33 +71,66 @@ export default function SubscriptionDashboard() {
 
   return (
     <div className="flex h-screen bg-background text-foreground overflow-hidden">
-      <DashboardSidebar activeTab={activeTab} setActiveTab={setActiveTab} />
+      {/* Sidebar - desktop */}
+      <div className="hidden md:flex">
+        <DashboardSidebar activeTab={activeTab} setActiveTab={setActiveTab} />
+      </div>
 
+      {/* Sidebar - mobile drawer */}
+      {sidebarOpen && (
+        <div className="fixed inset-0 z-50 flex md:hidden">
+          <div className="w-64 bg-background border-r border-brand-blue/20">
+            <DashboardSidebar 
+              activeTab={activeTab} 
+              setActiveTab={setActiveTab} 
+              isMobile={true} 
+              onClose={() => setSidebarOpen(false)} 
+            />
+          </div>
+          <div 
+            className="flex-1 bg-black/30" 
+            onClick={() => setSidebarOpen(false)} 
+          />
+        </div>
+      )}
+
+      {/* Main */}
       <div className="flex-1 flex flex-col overflow-hidden">
         {/* Header */}
-        <header className="h-16 border-b border-brand-blue/20 flex items-center justify-between px-6 bg-background/60 backdrop-blur-sm">
-          <div className="flex items-center gap-4">
+        <header className="h-16 border-b border-brand-blue/20 flex items-center justify-between px-4 sm:px-6 bg-background/60 backdrop-blur-sm">
+          {/* Left section: Hamburger + Org */}
+          <div className="flex items-center gap-3">
+            {/* Hamburger menu (mobile only) */}
+            <button
+              className="md:hidden p-2 rounded hover:bg-brand-blue/10"
+              onClick={() => setSidebarOpen(true)}
+            >
+              <Menu className="h-5 w-5 text-muted-foreground" />
+            </button>
 
-            <div className="flex items-center gap-4">
-              <ConnectWalletButton />
-            </div>
-
-            <div className="flex items-center gap-2 text-sm">
+            {/* Organization dropdown */}
+            <div className="flex items-center gap-1 text-sm cursor-pointer hover:text-brand-blue transition-colors">
               <span className="text-muted-foreground">Organization:</span>
-              <div className="flex items-center gap-1 text-foreground cursor-pointer hover:text-brand-blue transition-colors">
-                <span>StreamFlix Media</span>
-                <ChevronDown className="h-4 w-4" />
-              </div>
+              <span className="font-medium text-foreground">StreamFlix Media</span>
+              <ChevronDown className="h-4 w-4 text-muted-foreground" />
             </div>
           </div>
 
+          {/* Center section (wallet button) */}
+          <div className="hidden sm:flex">
+            <ConnectWalletButton />
+          </div>
+
+          {/* Right section: Notifications + User */}
           <div className="flex items-center gap-4">
+            {/* Notifications */}
             <button className="relative p-2 rounded-full hover:bg-brand-blue/10 transition-colors">
               <Bell className="h-5 w-5 text-muted-foreground" />
               <span className="absolute top-1 right-1 h-2 w-2 rounded-full bg-brand-blue"></span>
             </button>
 
-            <div className="flex items-center gap-3">
+            {/* User info (hidden on very small screens) */}
+            <div className="hidden sm:flex items-center gap-2">
               <div className="w-8 h-8 rounded-full bg-brand-blue/20 flex items-center justify-center">
                 <span className="text-sm font-medium text-foreground">SM</span>
               </div>
@@ -175,83 +210,16 @@ export default function SubscriptionDashboard() {
 
                   {/* Subscription usage or OTT platforms */}
                   <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                    <div className="lg:col-span-2">
+                    <div className="lg:col-span-3">
                       <SubscriptionUsage />
-                    </div>
-                    <div className="lg:col-span-1">
-                      <div className="bg-background/40 backdrop-blur-sm border border-brand-blue/20 rounded-xl p-5 h-full">
-                        <div className="flex items-center justify-between mb-4">
-                          <h2 className="text-lg font-medium text-foreground">
-                            API Integration
-                          </h2>
-                          <Button
-                            variant="outline"
-                            size="sm"
-                            className="text-xs h-8 border-brand-blue/30 text-brand-blue hover:bg-brand-blue/10"
-                          >
-                            Manage API
-                          </Button>
-                        </div>
-
-                        <div className="bg-background/60 border border-brand-blue/30 rounded-lg p-4 mb-4">
-                          <div className="flex items-center justify-between mb-2">
-                            <div className="text-lg font-medium text-foreground">Enterprise API</div>
-                            <div className="text-sm text-brand-blue font-medium">$999/mo</div>
-                          </div>
-
-                          <div className="text-sm text-muted-foreground mb-4">
-                            Full access to OTT platform integration APIs with unlimited transactions
-                          </div>
-
-                          <div className="space-y-3">
-                            <div>
-                              <div className="flex items-center justify-between text-xs mb-1">
-                                <span className="text-muted-foreground">API Calls</span>
-                                <span className="text-foreground">782,450 / 1,000,000</span>
-                              </div>
-                              <Progress
-                                value={78}
-                                className="h-1.5 bg-brand-blue/20"
-                              />
-                            </div>
-
-                            <div>
-                              <div className="flex items-center justify-between text-xs mb-1">
-                                <span className="text-muted-foreground">OTT Platforms</span>
-                                <span className="text-foreground">8 / 12</span>
-                              </div>
-                              <Progress
-                                value={66}
-                                className="h-1.5 bg-brand-blue/20"
-                              />
-                            </div>
-
-                            <div>
-                              <div className="flex items-center justify-between text-xs mb-1">
-                                <span className="text-muted-foreground">Stablecoin Types</span>
-                                <span className="text-foreground">5 / 8</span>
-                              </div>
-                              <Progress
-                                value={62}
-                                className="h-1.5 bg-brand-blue/20"
-                              />
-                            </div>
-                          </div>
-                        </div>
-
-
-                        <div className="text-sm text-muted-foreground mt-4">
-                          Next billing date: May 15, 2025
-                        </div>
-                      </div>
                     </div>
                   </div>
 
-                  {/* Recent activity */}
                   <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                     <div className="lg:col-span-2">
                       <BillingHistory />
                     </div>
+                    {/* Recent activity */}
                     <div className="lg:col-span-1">
                       <div className="bg-background/40 backdrop-blur-sm border border-brand-blue/20 rounded-xl p-5 h-full">
                         <div className="flex items-center justify-between mb-4">
@@ -292,93 +260,7 @@ export default function SubscriptionDashboard() {
 
               {activeTab === "billing" && (
                 <div className="space-y-6">
-                  <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                    <div className="lg:col-span-2">
-                      <div className="bg-background/40 backdrop-blur-sm border border-brand-blue/20 rounded-xl p-5">
-                        <h2 className="text-lg font-medium text-foreground mb-4">Payment Methods</h2>
-
-                        <div className="space-y-4 mb-6">
-                          <div className="bg-background/60 border border-brand-blue/30 rounded-lg p-4 relative">
-                            <div className="absolute top-4 right-4 px-2 py-0.5 rounded text-xs bg-brand-blue/20 text-brand-blue">
-                              Default
-                            </div>
-                            <div className="flex items-center gap-3">
-                              <div className="w-10 h-10 rounded-md bg-brand-blue/20 flex items-center justify-center">
-                                <svg
-                                  width="24"
-                                  height="24"
-                                  viewBox="0 0 24 24"
-                                  fill="none"
-                                  xmlns="http://www.w3.org/2000/svg"
-                                >
-                                  <path
-                                    d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
-                                    stroke="#1f79bd"
-                                    strokeWidth="2"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                  />
-                                  <path
-                                    d="M7.5 12H15M15 12L11.25 8.25M15 12L11.25 15.75"
-                                    stroke="#1f79bd"
-                                    strokeWidth="2"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                  />
-                                </svg>
-                              </div>
-                              <div>
-                                <div className="text-foreground font-medium">USDC Wallet</div>
-                                <div className="text-sm text-muted-foreground">Connected to MetaMask</div>
-                              </div>
-                            </div>
-                          </div>
-
-                          <div className="bg-background/60 border border-brand-blue/10 rounded-lg p-4">
-                            <div className="flex items-center gap-3">
-                              <div className="w-10 h-10 rounded-md bg-brand-blue/10 flex items-center justify-center">
-                                <svg
-                                  width="24"
-                                  height="24"
-                                  viewBox="0 0 24 24"
-                                  fill="none"
-                                  xmlns="http://www.w3.org/2000/svg"
-                                >
-                                  <path
-                                    d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
-                                    stroke="#6d6e70"
-                                    strokeWidth="2"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                  />
-                                  <path
-                                    d="M7.5 12H15M15 12L11.25 8.25M15 12L11.25 15.75"
-                                    stroke="#6d6e70"
-                                    strokeWidth="2"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                  />
-                                </svg>
-                              </div>
-                              <div>
-                                <div className="text-foreground font-medium">USDT Wallet</div>
-                                <div className="text-sm text-muted-foreground">Connected to MetaMask</div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-
-                        <Button
-                          variant="outline"
-                          size="sm"
-                          className="text-brand-blue border-brand-blue/30 hover:bg-brand-blue/10"
-                        >
-                          <Plus className="h-4 w-4 mr-2" />
-                          Connect Wallet
-                        </Button>
-                      </div>
-                    </div>
-
+                  <div className="grid grid-cols-1 lg:grid-cols gap-6">
                     <div className="lg:col-span-1">
                       <div className="bg-background/40 backdrop-blur-sm border border-brand-blue/20 rounded-xl p-5">
                         <h2 className="text-lg font-medium text-foreground mb-4">Billing Information</h2>

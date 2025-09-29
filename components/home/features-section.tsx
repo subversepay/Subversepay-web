@@ -18,7 +18,7 @@ export default function FeaturesSection() {
     {
       icon: CreditCard,
       title: "Multi-Currency Payments",
-      description: "Accept stablecoins (USDC, USDT, DAI) and fiat seamlessly in one checkout flow.",
+      description: "Accept stablecoins (USDC, USDT, DAI) and crypto seamlessly in one checkout flow.",
     },
     {
       icon: Zap,
@@ -38,7 +38,7 @@ export default function FeaturesSection() {
     {
       icon: Wallet,
       title: "Transparent Pricing",
-      description: "Flat 1% + 0.2$ per transaction with no hidden fees. High-volume merchants get discounts.",
+      description: "1% + 0.2$ per transaction with no hidden fees. High-volume merchants get discounts.",
     },
   ]
 

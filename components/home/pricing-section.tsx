@@ -11,7 +11,7 @@ export default function PricingSection() {
   })
 
   const plan = {
-    name: "Flat Pricing",
+    name: "Pricing",
     fee: "1% + 0.2$",
     description: "Simple, transparent fees for every transaction. No setup costs, no hidden charges.",
     features: [

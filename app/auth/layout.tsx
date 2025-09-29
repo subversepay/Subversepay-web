@@ -28,9 +28,11 @@ export default function AuthLayout({ children }: { children: ReactNode }) {
               </div>
               <div className="absolute inset-0 border-2 border-brand-blue/50 rounded-full animate-pulse"></div>
             </div>
-            <span className="text-xl font-bold text-brand-blue relative">
-              SubversePay
-              <span className="absolute -bottom-1 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-brand-blue to-transparent"></span>
+            <span>
+              <span className="text-xl font-bold text-brand-blue">Subverse</span>
+              <span className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-foreground to-muted-foreground">
+                Pay
+              </span>
             </span>
           </Link>
 

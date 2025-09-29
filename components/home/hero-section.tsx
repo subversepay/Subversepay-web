@@ -47,11 +47,11 @@ export default function HeroSection() {
             </span>{" "}
             <span className="text-brand-blue relative">
               Seamlessly
-              <span className="absolute -bottom-2 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-brand-blue to-transparent"></span>
+              {/* <span className="absolute -bottom-2 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-brand-blue to-transparent"></span> */}
             </span>
             <br />
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-foreground to-muted-foreground">
-              in Stablecoins & Fiat
+              in Crypto & Stabcoins
             </span>
           </h1>
 
@@ -61,8 +61,8 @@ export default function HeroSection() {
               isVisible ? "opacity-100" : "opacity-0 translate-y-4"
             }`}
           >
-            The all-in-one gateway for merchants to accept crypto & fiat payments,  
-            with <strong>real-time settlement</strong> and <strong>1% + 0.2$ fees</strong>.
+            The all-in-one gateway for merchants to accept crypto & Stablecoins,  
+            and get <strong>settlement </strong>in stablecoin with <strong>1% + 0.2$ fees</strong>.
           </p>
 
           {/* CTA Buttons */}
@@ -93,7 +93,7 @@ export default function HeroSection() {
             }`}
           >
             {[
-              "Flat 1.5% Transaction Fee",
+              "1% + 0.2$ Transaction Fee",
               "Secure API Integration",
               "Instant Stablecoin Settlement",
               "24/7 Merchant Support",

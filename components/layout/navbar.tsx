@@ -65,7 +65,13 @@ export default function Navbar() {
               className="object-contain"
             />
           </div>
-          <span className="text-xl font-bold text-brand-blue">SubversePay</span>
+        <span>
+          <span className="text-xl font-bold text-brand-blue">Subverse
+          </span>
+          <span className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-foreground to-muted-foreground">
+          Pay
+          </span>
+        </span>
         </Link>
 
         {/* Desktop Nav */}

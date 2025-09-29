@@ -20,12 +20,14 @@ export default function CompanyMarquee() {
     { name: "Payoneer", logo: "/Subversepay-web/placeholder.svg" },
   ]
 
-  // Generate particles for background
   const particleCount = 30
   const particles = Array.from({ length: particleCount })
 
   return (
-    <div className="relative w-full px-4 max-w-4xl mx-auto h-[300px] overflow-hidden" ref={containerRef}>
+    <div
+      ref={containerRef}
+      className="relative w-full px-4 sm:px-6 lg:px-12 max-w-6xl mx-auto h-[260px] sm:h-[280px] lg:h-[320px] overflow-hidden"
+    >
       {/* Background */}
       <div className="absolute inset-0 bg-background rounded-xl overflow-hidden">
         <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center opacity-20"></div>
@@ -57,17 +59,17 @@ export default function CompanyMarquee() {
       </div>
 
       {/* Content */}
-      <div className="absolute inset-0 flex flex-col items-center justify-center p-8">
+      <div className="absolute inset-0 flex flex-col items-center justify-center px-4 sm:px-6 lg:px-12">
         <motion.div
-          className="mb-8 text-center"
+          className="mb-6 sm:mb-8 text-center"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4 }}
         >
-          <h2 className="text-2xl font-bold text-foreground mb-2">
+          <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-foreground mb-2">
             Trusted By Merchants & Developers
           </h2>
-          <p className="text-muted-foreground max-w-lg mx-auto">
+          <p className="text-muted-foreground text-sm sm:text-base lg:text-lg max-w-2xl mx-auto">
             Join the growing ecosystem of businesses integrating SubversePay for seamless stablecoin payments.
           </p>
         </motion.div>
@@ -80,9 +82,8 @@ export default function CompanyMarquee() {
           transition={{ delay: 0.6 }}
         >
           <div className="relative">
-            {/* Marquee motion */}
             <motion.div
-              className="flex gap-12 items-center"
+              className="flex gap-6 sm:gap-10 lg:gap-16 items-center"
               animate={{ x: [0, -1500] }}
               transition={{
                 duration: 30,
@@ -93,33 +94,33 @@ export default function CompanyMarquee() {
               {[...partners, ...partners, ...partners].map((partner, index) => (
                 <div
                   key={`${partner.name}-${index}`}
-                  className="flex-shrink-0 bg-background/40 backdrop-blur-sm border border-brand-blue/20 rounded-lg px-6 py-4 hover:border-brand-blue/50 transition-colors"
+                  className="flex-shrink-0 bg-background/40 backdrop-blur-sm border border-brand-blue/20 rounded-lg px-4 py-2 sm:px-6 sm:py-4 hover:border-brand-blue/50 transition-colors"
                 >
                   <Image
                     src={partner.logo}
                     alt={partner.name}
                     width={120}
                     height={30}
-                    className="h-8 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity"
+                    className="h-6 sm:h-8 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity"
                   />
                 </div>
               ))}
             </motion.div>
 
             {/* Fade edges */}
-            <div className="absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-background to-transparent z-10"></div>
-            <div className="absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-background to-transparent z-10"></div>
+            <div className="absolute inset-y-0 left-0 w-12 sm:w-16 bg-gradient-to-r from-background to-transparent z-10"></div>
+            <div className="absolute inset-y-0 right-0 w-12 sm:w-16 bg-gradient-to-l from-background to-transparent z-10"></div>
           </div>
         </motion.div>
 
         {/* Focus Keys */}
         <motion.div
-          className="mt-12 flex items-center gap-4"
+          className="mt-8 sm:mt-10 lg:mt-12 flex flex-wrap items-center justify-center gap-3 sm:gap-4 text-center"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.8 }}
         >
-          <div className="text-foreground text-sm">
+          <div className="text-foreground text-xs sm:text-sm lg:text-base">
             <span className="text-brand-blue font-medium">SOL</span>
             <span className="mx-2 text-muted-foreground">•</span>
             <span className="text-brand-blue font-medium">ETH</span>
@@ -127,9 +128,11 @@ export default function CompanyMarquee() {
             <span className="text-muted-foreground">USDC</span>
           </div>
 
-          <div className="h-px w-12 bg-gradient-to-r from-transparent via-brand-blue/50 to-transparent"></div>
+          <div className="h-px w-8 sm:w-12 bg-gradient-to-r from-transparent via-brand-blue/50 to-transparent"></div>
 
-          <div className="text-foreground font-medium">API First • Merchant Ready</div>
+          <div className="text-foreground text-xs sm:text-sm lg:text-base font-medium">
+            API First • Merchant Ready
+          </div>
         </motion.div>
       </div>
     </div>
